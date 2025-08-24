@@ -214,7 +214,7 @@
     <button class="hamburger" onclick="toggleMenu()">☰</button>
     <ul class="nav-links">
          <li class="close-btn"><a href="javascript:void(0)" onclick="toggleMenu()">✕</a></li>
-      <li><a href="bio.html" class="lang" data-gr="Βιογραφικό" data-en="Biography">Βιογραφικό</a></li>
+      <li><a href="bio.html" class="lang" data-gr="Bio" data-en="Bio">Bio</a></li>
       <li><a href="performance.html" class="lang" data-gr="Παραστάσεις" data-en="Performances">Παραστάσεις</a></li>
       <li><a href="maestro.html" class="lang" data-gr="Μουσική Προετοιμασία - Διδασκαλία" data-en="Music Preparation – Teaching">Μουσική Προετοιμασία - Διδασκαλία</a></li>
       <li><a href="discography.html" class="lang" data-gr="Δισκογραφία" data-en="Discography">Δισκογραφία</a></li>
@@ -270,6 +270,28 @@
         }
       });
     });
+    function toggleLanguage() {
+  const toggleBtn = document.querySelector('.lang-toggle');
+  const currentLang = toggleBtn.textContent.trim();
+  const newLang = currentLang === "EN" ? "GR" : "EN";
+  toggleBtn.textContent = newLang;
+
+  document.querySelectorAll('.lang').forEach(el => {
+    const text = (newLang === "EN") ? el.dataset.en : el.dataset.gr;
+
+    // If it's an input or textarea, change placeholder/value instead of innerText
+    if (el.tagName === "INPUT" || el.tagName === "TEXTAREA") {
+      if (el.type === "submit") {
+        el.value = text; // for the button
+      } else {
+        el.placeholder = text; // for text/email/textarea
+      }
+    } else {
+      el.innerHTML = text; // default for normal elements
+    }
+  });
+}
+
   </script>
 </body>
 </html>
