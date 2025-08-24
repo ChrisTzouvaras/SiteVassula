@@ -1,0 +1,459 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Performance Details</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css" rel="stylesheet">
+       <style>
+       
+        .content-container {
+            max-width: 800px;
+            margin: auto;
+            text-align: left;
+        }
+        /*gia na ftanei i eikona tou carusel to text*/
+.carousel-inner {
+  max-width: 800px;      /* adjust frame width */
+  margin: auto;
+  border: 8px solid #333; /* frame look */
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 6px 16px rgba(0,0,0,0.3); /* floating frame effect */
+}
+
+.carousel-img {
+  width: 100%;
+  height: 500px;        /* consistent height */
+  object-fit: cover;    /* keeps proportions but fills frame */
+}
+        footer {
+            text-align: center;
+        }
+
+        .carousel-control-prev, .carousel-control-next {
+            width: 10%;
+            top: 50%;
+            transform: translateY(-50%);
+            opacity: 0.8;
+        }
+
+        .carousel-control-prev-icon, .carousel-control-next-icon {
+            filter: invert(100%);
+        }
+
+        .carousel-control-prev:hover, .carousel-control-next:hover {
+            opacity: 1;
+        }
+
+        .btn-warning {
+            margin-top: 20px;
+        }
+
+ body {
+ font-family: "Roboto", Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+  background-color: white;
+  color: black;
+}
+
+    nav {
+      padding: 10px 0;
+      position: fixed;
+      width: 100%;
+      top: 0;
+      left: 0;
+      background: white;
+      border-bottom: 1px solid #ddd;
+      z-index: 1000;
+    }
+
+    .navbar-container {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      width: 90%;
+      margin: auto;
+      padding: 0 10px;
+    }
+
+    .brand-info {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+    }
+
+    .name-button {
+      background: none;
+      border: none;
+      font-size: 20px;
+      font-weight: bold;
+      cursor: pointer;
+      color: black;
+    }
+
+    .name-button:hover {
+      color: black;
+    }
+
+    .hamburger {
+      display: none;
+      font-size: 26px;
+      background: none;
+      border: none;
+      cursor: pointer;
+    }
+
+    .nav-links {
+      list-style: none;
+      display: flex;
+      justify-content: center;
+      width: 100%;
+      gap: 15px;
+    }
+
+    .nav-links li a {
+      color: black;
+      text-decoration: none;
+      font-weight: bold;
+      font-size: 13.5px;
+      padding: 10px 15px;
+      border-radius: 5px;
+      transition: background-color 0.3s, color 0.3s;
+    }
+
+       .nav-links li a {
+  position: relative;
+}
+
+.nav-links li a::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 0%;
+  height: 2px;
+  background-color: black;
+  transition: width 0.3s ease;
+}
+
+.nav-links li a:hover::after {
+  width: 100%;
+}
+
+    .lang-toggle {
+      background: white;
+      color: black;
+      border: 1px solid black;
+      padding: 5px 10px;
+      font-size: 14px;
+      cursor: pointer;
+      border-radius: 5px;
+    }
+
+    .performances {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 20px;
+      padding: 20px;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    h2 {
+      text-align: center;
+      font-size: 24px;
+      margin: 40px 0 20px;
+    }
+
+    .performance-item {
+      background: none;
+      padding: 0;
+      text-align: left;
+      width: 250px;
+    }
+
+    .performance-item img {
+      width: 100%;
+      height: 250px;
+      object-fit: cover;
+      object-position: center;
+      border-radius: 0;
+    }
+
+    .performance-title {
+      font-size: 14px;
+      font-weight: bold;
+      margin-top: 10px;
+      color: black;
+      text-decoration: none;
+      display: inline-block;
+    }
+
+    .performance-role {
+      font-size: 13px;
+      color: gray;
+      margin-top: 5px;
+    }
+
+    footer {
+      text-align: center;
+      margin-top: 60px;
+      padding: 10px 0;
+      color: black;
+    }
+
+    .close-btn {
+      display: none;
+    }
+
+        /* Navbar responsiveness */
+.hamburger {
+  background: none;
+  border: none;
+  font-size: 24px;
+  cursor: pointer;
+  display: none;
+}
+
+.nav-links {
+  list-style-type: none;
+  display: flex;
+  gap: 15px;
+  margin: 0;
+  padding: 0;
+}
+
+.nav-links li a {
+  padding: 10px 15px;
+  font-weight: bold;
+  font-size: 13.5px;
+  text-decoration: none;
+  color: black;
+  transition: background-color 0.3s, color 0.3s;
+}
+
+.nav-links li a {
+  position: relative;
+}
+
+.nav-links li a::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 0%;
+  height: 2px;
+  background-color: black;
+  transition: width 0.3s ease;
+}
+
+.nav-links li a:hover::after {
+  width: 100%;
+}
+
+/* Mobile styles */
+  @media (max-width: 768px) {
+      .nav-links {
+        flex-direction: column;
+        background: white;
+        position: fixed;
+        top: 0;
+        right: -250px;
+        width: 200px;
+        height: 100%;
+        padding: 60px 20px;
+        box-shadow: -2px 0px 5px rgba(0, 0, 0, 0.1);
+        transition: right 0.3s ease;
+        z-index: 1500;
+      }
+
+      .nav-links.open {
+        right: 0;
+      }
+
+      .hamburger {
+        display: block;
+      }
+
+      .close-btn {
+        display: block;
+        text-align: right;
+        margin-bottom: 20px;
+      }
+
+      .close-btn a {
+        font-size: 26px;
+        text-decoration: none;
+        color: black;
+        padding: 10px;
+      }
+
+      .performance-item {
+        text-align: center;
+      }
+
+      .performance-title,
+      .performance-role {
+        text-align: center;
+      }
+}
+
+    </style>
+</head>
+<body>
+    
+        <!-- Navbar -->
+       <nav>
+  <div class="navbar-container">
+    <div class="brand-info">
+      <button class="name-button" onclick="window.location.href='index.html'" id="name-button" data-gr="ΒΑΣΟΥΛΑ ΔΕΛΛΗ" data-en="VASSULA DELLI">ΒΑΣΟΥΛΑ ΔΕΛΛΗ</button>
+      <!--<p id="title-text" data-gr="ΜΟΥΣΙΚΟΣ / PERFORMER / ΣΥΝΘΕΤΡΙΑ / ΠΑΙΔΑΓΩΓΟΣ" data-en="MUSICIAN / PERFORMER / COMPOSER / EDUCATOR">
+        ΜΟΥΣΙΚΟΣ / PERFORMER / ΣΥΝΘΕΤΡΙΑ / ΠΑΙΔΑΓΩΓΟΣ
+      </p>-->
+    </div>
+    <button class="hamburger" onclick="toggleMenu()">☰</button>
+    <ul class="nav-links">
+      <li class="close-btn"><a href="javascript:void(0)" onclick="toggleMenu()">✕</a></li>
+      <li><a href="bio.html" class="lang" data-gr="Βιογραφικό" data-en="Biography">Βιογραφικό</a></li>
+      <li><a href="performance.html" class="lang" data-gr="Παραστάσεις" data-en="Performances">Παραστάσεις</a></li>
+      <li><a href="maestro.html" class="lang" data-gr="Μουσική Προετοιμασία - Διδασκαλία" data-en="Music Preparation – Teaching">Μουσική Προετοιμασία - Διδασκαλία</a></li>
+      <li><a href="discography.html" class="lang" data-gr="Δισκογραφία" data-en="Discography">Δισκογραφία</a></li>
+      <li><a href="contact.html" class="lang" data-gr="Επικοινωνία" data-en="Contact">Επικοινωνία</a></li>
+    </ul>
+    <button class="lang-toggle" onclick="toggleLanguage()">EN</button>
+  </div>
+</nav>
+        
+<br><br>
+
+<div class="container py-5">
+    <!-- Title -->
+    <div class="content-container">
+        <h2 class="lang" data-gr="TΟ ΠΕΡΑΣΜΑ" data-en="THE PASSAGE">TΟ ΠΕΡΑΣΜΑ</h2>
+    </div>
+    <br>
+
+    <!-- Carousel -->
+    <!-- Carousel -->
+<div id="performanceCarouselPerasma" class="carousel slide" data-bs-ride="carousel">
+  <div class="carousel-inner text-center">
+    <div class="carousel-item active">
+      <img src="./perasma1.jpg" class="d-block carousel-img" alt="Performance Perasma - Image 1">
+    </div>
+    <div class="carousel-item">
+      <img src="./perasma2.jpg" class="d-block carousel-img" alt="Performance Perasma - Image 2">
+    </div>
+    <div class="carousel-item">
+      <img src="./perasma3.jpg" class="d-block carousel-img" alt="Performance Perasma - Image 3">
+    </div>
+    <div class="carousel-item">
+      <img src="./perasma4.jpg" class="d-block carousel-img" alt="Performance Perasma - Image 4">
+    </div>
+    <div class="carousel-item">
+      <img src="./perasma5.jpg" class="d-block carousel-img" alt="Performance Perasma - Image 5">
+    </div>
+  </div>
+
+  <!-- Carousel Controls -->
+  <button class="carousel-control-prev" type="button" data-bs-target="#performanceCarouselPerasma" data-bs-slide="prev">
+    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+    <span class="visually-hidden">Previous</span>
+  </button>
+  <button class="carousel-control-next" type="button" data-bs-target="#performanceCarouselPerasma" data-bs-slide="next">
+    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+    <span class="visually-hidden">Next</span>
+  </button>
+</div>
+
+
+</div>
+
+<br>
+<!-- Text Description -->
+<div class="content-container">
+    <h2 class="lang" data-gr="TΟ ΠΕΡΑΣΜΑ ΤΗΣ ΣΤΕΦΑΝΙΑΣ ΠΑΠΑΜΙΧΑΗΛ"
+    data-en="THE PASSAGE BY STEPHANIA PAPAMICHAEL" >TΟ ΠΕΡΑΣΜΑ ΤΗΣ ΣΤΕΦΑΝΙΑΣ ΠΑΠΑΜΙΧΑΗΛ</h2>
+    <p class="lang" data-gr="Μία παρέα πέντε κοριτσιών μας ταξιδεύει στον χρόνο μέσα από παιχνίδια που από την κοριτσίστικη αθωότητα οδηγούν στη σκληρή πραγματικότητα του κόσμου των ενηλίκων. Ένα συμβολικό «πέρασμα», με πολλά παραδοσιακά ηπειρώτικα τραγούδια, που συνοδεύονται από στοιχεία σωματικού θεάτρου, κουκλοθεάτρου, θεάτρου σκιών και rituals, και παράλληλα διακοσμείται από video art και εξωτερικό ηχητικό περιβάλλον." data-en="A group of five girls takes us on a journey through time via games that evolve from girlish innocence into the harsh realities of the adult world. A symbolic ''passage'' featuring numerous traditional songs from Epirus, interwoven with elements of physical theatre, puppetry, shadow theatre, and ritual. The performance is enriched/adorned by video art and ambient outdoor soundscape.">
+        Μία παρέα πέντε κοριτσιών μας ταξιδεύει στον χρόνο μέσα από παιχνίδια που από την κοριτσίστικη αθωότητα οδηγούν στη σκληρή πραγματικότητα του κόσμου των ενηλίκων. Ένα συμβολικό «πέρασμα», με πολλά παραδοσιακά ηπειρώτικα τραγούδια, που συνοδεύονται από στοιχεία σωματικού θεάτρου, κουκλοθεάτρου, θεάτρου σκιών και rituals, και παράλληλα διακοσμείται από video art και εξωτερικό ηχητικό περιβάλλον.
+    </p>
+    <hr>
+
+    <h2 class="lang" data-en="WHERE & WHEN" data-gr="ΠΟΥ & ΠΟΤΕ">ΠΟΥ & ΠΟΤΕ</h2>
+    <p class="lang" data-gr="2009 Biennale Νέων Καλλιτεχνών της Ευρώπης και της Μεσογείου, Σκόπια<br>
+        14.5.2010 Θέατρο Αμαλία, Θεσσαλονίκη<br>
+    14.9.2010 Θέατρο Κήπου 45α Δημήτρια, Θεσσαλονίκη" data-en="2009 Biennale of Young Artists from Europe and the Mediterranean, Skopje<br>
+    14.5.2010 Amalia Theatre, Thessaloniki<br>
+    14.9.2010 Garden Theatre 45th Dimitria Festival, Thessaloniki">2009 Biennale Νέων Καλλιτεχνών της Ευρώπης και της Μεσογείου, Σκόπια<br>
+    14.5.2010 Θέατρο Αμαλία, Θεσσαλονίκη<br>
+14.9.2010 Θέατρο Κήπου 45α Δημήτρια, Θεσσαλονίκη</p>
+<hr>
+
+    <!-- Contributors -->
+    <h2 class="lang" data-gr="ΣΥΝΤΕΛΕΣΤΕΣ" data-en="CREDITS">ΣΥΝΤΕΛΕΣΤΕΣ</h2>
+
+<div>
+  <p class="lang" data-gr="<strong>Σκηνοθεσία:</strong> Στεφανία Παπαμιχαήλ" data-en="<strong>Direction:</strong> Stefania Papamichail">
+    <strong>Σκηνοθεσία:</strong> Στεφανία Παπαμιχαήλ
+  </p>
+  <p class="lang" data-gr="<strong>Παίζουν:</strong> Αθηνά Γκούμα, Στέλλα Γκρήγκοβιτς, Βασούλα Δελλή, Ιουλία Ρούτζιου, Γεωργία Τέντα" data-en="<strong>Performers:</strong> Athina Gouma, Stella Grigovic, Vassoula Delli, Ioulia Routziou, Georgia Tenta">
+    <strong>Παίζουν:</strong> Αθηνά Γκούμα, Στέλλα Γκρήγκοβιτς, Βασούλα Δελλή, Ιουλία Ρούτζιου, Γεωργία Τέντα
+  </p>
+  <p class="lang" data-gr="<strong>Σκηνικά:</strong> Δήμητρα Αλουτζανίδου" data-en="<strong>Set Design:</strong> Dimitra Aloutzanidou">
+    <strong>Σκηνικά:</strong> Δήμητρα Αλουτζανίδου
+  </p>
+  <p class="lang" data-gr="<strong>Ενδυματολογική επιμέλεια:</strong> Δήμητρα Αλουτζανίδου" data-en="<strong>Costume Design:</strong> Dimitra Aloutzanidou">
+    <strong>Ενδυματολογική επιμέλεια:</strong> Δήμητρα Αλουτζανίδου
+  </p>
+  <p class="lang" data-gr="<strong>Φωτισμοί:</strong> Δήμητρα Αλουτζανίδου" data-en="<strong>Lighting:</strong> Dimitra Aloutzanidou">
+    <strong>Φωτισμοί:</strong> Δήμητρα Αλουτζανίδου
+  </p>
+  <p class="lang" data-gr="<strong>Βοηθός σκηνογράφου:</strong> Κέλλυ Εφραιμίδου" data-en="<strong>Scenography Assistant:</strong> Kelly Efremidou">
+    <strong>Βοηθός σκηνογράφου:</strong> Κέλλυ Εφραιμίδου
+  </p>
+  <p class="lang" data-gr="<strong>Video art:</strong> Ανέστης Πάτκας" data-en="<strong>Video Art:</strong> Anestis Patkas">
+    <strong>Video art:</strong> Ανέστης Πάτκας
+  </p>
+  <p class="lang" data-gr="<strong>Μουσική σύνθεση video:</strong> Αλέξανδρος Ιωάννου" data-en="<strong>Video Music Composition:</strong> Alexandros Ioannou">
+    <strong>Μουσική σύνθεση video:</strong> Αλέξανδρος Ιωάννου
+  </p>
+  <p class="lang" data-gr="<strong>Επεξεργασία μουσικής:</strong> Αλέξανδρος Ιωάννου - Τάσος Καραδέδος" data-en="<strong>Music Editing:</strong> Alexandros Ioannou – Tasos Karadedos">
+    <strong>Επεξεργασία μουσικής:</strong> Αλέξανδρος Ιωάννου - Τάσος Καραδέδος
+  </p>
+  <p class="lang" data-gr="<strong>Ηχογράφηση:</strong> Τάσος Καραδέδος" data-en="<strong>Sound Recording:</strong> Tasos Karadedos">
+    <strong>Ηχογράφηση:</strong> Τάσος Καραδέδος
+  </p>
+  <p class="lang" data-gr="<strong>Διδασκαλία τραγουδιών:</strong> Γεωργία Τέντα" data-en="<strong>Vocal Coaching:</strong> Georgia Tenta">
+    <strong>Διδασκαλία τραγουδιών:</strong> Γεωργία Τέντα
+  </p>
+</div>
+
+</div>
+<!-- Footer -->
+ <hr>
+<footer>
+  <p>&copy; 2025 Vassula Delli<br>
+     Created by Chris Tzouvaras</p>
+</footer>
+ <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="language.js"></script>
+  <script>
+    function toggleMenu() {
+      const navLinks = document.querySelector('.nav-links');
+      navLinks.classList.toggle('open');
+    }
+
+    // auto-close menu when clicking a link (mobile only)
+    document.querySelectorAll('.nav-links a').forEach(link => {
+      link.addEventListener('click', () => {
+        const navLinks = document.querySelector('.nav-links');
+        if (navLinks.classList.contains('open')) {
+          navLinks.classList.remove('open');
+        }
+      });
+    });
+  </script>
+</body>
+</html>

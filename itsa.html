@@ -1,0 +1,478 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Performance Details</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css" rel="stylesheet">
+   <style>
+       
+        .content-container {
+            max-width: 800px;
+            margin: auto;
+            text-align: left;
+        }
+        /*gia na ftanei i eikona tou carusel to text*/
+.carousel-inner {
+  max-width: 800px;      /* adjust frame width */
+  margin: auto;
+  border: 8px solid #333; /* frame look */
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 6px 16px rgba(0,0,0,0.3); /* floating frame effect */
+}
+
+.carousel-img {
+  width: 100%;
+  height: 500px;        /* consistent height */
+  object-fit: cover;    /* keeps proportions but fills frame */
+}
+
+        footer {
+            text-align: center;
+        }
+
+        .carousel-control-prev, .carousel-control-next {
+            width: 10%;
+            top: 50%;
+            transform: translateY(-50%);
+            opacity: 0.8;
+        }
+
+        .carousel-control-prev-icon, .carousel-control-next-icon {
+            filter: invert(100%);
+        }
+
+        .carousel-control-prev:hover, .carousel-control-next:hover {
+            opacity: 1;
+        }
+
+        .btn-warning {
+            margin-top: 20px;
+        }
+
+     body {
+  font-family: "Roboto", Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+  background-color: white;
+  color: black;
+}
+
+    nav {
+      padding: 10px 0;
+      position: fixed;
+      width: 100%;
+      top: 0;
+      left: 0;
+      background: white;
+      border-bottom: 1px solid #ddd;
+      z-index: 1000;
+    }
+
+    .navbar-container {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      width: 90%;
+      margin: auto;
+      padding: 0 10px;
+    }
+
+    .brand-info {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+    }
+
+    .name-button {
+      background: none;
+      border: none;
+      font-size: 20px;
+      font-weight: bold;
+      cursor: pointer;
+      color: black;
+    }
+
+    .name-button:hover {
+      color: black;
+    }
+
+    .hamburger {
+      display: none;
+      font-size: 26px;
+      background: none;
+      border: none;
+      cursor: pointer;
+    }
+
+    .nav-links {
+      list-style: none;
+      display: flex;
+      justify-content: center;
+      width: 100%;
+      gap: 15px;
+    }
+
+    .nav-links li a {
+      color: black;
+      text-decoration: none;
+      font-weight: bold;
+      font-size: 13.5px;
+      padding: 10px 15px;
+      border-radius: 5px;
+      transition: background-color 0.3s, color 0.3s;
+    }
+
+       .nav-links li a {
+  position: relative;
+}
+
+.nav-links li a::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 0%;
+  height: 2px;
+  background-color: black;
+  transition: width 0.3s ease;
+}
+
+.nav-links li a:hover::after {
+  width: 100%;
+}
+
+    .lang-toggle {
+      background: white;
+      color: black;
+      border: 1px solid black;
+      padding: 5px 10px;
+      font-size: 14px;
+      cursor: pointer;
+      border-radius: 5px;
+    }
+
+    .performances {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 20px;
+      padding: 20px;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    h2 {
+      text-align: center;
+      font-size: 24px;
+      margin: 40px 0 20px;
+    }
+
+    .performance-item {
+      background: none;
+      padding: 0;
+      text-align: left;
+      width: 250px;
+    }
+
+    .performance-item img {
+      width: 100%;
+      height: 250px;
+      object-fit: cover;
+      object-position: center;
+      border-radius: 0;
+    }
+
+    .performance-title {
+      font-size: 14px;
+      font-weight: bold;
+      margin-top: 10px;
+      color: black;
+      text-decoration: none;
+      display: inline-block;
+    }
+
+    .performance-role {
+      font-size: 13px;
+      color: gray;
+      margin-top: 5px;
+    }
+
+    footer {
+      text-align: center;
+      margin-top: 60px;
+      padding: 10px 0;
+      color: black;
+    }
+
+    .close-btn {
+      display: none;
+    }
+
+        /* Navbar responsiveness */
+.hamburger {
+  background: none;
+  border: none;
+  font-size: 24px;
+  cursor: pointer;
+  display: none;
+}
+
+.nav-links {
+  list-style-type: none;
+  display: flex;
+  gap: 15px;
+  margin: 0;
+  padding: 0;
+}
+
+.nav-links li a {
+  padding: 10px 15px;
+  font-weight: bold;
+  font-size: 13.5px;
+  text-decoration: none;
+  color: black;
+  transition: background-color 0.3s, color 0.3s;
+}
+
+.nav-links li a {
+  position: relative;
+}
+
+.nav-links li a::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 0%;
+  height: 2px;
+  background-color: black;
+  transition: width 0.3s ease;
+}
+
+.nav-links li a:hover::after {
+  width: 100%;
+}
+
+/* Mobile styles */
+  @media (max-width: 768px) {
+      .nav-links {
+        flex-direction: column;
+        background: white;
+        position: fixed;
+        top: 0;
+        right: -250px;
+        width: 200px;
+        height: 100%;
+        padding: 60px 20px;
+        box-shadow: -2px 0px 5px rgba(0, 0, 0, 0.1);
+        transition: right 0.3s ease;
+        z-index: 1500;
+      }
+
+      .nav-links.open {
+        right: 0;
+      }
+
+      .hamburger {
+        display: block;
+      }
+
+      .close-btn {
+        display: block;
+        text-align: right;
+        margin-bottom: 20px;
+      }
+
+      .close-btn a {
+        font-size: 26px;
+        text-decoration: none;
+        color: black;
+        padding: 10px;
+      }
+
+      .performance-item {
+        text-align: center;
+      }
+
+      .performance-title,
+      .performance-role {
+        text-align: center;
+      }
+}
+
+    </style>
+</head>
+<body>
+    
+        <!-- Navbar -->
+       <nav>
+  <div class="navbar-container">
+    <div class="brand-info">
+      <button class="name-button" onclick="window.location.href='index.html'" id="name-button" data-gr="ΒΑΣΟΥΛΑ ΔΕΛΛΗ" data-en="VASSULA DELLI">ΒΑΣΟΥΛΑ ΔΕΛΛΗ</button>
+       <!--<p id="title-text" data-gr="ΜΟΥΣΙΚΟΣ / PERFORMER / ΣΥΝΘΕΤΡΙΑ / ΠΑΙΔΑΓΩΓΟΣ" data-en="MUSICIAN / PERFORMER / COMPOSER / EDUCATOR">
+        ΜΟΥΣΙΚΟΣ / PERFORMER / ΣΥΝΘΕΤΡΙΑ / ΠΑΙΔΑΓΩΓΟΣ
+      </p>-->
+    </div>
+    <button class="hamburger" onclick="toggleMenu()">☰</button>
+    <ul class="nav-links">
+      <li class="close-btn"><a href="javascript:void(0)" onclick="toggleMenu()">✕</a></li>
+      <li><a href="bio.html" class="lang" data-gr="Βιογραφικό" data-en="Biography">Βιογραφικό</a></li>
+      <li><a href="performance.html" class="lang" data-gr="Παραστάσεις" data-en="Performances">Παραστάσεις</a></li>
+      <li><a href="maestro.html" class="lang" data-gr="Μουσική Προετοιμασία - Διδασκαλία" data-en="Music Preparation – Teaching">Μουσική Προετοιμασία - Διδασκαλία</a></li>
+      <li><a href="discography.html" class="lang" data-gr="Δισκογραφία" data-en="Discography">Δισκογραφία</a></li>
+      <li><a href="contact.html" class="lang" data-gr="Επικοινωνία" data-en="Contact">Επικοινωνία</a></li>
+    </ul>
+    <button class="lang-toggle" onclick="toggleLanguage()">EN</button>
+  </div>
+</nav>
+        
+<BR>
+    <BR>
+        <BR>
+</header>
+<div class="container py-5">
+    <!-- Title -->
+    <div class="content-container">
+        <h2 class="lang" data-gr="Η ΙΤΣΑ ΤΟΥ ΣΑΣΜΑ Ή Ο ΑΝΑΠΟΔΟΣ ΧΟΡΟΣ" data-en="I ITSA TOU SASMA OR THE REVERSED DANCE">Η ΙΤΣΑ ΤΟΥ ΣΑΣΜΑ Ή Ο ΑΝΑΠΟΔΟΣ ΧΟΡΟΣ</h2>
+    </div>
+    <br>
+
+   <!-- Carousel -->
+<div id="performanceCarousel" class="carousel slide" data-bs-ride="carousel">
+    <div class="carousel-inner text-center">
+
+        <div class="carousel-item active">
+            <img src="./itsa1.jpg" class="d-block carousel-img" alt="Image 1">
+        </div>
+        <div class="carousel-item">
+            <img src="./itsa2.jpg" class="d-block carousel-img" alt="Image 2">
+        </div>
+        <div class="carousel-item">
+            <img src="./itsa3.jpg" class="d-block carousel-img" alt="Image 3">
+        </div>
+        <div class="carousel-item">
+            <img src="./itsa4.jpg" class="d-block carousel-img" alt="Image 4">
+        </div>
+
+    </div>
+    
+    <!-- Carousel Controls -->
+    <button class="carousel-control-prev" type="button" data-bs-target="#performanceCarousel" data-bs-slide="prev">
+        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+        <span class="visually-hidden">Previous</span>
+    </button>
+    <button class="carousel-control-next" type="button" data-bs-target="#performanceCarousel" data-bs-slide="next">
+        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+        <span class="visually-hidden">Next</span>
+    </button>
+</div>
+
+    <!-- Photo Credits -->
+    <div class="content-container">
+        <p class="lang" style="font-size: 13px;" data-gr="Photo Credits: Πέτρος Μακρής" data-en="Photo Credits: Petros Makris">Photo Credits: Πέτρος Μακρής</p>
+    </div>
+    <br>
+    <br>
+
+
+<!-- Text Description -->
+<div class="content-container">
+    <h2 class="lang" data-gr="Η ΙΤΣΑ ΤΟΥ ΣΑΣΜΑ Ή Ο ΑΝΑΠΟΔΟΣ ΧΟΡΟΣ" data-en="I ITSA TOU SASMA OR THE REVERSED DANCE">Η ΙΤΣΑ ΤΟΥ ΣΑΣΜΑ Ή Ο ΑΝΑΠΟΔΟΣ ΧΟΡΟΣ</h2>
+    <p class="lang" data-gr="Ο σκηνοθέτης Κωνσταντίνος Μάρκελλος (συγγραφέας των έργων Η απαγωγή της Τασούλας, Χορευτική πανούκλα και Δυο πορτοκάλια για τα Χριστούγεννα) εμπνέεται από έναν λαϊκό θρύλο της Ηπείρου για να συνθέσει ένα δημοτικοφανές κείμενο στα πρότυπα των Παραλογών. Μια ομάδα ηθοποιών-μουσικών ερμηνεύουν άλλοτε ως Αφηγητές κι άλλοτε ως Δρώντες Χαρακτήρες, ενώ ταυτόχρονα τραγουδούν πρωτότυπες συνθέσεις σε δρόμους πολυφωνικού ηπειρώτικου από τη Βασούλα Δελλή.
+
+    Η γριά Ίτσα είχε ιδιαίτερο και ρόλο στην κοινότητα του χωριού Αετομηλίτσα της Κόνιτσας. Είχε χαρακτηριστικά καλής μαγίστρας, σκορπίζοντας γύρω της ανακούφιση ανάμικτη με φόβο. Τον Ιούλιο του 1974 όταν, κηρύχτηκε γενική επιστράτευση, μάζεψε τα κορίτσια στην εκκλησία του Αη-Νικόλα, για την επιτέλεση ενός αρχέγονου, αποτρεπτικού Χορού. Ενός ανάποδου χορού, αντίθετου με τη φορά των δεικτών του ρολογιού, με τα πρόσωπα να κοιτούν όχι προς το κέντρο του κύκλου, αλλά προς τα έξω. Χορεύοντας επαναλάμβαναν ρυθμικά, τα λόγια «Δεν είναι τίποτα, καλέ, δεν είναι τίποτα. Οι εχθροί στη θάλασσα και τα παιδιά στο σπίτι»." data-en="Director Konstantinos Markellos (author of The Abduction of Tasoula, The Dancing Plague and Two Oranges for Christmas) is inspired by a folk legend of Epirus to compose a popular text along the lines of Paralogs. A group of actor-musicians perform sometimes as Narrators and sometimes as Active Characters, while at the same time singing original compositions in polyphonic Epirotic songs by Vassoula Delli.
+
+    Old Itsa also had a special role in the community of the village of Aetomilitsa in Konitsa. She had the characteristics of a good teacher, spreading relief mixed with fear around her. In July 1974, when general conscription was declared, he gathered the girls in the church of Agios Nikolaos to perform a primitive, deterrent dance. A reverse dance, counter-clockwise, with faces looking not towards the center of the circle, but outwards. While dancing, they rhythmically repeated the words ; Its nothing, my dear, its nothing. The enemies are at sea and the children are at home.">
+        Ο σκηνοθέτης Κωνσταντίνος Μάρκελλος (συγγραφέας των έργων Η απαγωγή της Τασούλας, Χορευτική πανούκλα και Δυο πορτοκάλια για τα Χριστούγεννα) εμπνέεται από έναν λαϊκό θρύλο της Ηπείρου για να συνθέσει ένα δημοτικοφανές κείμενο στα πρότυπα των Παραλογών. Μια ομάδα ηθοποιών-μουσικών ερμηνεύουν άλλοτε ως Αφηγητές κι άλλοτε ως Δρώντες Χαρακτήρες, ενώ ταυτόχρονα τραγουδούν πρωτότυπες συνθέσεις σε δρόμους πολυφωνικού ηπειρώτικου από τη Βασούλα Δελλή και τη Ναταλία Λαμπαδάκη, μέλη του φωνητικού σχήματος «Πλειάδες».
+
+Η γριά Ίτσα είχε ιδιαίτερο και ρόλο στην κοινότητα του χωριού Αετομηλίτσα της Κόνιτσας. Είχε χαρακτηριστικά καλής μαγίστρας, σκορπίζοντας γύρω της ανακούφιση ανάμικτη με φόβο. Τον Ιούλιο του 1974 όταν, κηρύχτηκε γενική επιστράτευση, μάζεψε τα κορίτσια στην εκκλησία του Αη-Νικόλα, για την επιτέλεση ενός αρχέγονου, αποτρεπτικού Χορού. Ενός ανάποδου χορού, αντίθετου με τη φορά των δεικτών του ρολογιού, με τα πρόσωπα να κοιτούν όχι προς το κέντρο του κύκλου, αλλά προς τα έξω. Χορεύοντας επαναλάμβαναν ρυθμικά, τα λόγια «Δεν είναι τίποτα, καλέ, δεν είναι τίποτα. Οι εχθροί στη θάλασσα και τα παιδιά στο σπίτι».
+    </p>
+    <hr>
+
+    <h2 class="lang" data-gr="ΠΟΥ & ΠΟΤΕ" data-en="WHERE & WHEN">ΠΟΥ & ΠΟΤΕ</h2>
+    <p class="lang" data-gr="Αρχαίο Θέατρο Γιτάνων 19.7.2024-20.7.2024, Θεσπρωτία" data-en="Ancient Theatre of the Gitans 19.7.2024-20.7.2024, Thesprotia">
+        Αρχαίο Θέατρο Γιτάνων 19.7.2024-20.7.2024, Θεσπρωτία
+    </p> 
+    <hr>
+
+    <!-- Embedded Video -->
+    <div class="content-container">
+        <div class="text-center">
+            <iframe 
+                title="youtube" 
+                src="https://www.youtube.com/embed/ArgN2e2R608" 
+                width="640" height="360" 
+                frameborder="0" 
+                allowfullscreen>
+            </iframe>
+        </div>
+    </div>
+<hr>
+    <!-- Contributors -->
+    <h2 class="lang" data-gr="ΣΥΝΤΕΛΕΣΤΕΣ" data-en="CREDITS">ΣΥΝΤΕΛΕΣΤΕΣ</h2>
+
+    <div>
+      <p class="lang" data-gr="<strong>Κείμενο, σκηνοθεσία, στίχοι τραγουδιών:</strong> Κωνσταντίνος Μάρκελλος" data-en="<strong>Text, direction, song lyrics:</strong> Konstantinos Markellos">
+        <strong>Κείμενο, σκηνοθεσία, στίχοι τραγουδιών:</strong> Κωνσταντίνος Μάρκελλος
+      </p>
+      <p class="lang" data-gr="<strong>Πρωτότυπη μουσική:</strong> Βασούλα Δελλή" data-en="<strong>Original music:</strong> Vassoula Delli">
+        <strong>Πρωτότυπη μουσική:</strong> Βασούλα Δελλή
+      </p>
+      <p class="lang" data-gr="<strong>Διδασκαλία πολυφωνικού τραγουδιού:</strong> Ναταλία Λαμπαδάκη" data-en="<strong>Polyphonic singing coach:</strong> Natalia Lampadaki">
+        <strong>Διδασκαλία πολυφωνικού τραγουδιού:</strong> Ναταλία Λαμπαδάκη
+      </p>
+      <p class="lang" data-gr="<strong>Κοστούμια, σκηνικά αντικείμενα:</strong> Μαρία Καραθάνου" data-en="<strong>Costumes, stage props:</strong> Maria Karathanou">
+        <strong>Κοστούμια, σκηνικά αντικείμενα:</strong> Μαρία Καραθάνου
+      </p>
+      <p class="lang" data-gr="<strong>Χορογραφίες, επιμέλεια κίνησης:</strong> Ηρώ Κόντη" data-en="<strong>Choreographies, movement direction:</strong> Iro Konti">
+        <strong>Χορογραφίες, επιμέλεια κίνησης:</strong> Ηρώ Κόντη
+      </p>
+      <p class="lang" data-gr="<strong>Φωτογραφίες, βίντεο:</strong> Πέτρος Μακρής" data-en="<strong>Photos, video:</strong> Petros Makris">
+        <strong>Φωτογραφίες, βίντεο:</strong> Πέτρος Μακρής
+      </p>
+      <p class="lang" data-gr="<strong>Βοηθός σκηνοθέτη:</strong> Ελένη Στεργίου" data-en="<strong>Assistant director:</strong> Eleni Stergiou">
+        <strong>Βοηθός σκηνοθέτη:</strong> Ελένη Στεργίου
+      </p>
+      <p class="lang" data-gr="<strong>Ερμηνεύουν:</strong> Ελένη Στεργίου, Ελένη Βλάχου, Θεοδοσία Σαββάκη, Γιάννης Μαστρογιάννης, Ιωάννα Λέκκα, Δήμητρα Βήττα" data-en="<strong>Performers:</strong> Eleni Stergiou, Eleni Vlachou, Theodosia Savvaki, Yiannis Mastroyiannis, Ioanna Lekka, Dimitra Vitta">
+        <strong>Ερμηνεύουν:</strong> Ελένη Στεργίου, Ελένη Βλάχου, Θεοδοσία Σαββάκη, Γιάννης Μαστρογιάννης, Ιωάννα Λέκκα, Δήμητρα Βήττα
+      </p>
+      <p class="lang" data-gr="<strong>Μουσικός επί σκηνής:</strong> Βασίλης Ντοροβάτας" data-en="<strong>Live musician:</strong> Vasilis Dorovatas">
+        <strong>Μουσικός επί σκηνής:</strong> Βασίλης Ντοροβάτας
+      </p>
+      <p class="lang" data-gr="<strong>Φωτογραφική κάλυψη ΟΗΕΕΠ:</strong> Βαλέρια Ισάεβα" data-en="<strong>OHEEP photography coverage:</strong> Valeria Isaeva">
+        <strong>Φωτογραφική κάλυψη ΟΗΕΕΠ:</strong> Βαλέρια Ισάεβα
+      </p>
+      <p class="lang" data-gr="<strong>ΑΜΚΕ:</strong> Το Διάσημο Μικρούλι Τσίρκο" data-en="<strong>NGO:</strong> The Famous Little Circus">
+        <strong>ΑΜΚΕ:</strong> Το Διάσημο Μικρούλι Τσίρκο
+      </p>
+    </div>
+    
+</div>
+<!-- Footer -->
+ <hr>
+<footer>
+  <p>&copy; 2025 Vassula Delli<br>
+     Created by Chris Tzouvaras</p>
+</footer>
+ <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="language.js"></script>
+  <script>
+    function toggleMenu() {
+      const navLinks = document.querySelector('.nav-links');
+      navLinks.classList.toggle('open');
+    }
+
+    // auto-close menu when clicking a link (mobile only)
+    document.querySelectorAll('.nav-links a').forEach(link => {
+      link.addEventListener('click', () => {
+        const navLinks = document.querySelector('.nav-links');
+        if (navLinks.classList.contains('open')) {
+          navLinks.classList.remove('open');
+        }
+      });
+    });
+  </script>
+</body>
+</html>

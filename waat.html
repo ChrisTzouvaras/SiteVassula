@@ -1,0 +1,502 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Performance Details</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css" rel="stylesheet">
+     <style>
+       
+        .content-container {
+            max-width: 800px;
+            margin: auto;
+            text-align: left;
+        }
+        /*gia na ftanei i eikona tou carusel to text*/
+.carousel-inner {
+  max-width: 800px;   /* adjust width of the "frame" */
+  margin: auto;       /* center carousel */
+  border: 8px solid #333; /* frame look */
+  border-radius: 12px;
+  overflow: hidden;   /* crop images outside the frame */
+}
+
+.carousel-img {
+  width: 100%;
+  height: 500px;       /* same height for all slides */
+  object-fit: cover;   /* makes images fill frame nicely */
+}
+
+
+
+
+        footer {
+            text-align: center;
+        }
+
+        .carousel-control-prev, .carousel-control-next {
+            width: 10%;
+            top: 50%;
+            transform: translateY(-50%);
+            opacity: 0.8;
+        }
+
+        .carousel-control-prev-icon, .carousel-control-next-icon {
+            filter: invert(100%);
+        }
+
+        .carousel-control-prev:hover, .carousel-control-next:hover {
+            opacity: 1;
+        }
+
+        .btn-warning {
+            margin-top: 20px;
+        }
+
+   body {
+  font-family: "Roboto", Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+  background-color: white;
+  color: black;
+}
+
+    nav {
+      padding: 10px 0;
+      position: fixed;
+      width: 100%;
+      top: 0;
+      left: 0;
+      background: white;
+      border-bottom: 1px solid #ddd;
+      z-index: 1000;
+    }
+
+    .navbar-container {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      width: 90%;
+      margin: auto;
+      padding: 0 10px;
+    }
+
+    .brand-info {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+    }
+
+    .name-button {
+      background: none;
+      border: none;
+      font-size: 20px;
+      font-weight: bold;
+      cursor: pointer;
+      color: black;
+    }
+
+    .name-button:hover {
+      color: black;
+    }
+
+    .hamburger {
+      display: none;
+      font-size: 26px;
+      background: none;
+      border: none;
+      cursor: pointer;
+    }
+
+    .nav-links {
+      list-style: none;
+      display: flex;
+      justify-content: center;
+      width: 100%;
+      gap: 15px;
+    }
+
+    .nav-links li a {
+      color: black;
+      text-decoration: none;
+      font-weight: bold;
+      font-size: 13.5px;
+      padding: 10px 15px;
+      border-radius: 5px;
+      transition: background-color 0.3s, color 0.3s;
+    }
+
+       .nav-links li a {
+  position: relative;
+}
+
+.nav-links li a::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 0%;
+  height: 2px;
+  background-color: black;
+  transition: width 0.3s ease;
+}
+
+.nav-links li a:hover::after {
+  width: 100%;
+}
+
+    .lang-toggle {
+      background: white;
+      color: black;
+      border: 1px solid black;
+      padding: 5px 10px;
+      font-size: 14px;
+      cursor: pointer;
+      border-radius: 5px;
+    }
+
+    .performances {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 20px;
+      padding: 20px;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    h2 {
+      text-align: center;
+      font-size: 24px;
+      margin: 40px 0 20px;
+    }
+
+    .performance-item {
+      background: none;
+      padding: 0;
+      text-align: left;
+      width: 250px;
+    }
+
+    .performance-item img {
+      width: 100%;
+      height: 250px;
+      object-fit: cover;
+      object-position: center;
+      border-radius: 0;
+    }
+
+    .performance-title {
+      font-size: 14px;
+      font-weight: bold;
+      margin-top: 10px;
+      color: black;
+      text-decoration: none;
+      display: inline-block;
+    }
+
+    .performance-role {
+      font-size: 13px;
+      color: gray;
+      margin-top: 5px;
+    }
+
+    footer {
+      text-align: center;
+      margin-top: 60px;
+      padding: 10px 0;
+      color: black;
+    }
+
+    .close-btn {
+      display: none;
+    }
+
+        /* Navbar responsiveness */
+.hamburger {
+  background: none;
+  border: none;
+  font-size: 24px;
+  cursor: pointer;
+  display: none;
+}
+
+.nav-links {
+  list-style-type: none;
+  display: flex;
+  gap: 15px;
+  margin: 0;
+  padding: 0;
+}
+
+.nav-links li a {
+  padding: 10px 15px;
+  font-weight: bold;
+  font-size: 13.5px;
+  text-decoration: none;
+  color: black;
+  transition: background-color 0.3s, color 0.3s;
+}
+
+.nav-links li a {
+  position: relative;
+}
+
+.nav-links li a::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 0%;
+  height: 2px;
+  background-color: black;
+  transition: width 0.3s ease;
+}
+
+.nav-links li a:hover::after {
+  width: 100%;
+}
+
+/* Mobile styles */
+  @media (max-width: 768px) {
+      .nav-links {
+        flex-direction: column;
+        background: white;
+        position: fixed;
+        top: 0;
+        right: -250px;
+        width: 200px;
+        height: 100%;
+        padding: 60px 20px;
+        box-shadow: -2px 0px 5px rgba(0, 0, 0, 0.1);
+        transition: right 0.3s ease;
+        z-index: 1500;
+      }
+
+      .nav-links.open {
+        right: 0;
+      }
+
+      .hamburger {
+        display: block;
+      }
+
+      .close-btn {
+        display: block;
+        text-align: right;
+        margin-bottom: 20px;
+      }
+
+      .close-btn a {
+        font-size: 26px;
+        text-decoration: none;
+        color: black;
+        padding: 10px;
+      }
+
+      .performance-item {
+        text-align: center;
+      }
+
+      .performance-title,
+      .performance-role {
+        text-align: center;
+      }
+}
+
+    </style>
+</head>
+<body>
+    
+        <!-- Navbar -->
+       <nav>
+  <div class="navbar-container">
+    <div class="brand-info">
+      <button class="name-button" onclick="window.location.href='index.html'" id="name-button" data-gr="ΒΑΣΟΥΛΑ ΔΕΛΛΗ" data-en="VASSULA DELLI">ΒΑΣΟΥΛΑ ΔΕΛΛΗ</button>
+       <!--<p id="title-text" data-gr="ΜΟΥΣΙΚΟΣ / PERFORMER / ΣΥΝΘΕΤΡΙΑ / ΠΑΙΔΑΓΩΓΟΣ" data-en="MUSICIAN / PERFORMER / COMPOSER / EDUCATOR">
+        ΜΟΥΣΙΚΟΣ / PERFORMER / ΣΥΝΘΕΤΡΙΑ / ΠΑΙΔΑΓΩΓΟΣ
+      </p>-->
+    </div>
+    <button class="hamburger" onclick="toggleMenu()">☰</button>
+    <ul class="nav-links">
+      <li class="close-btn"><a href="javascript:void(0)" onclick="toggleMenu()">✕</a></li>
+      <li><a href="bio.html" class="lang" data-gr="Βιογραφικό" data-en="Biography">Βιογραφικό</a></li>
+      <li><a href="performance.html" class="lang" data-gr="Παραστάσεις" data-en="Performances">Παραστάσεις</a></li>
+      <li><a href="maestro.html" class="lang" data-gr="Μουσική Προετοιμασία - Διδασκαλία" data-en="Music Preparation – Teaching">Μουσική Προετοιμασία - Διδασκαλία</a></li>
+      <li><a href="discography.html" class="lang" data-gr="Δισκογραφία" data-en="Discography">Δισκογραφία</a></li>
+      <li><a href="contact.html" class="lang" data-gr="Επικοινωνία" data-en="Contact">Επικοινωνία</a></li>
+    </ul>
+    <button class="lang-toggle" onclick="toggleLanguage()">EN</button>
+  </div>
+</nav>
+
+<br>
+<br>
+<div class="container py-5">
+    <!-- Title -->
+    <div class="content-container">
+        <h2 class="lang" data-gr="WE ARE ALL THINGS" data-en="WE ARE ALL THINGS">WE ARE ALL THINGS</h2>
+    </div>
+    <br>
+
+    <!-- Carousel -->
+    <div id="performanceCarousel" class="carousel slide" data-bs-ride="carousel">
+        <div class="carousel-inner text-center">
+
+            <div class="carousel-item active">
+                <img src="./WAAT1.png" class="d-block carousel-img" alt="Image 1">
+            </div>
+            <div class="carousel-item">
+                <img src="./WAAT2.png" class="d-block carousel-img" alt="Image 2">
+            </div>
+            <div class="carousel-item">
+                <img src="./WAAT3.png" class="d-block carousel-img" alt="Image 3">
+            </div>
+            <div class="carousel-item">
+                <img src="./WAATBANNER.jpg" class="d-block carousel-img" alt="Image 4">
+            </div>
+
+        </div>
+        
+        <!-- Carousel Controls -->
+        <button class="carousel-control-prev" type="button" data-bs-target="#performanceCarousel" data-bs-slide="prev">
+            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Previous</span>
+        </button>
+        <button class="carousel-control-next" type="button" data-bs-target="#performanceCarousel" data-bs-slide="next">
+            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Next</span>
+        </button>
+    </div>
+</div>
+
+
+    <!-- Photo Credits 
+    <div class="content-container">
+        <p class="lang" style="font-size: 13px;"  data-gr="Photo Credits: Άλεξ Δημητριάδης" data-en="Photo Credits: Alex Dimitriadis">Photo Credits: Άλεξ Δημητριάδης</p>
+    </div>
+    <br>
+    <br>
+-->
+
+  
+    
+<br>
+<!-- Text Description -->
+<div class="content-container">
+    <h2 class="lang" data-gr="WE ARE ALL THINGS" data-en="WE ARE ALL THINGS">WE ARE ALL THINGS</h2>
+    <p class="lang" data-gr="Ας φανταστούμε τη σκηνή.
+Ένα δάσος στα όρια του αστικού ιστού. Είναι ένα αποθετήριο αντικειμένων και επιθυμιών; Κατά τόπους, πάντως, θυμίζει μάλλον χωματερή αυτό το τοπίο πολλαπλών αποτυπωμάτων. Πρόκειται για τόπο ανεξιχνίαστο σαν χρησμό, όπου το θαύμα δεν έχει ακόμα εκλείψει. Μήπως είναι το ίδιο το σώμα;
+
+Ακριβώς εκεί, δύο άνθρωποι χορεύουν, αφηγούνται, σιωπούν, τραγουδούν για μια ιστορία διαρκούς μετάβασης. Ένα έφηβο αγόρι, λένε, σε αυτό το δάσος μεταμορφώνεται σε γυναίκα. Και χρόνια μετά, στο ίδιο δάσος αυτή η γυναίκα — σαν να αλλάζει δέρμα — αφήνει την εαυτή της και μεταμορφώνεται σε γέρο άντρα. Μεταξύ θεάτρου, μουσικής και χορού, υφαίνουν τον μύθο του μάντη Τειρεσία, που έζησε τόσα πολλά και τα πήγε τόσο καλά και τα κράτησε όλα καλά κρυμμένα βαθιά. Και μαζί λένε για τις μη παθητικές εγγραφές του φύλου πάνω στα σώματά μας — αυτές που διαφεύγουν της φύσης και της γλώσσας.
+Είμαστε τα πάντα.
+Ας το φανταστούμε." 
+data-en="
+Let's imagine the scene.
+A forest on the edge of the urban fabric. Is it a repository of objects and desires? In places, however, this landscape of multiple imprints is more reminiscent of a landfill. It is a place as unfathomable as an oracle, where the miracle has not yet disappeared. Could it be the body itself?
+
+Right there, two people dance, narrate, remain silent, sing about a story of constant transition. A teenage boy, they say, is transformed into a woman in this forest. And years later, in the same forest this woman — as if changing skin — leaves herself and transforms into an old man. Between theater, music and dance, they weave the myth of the seer Tiresias, who lived so much and did so well and kept it all well hidden deep down. And together they speak of the non-passive inscriptions of gender on our bodies — those that escape nature and language.
+We are everything.
+Let's imagine it.">
+        Ας φανταστούμε τη σκηνή.
+Ένα δάσος στα όρια του αστικού ιστού. Είναι ένα αποθετήριο αντικειμένων και επιθυμιών; Κατά τόπους, πάντως, θυμίζει μάλλον χωματερή αυτό το τοπίο πολλαπλών αποτυπωμάτων. Πρόκειται για τόπο ανεξιχνίαστο σαν χρησμό, όπου το θαύμα δεν έχει ακόμα εκλείψει. Μήπως είναι το ίδιο το σώμα;
+
+Ακριβώς εκεί, δύο άνθρωποι χορεύουν, αφηγούνται, σιωπούν, τραγουδούν για μια ιστορία διαρκούς μετάβασης. Ένα έφηβο αγόρι, λένε, σε αυτό το δάσος μεταμορφώνεται σε γυναίκα. Και χρόνια μετά, στο ίδιο δάσος αυτή η γυναίκα — σαν να αλλάζει δέρμα — αφήνει την εαυτή της και μεταμορφώνεται σε γέρο άντρα. Μεταξύ θεάτρου, μουσικής και χορού, υφαίνουν τον μύθο του μάντη Τειρεσία, που έζησε τόσα πολλά και τα πήγε τόσο καλά και τα κράτησε όλα καλά κρυμμένα βαθιά. Και μαζί λένε για τις μη παθητικές εγγραφές του φύλου πάνω στα σώματά μας — αυτές που διαφεύγουν της φύσης και της γλώσσας.
+Είμαστε τα πάντα.
+Ας το φανταστούμε.
+    </p>
+    <hr>
+
+    <h2 class="lang" data-gr="ΠΟΥ & ΠΟΤΕ" data-en="WHERE & WHEN">ΠΟΥ & ΠΟΤΕ</h2>
+    <p class="lang" data-gr="4-21.9.2025 Θέατρο Αμαλία, Θεσσαλονίκη" data-en="4-21.9.2025 Amalia Theatre, Thessaloniki">4-21.9.2025 Θέατρο Αμαλία, Θεσσαλονίκη</p>
+    <hr>
+
+  <!-- Embedded Video 
+  <div class="content-container">
+    <div class="text-center">
+        <iframe 
+            title="youtube" 
+            src="https://www.youtube.com/embed/d8HyH_G-gfM" 
+            width="640" height="360" 
+            frameborder="0" 
+            allowfullscreen>
+        </iframe>
+    </div>
+</div>
+-->
+<br>
+
+    <!-- Contributors -->
+    
+    <h2 class="lang" data-gr="ΣΥΝΤΕΛΕΣΤΕΣ" data-en="CREDITS">ΣΥΝΤΕΛΕΣΤΕΣ</h2>
+
+<div>
+  <p class="lang" data-gr="<strong>Κείμενο:</strong> Kae Tempest" data-en="<strong>Text:</strong> Kae Tempest">
+    <strong>Κείμενο:</strong> Kae Tempest
+  </p>
+  <p class="lang" data-gr="<strong>Σκηνοθεσία-Δραματουργία:</strong> Κορίνα Βασιλειάδου" data-en="<strong>Direction-Dramatization:</strong> Κorina Vasiliadou">
+    <strong>Σκηνοθεσία-Δραματουργία:</strong> Κορίνα Βασιλειάδου
+  </p>
+  <p class="lang" data-gr="<strong>Μετάφραση:</strong> Ταυ Ζήτα" data-en="<strong>Translation:</strong>Tau Zeta ">
+    <strong>Μετάφραση:</strong> Ταυ Ζήτα
+  </p>
+  <p class="lang" data-gr="<strong>Μουσική:</strong> Βασούλα Δελλή, Eύη Nάκου" data-en="<strong>Music:</strong> Vassula Delli, Evi Nakou">
+    <strong>Μουσική:</strong> Βασούλα Δελλή, Eύη Nάκου
+  </p>
+  <p class="lang" data-gr="<strong>Βοηθός μουσικής διεύθυνσης:</strong> Γεωργία Τέντα" data-en="<strong>Assistant music director:</strong> Georgia Tenta">
+    <strong>Βοηθός μουσικής διεύθυνσης:</strong>Γεωργία Τέντα
+  </p>
+  <p class="lang" data-gr="<strong>Κίνηση:</strong> Αλέξης Τσιάμογλου" data-en="<strong>Move:</strong> Alexis Tsiamoglou">
+    <strong>Κίνηση: </strong> Αλέξης Τσιάμογλου
+  </p>
+  <p class="lang" data-gr="<strong>Σκηνικά-Κοστούμια:</strong>  Έλλη Ναλμπάντη" data-en="<strong>Sets-Costumes:</strong> Elli Nalbandis">
+    <strong>Σκηνικά-Κοστούμια:</strong>  Έλλη Ναλμπάντη
+  </p>
+  <p class="lang" data-gr="<strong>Φωτισμοί: </strong> Ελένη Χούμου" data-en="<strong>Lighting:</strong> Eleni Choumou">
+    <strong>Φωτισμοί: </strong> Ελένη Χούμου
+  </p>
+  <p class="lang" data-gr="<strong>Βοηθός Σκηνοθέτριας:</strong> Κατερίνα Λιάτσου, Παντελής Μπακατσέλος " data-en="<strong>Assistant Director:</strong>Katerina Liatsou, Pantelis Bakatselos">
+    <strong>Βοηθός Σκηνοθέτριας:</strong> Κατερίνα Λιάτσου, Παντελής Μπακατσέλος 
+  </p>
+  <p class="lang" data-gr="<strong>Ηχοληψία:</strong> Κώστας Μαχαιράς" data-en="<strong>Sound recording:</strong> Costas Machairas">
+    <strong>Ηχοληψία:</strong> Yourtranslator
+  </p>
+  <p class="lang" data-gr="<strong>Παραγωγή:</strong> TooFarEast Ι.Κ.Ε." data-en="<strong>Production:</strong> TooFarEast Ι.Κ.Ε.">
+    <strong>Παραγωγή:</strong> TooFarEast Ι.Κ.Ε.
+  </p>
+  <p class="lang" data-gr="<strong>Συμπαραγωγή:</strong>  ΠΛΕΙΑΔΕΣ ΑΜΚΕ " data-en="<strong>Co-production:</strong> PLEIADES">
+    <strong>Συμπαραγωγή:</strong> ΠΛΕΙΑΔΕΣ ΑΜΚΕ 
+  </p>
+  <p class="lang" data-gr="<strong>Ερμηνεύουν:</strong> Στεφανία Ζώρα, Αλέξης Τσιάμογλου" data-en="<strong>Interpretation:</strong> Stefania Zora, Alexis Tsiamoglou">
+    <strong>Ερμηνεύουν:</strong> Στεφανία Ζώρα, Αλέξης Τσιάμογλου
+  </p>
+ 
+</div>
+
+</div>
+<!-- Footer -->
+ <hr>
+<footer>
+  <p>&copy; 2025 Vassula Delli<br>
+     Created by Chris Tzouvaras</p>
+</footer>
+ <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="language.js"></script>
+  <script>
+    function toggleMenu() {
+      const navLinks = document.querySelector('.nav-links');
+      navLinks.classList.toggle('open');
+    }
+
+    // auto-close menu when clicking a link (mobile only)
+    document.querySelectorAll('.nav-links a').forEach(link => {
+      link.addEventListener('click', () => {
+        const navLinks = document.querySelector('.nav-links');
+        if (navLinks.classList.contains('open')) {
+          navLinks.classList.remove('open');
+        }
+      });
+    });
+  </script>
+</body>
+</html>

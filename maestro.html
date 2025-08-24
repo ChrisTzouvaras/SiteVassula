@@ -1,0 +1,412 @@
+<!DOCTYPE html>
+<html lang="el">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title class="lang" data-gr="Μουσική Προετοιμασία - Διδασκαλία" data-en="Music Preparation – Teaching">Μουσική Προετοιμασία - Διδασκαλία</title>
+  <style>
+   body {
+  font-family: "Roboto", Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+  background-color: white;
+  color: black;
+}
+
+    nav {
+      padding: 10px 0;
+      position: fixed;
+      width: 100%;
+      top: 0;
+      left: 0;
+      background: white;
+      border-bottom: 1px solid #ddd;
+      z-index: 1000;
+    }
+
+    .navbar-container {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      width: 90%;
+      margin: auto;
+      padding: 0 10px;
+    }
+
+    .brand-info {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+    }
+
+    .name-button {
+      background: none;
+      border: none;
+      font-size: 20px;
+      font-weight: bold;
+      cursor: pointer;
+      color: black;
+    }
+
+    .name-button:hover {
+      color: black;
+    }
+
+    .hamburger {
+      display: none;
+      font-size: 26px;
+      background: none;
+      border: none;
+      cursor: pointer;
+    }
+
+    .nav-links {
+      list-style: none;
+      display: flex;
+      justify-content: center;
+      width: 100%;
+      gap: 15px;
+    }
+
+    .nav-links li a {
+      color: black;
+      text-decoration: none;
+      font-weight: bold;
+      font-size: 13.5px;
+      padding: 10px 15px;
+      border-radius: 5px;
+      transition: background-color 0.3s, color 0.3s;
+    }
+
+     .nav-links li a {
+  position: relative;
+}
+
+.nav-links li a::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 0%;
+  height: 2px;
+  background-color: black;
+  transition: width 0.3s ease;
+}
+
+.nav-links li a:hover::after {
+  width: 100%;
+}
+    .lang-toggle {
+      background: white;
+      color: black;
+      border: 1px solid black;
+      padding: 5px 10px;
+      font-size: 14px;
+      cursor: pointer;
+      border-radius: 5px;
+    }
+
+    h3 {
+      text-align: center;
+      margin-top: 80px;
+    }
+
+    h2 {
+      text-align: left;
+      margin-top: 80px;
+    }
+
+    .two-timelines {
+      display: flex;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      max-width: 1200px;
+      margin: auto;
+      padding: 40px 20px;
+    }
+
+    .timeline-column {
+      flex: 1;
+      min-width: 500px;
+      position: relative;
+    }
+
+    .timeline {
+      position: relative;
+      margin: auto;
+      padding: 20px 0;
+    }
+
+    .timeline::after {
+      content: '';
+      position: absolute;
+      width: 6px;
+      background-color: #bbb;
+      top: 0;
+      bottom: 0;
+      left: 0;
+      margin-left: 20px;
+    }
+
+    .container {
+      position: relative;
+      background-color: inherit;
+      margin-bottom: 20px;
+      padding-left: 50px;
+    }
+
+    .container::after {
+      content: '';
+      position: absolute;
+      width: 25px;
+      height: 25px;
+      background-color: white;
+      border: 4px solid black;
+      border-radius: 50%;
+      left: 10px;
+      top: 5px;
+      z-index: 1;
+    }
+
+    .content {
+      padding: 15px 20px;
+      background-color: white;
+      border-radius: 0px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+    }
+
+    footer {
+      background: none;
+      color: black;
+      padding: 10px 0;
+      text-align: center;
+      margin-top: 50px;
+    }
+
+    .close-btn {
+  display: none;
+}
+
+    @media (max-width: 768px) {
+      .hamburger {
+        display: block;
+      }
+
+      .nav-links {
+        flex-direction: column;
+        background: white;
+        position: fixed;
+        top: 0;
+        right: -250px;
+        width: 200px;
+        height: 100%;
+        padding: 60px 20px;
+        box-shadow: -2px 0px 5px rgba(0, 0, 0, 0.1);
+        transition: right 0.3s ease;
+        z-index: 1500;
+      }
+
+      .nav-links.open {
+        right: 0;
+      }
+
+     .close-btn {
+    display: block;
+    text-align: right;
+    margin-bottom: 20px;
+  }
+
+  .close-btn button {
+    font-size: 18px;
+    background: none;
+    border: none;
+    cursor: pointer;
+    color: black;
+  }
+
+      .container {
+        width: 100%;
+        padding-left: 60px;
+        padding-right: 20px;
+      }
+
+      .container::after {
+        left: 10px;
+        top: 5px;
+      }
+
+      .right {
+        left: 0%;
+      }
+
+      .right::after {
+        left: 60px;
+      }
+
+      .content {
+        align-items: center;
+        text-align: center;
+      }
+
+      .content img {
+        margin: 10px auto 0;
+      }
+
+      .timeline::after {
+        left: 30px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <!-- Navbar -->
+  <nav>
+    <div class="navbar-container">
+      <div class="brand-info">
+        <button class="name-button" onclick="window.location.href='index.html'" id="name-button" data-gr="ΒΑΣΟΥΛΑ ΔΕΛΛΗ" data-en="VASSULA DELLI">ΒΑΣΟΥΛΑ ΔΕΛΛΗ</button>
+         <!--<p id="title-text" data-gr="ΜΟΥΣΙΚΟΣ / PERFORMER / ΣΥΝΘΕΤΡΙΑ / ΠΑΙΔΑΓΩΓΟΣ" data-en="MUSICIAN / PERFORMER / COMPOSER / EDUCATOR">
+        ΜΟΥΣΙΚΟΣ / PERFORMER / ΣΥΝΘΕΤΡΙΑ / ΠΑΙΔΑΓΩΓΟΣ
+      </p>-->
+      </div>
+      <button class="hamburger" onclick="toggleMenu()">☰</button>
+      <ul class="nav-links" id="navLinks">
+        
+       <li class="close-btn"><a href="javascript:void(0)" onclick="toggleMenu()">✕</a></li>
+      <li><a href="bio.html" class="lang" data-gr="Βιογραφικό" data-en="Biography">Βιογραφικό</a></li>
+      <li><a href="performance.html" class="lang" data-gr="Παραστάσεις" data-en="Performances">Παραστάσεις</a></li>
+      <li><a href="maestro.html" class="lang" data-gr="Μουσική Προετοιμασία - Διδασκαλία" data-en="Music Preparation – Teaching">Μουσική Προετοιμασία - Διδασκαλία</a></li>
+      <li><a href="discography.html" class="lang" data-gr="Δισκογραφία" data-en="Discography">Δισκογραφία</a></li>
+      <li><a href="contact.html" class="lang" data-gr="Επικοινωνία" data-en="Contact">Επικοινωνία</a></li>
+      </ul>
+      <button class="lang-toggle" onclick="toggleLanguage()">EN</button>
+    </div>
+  </nav>
+<br>
+
+<br>
+  <h2 class="lang"style="text-align: center; " data-gr="Μουσική Προετοιμασία-Διδασκαλία" data-en="Music Preparation-Teaching">Μουσική Προετοιμασία-Διδασκαλία</h2>
+  <div class="two-timelines">
+    <!-- Left: Music Preparation -->
+    <div class="timeline-column">
+      <h3 class="lang" data-gr="Μουσική Προετοιμασία" data-en="Music Preparation">Μουσική Προετοιμασία</h3>
+      <div class="timeline">
+        
+        <div class="container" ><div class="content" ><h3 class="lang" data-gr="Μουσική και Φωνητική Προετοιμασία" data-en="Music and Vocal Preparation">Μουσική και Φωνητική Προετοιμασία  </h3>
+            <p class="lang" data-gr="Μουσική και Φωνητική Προετοιμασία στο φωνητικό σύνολο Πλειάδες" data-en="Music and Vocal Preparation in the vocal ensemble Pleiades">Μουσική και Φωνητική Προετοιμασία στο φωνητικό σύνολο Πλειάδες</p>
+            <p class="lang" data-gr="2006-σήμερα" data-en="2006-today">2006-σήμερα</p >
+            <div style="text-align: center;">
+                            <img src="./pleiades.jpg" alt="Choir" style="width: 100px;  height: 100px; object-fit: cover; border-radius: 0px; margin-top: 10px; box-shadow: 0 4px 10px rgba(0,0,0,0.2);"/></div></div>
+
+            </div>
+         <div class="container"><div class="content" ><h3 class="lang" data-gr="Μαέστρος" data-en="Conductor">Μαέστρος  </h3>
+          <p class="lang" data-gr="Μαέστρος της Παιδικής Χορωδίας της Μοντεσσοριανής Σχολής Αθηνών Μ. Γουδέλη" data-en="Conductor of the Children's Choir of the Montessori School of Athens M. Goudeli">Μαέστρος της Παιδικής Χορωδίας της Μοντεσσοριανής Σχολής Αθηνών Μ. Γουδέλη</p>
+          <p class="lang" data-gr="2014-σήμερα" data-en="2014-today">2014-σήμερα</p>
+          <div style="text-align: center;">
+                      <img src="./sxoleio.jpeg" alt="Choir" style="width: 100px; height: 100px; object-fit: cover; border-radius: 0px; margin-top: 10px; box-shadow: 0 4px 10px rgba(0,0,0,0.2);"/></div></div>
+
+          </div>
+        
+
+           <div class="container" ><div class="content" ><h3 class="lang" data-gr="Φωνητική προετοιμασία στην παράσταση Σώματα και Αφηγήματα" data-en="Vocal preparation for the performance Bodies and Narratives">Φωνητική προετοιμασία στην παράσταση Σώματα και Αφηγήματα  </h3>
+            <p class="lang" data-gr="Mουσική χωρίς όργανα, Bodyterranean και Γιάννης Χαρούλης στο φεστιβάλ Επταπυργίου, Θεσσαλονίκη" data-en="Music without instruments, Bodyterranean and Yiannis Charoulis at the Eptapyrgio festival, Thessaloniki">Mουσική χωρίς όργανα, Bodyterranean και Γιάννης Χαρούλης στο φεστιβάλ Επταπυργίου, Θεσσαλονίκη</p>
+            <p class="lang" data-gr="Ιούλιος 2025" data-en="July 2025">Ιούλιος 2025</p >
+            <div style="text-align: center;">
+                           <!-- <img src="./pleiades.jpg" alt="Choir" style="width: 100px;  height: 100px; object-fit: cover; border-radius: 0px; margin-top: 10px; box-shadow: 0 4px 10px rgba(0,0,0,0.2);"/>--></div></div>
+
+            </div>
+
+          <div class="container"><div class="content" ><h3 class="lang" data-gr="Μαέστρος" data-en="Conductor">Μαέστρος  </h3>
+          <p class="lang" data-gr="Μαέστρος της Διαπολιτισμικής Χορωδίας της Εθνικής Λυρικής Σκηνής" data-en="Conductor of the Intercultural Choir of the Greek National Opera">Μαέστρος της Διαπολιτισμικής Χορωδίας της Εθνικής Λυρικής Σκηνής</p>
+          <p class="lang" data-gr="Σεπτέμβριος 2017- Δεκέμβριος 2020" data-en="September 2017-December 2020">Σεπτέμβριος 2017- Δεκέμβριος 2020</p>
+                    <div style="text-align: center;">
+
+          <img src="./maestros els.jpeg" alt="Choir" style="width: 100px; height: 100px; object-fit: cover; border-radius: 0px; margin-top: 10px; box-shadow: 0 4px 10px rgba(0,0,0,0.2);"/> 
+          <img src="./maestros els1.jpeg" alt="Choir" style="width: 100px; height: 100px; object-fit: cover; border-radius: 0px; margin-top: 10px; box-shadow: 0 4px 10px rgba(0,0,0,0.2);"/>
+          
+          <iframe 
+  width="400" 
+  height="225" 
+  src="https://www.youtube.com/embed/ChWm2wbIhTU" 
+  title="YouTube video player" 
+  frameborder="0" 
+  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+  allowfullscreen 
+  style="margin-top: 20px; border-radius: 0px; box-shadow: 0 4px 10px rgba(0,0,0,0.2);">
+</iframe>
+</div>
+        </div>
+        </div>
+            <div class="container"><div class="content" ><h3 class="lang" data-gr="Μαέστρος" data-en="Conductor">Μαέστρος  </h3>
+          <p class="lang" data-gr="Μαέστρος της Παιδικής Χορωδίας της Εθνικής Λυρικής Σκηνής" data-en="Conductor of the Children's Choir of the Greek National Opera">Μαέστρος της Παιδικής Χορωδίας της Εθνικής Λυρικής Σκηνής</p>
+          <p class="lang" data-gr="Σεπτέμβριος-Δεκέμβριος 2018" data-en="September-December 2018">Σεπτέμβριος-Δεκέμβριος 2018</p>
+                            <div style="text-align: center;">
+
+          <img src="./paidiki els.jpeg" alt="Choir" style="width: 100px; height: 100px; object-fit: cover; border-radius: 0px; margin-top: 10px; box-shadow: 0 4px 10px rgba(0,0,0,0.2);"/>
+          <img src="./paidiki els1.jpeg" alt="Choir" style="width: 100px; height: 100px; object-fit: cover; border-radius: 0px; margin-top: 10px; box-shadow: 0 4px 10px rgba(0,0,0,0.2);"/></div></div>
+        </div>
+       
+        <div class="container"><div class="content" ><h3 class="lang" data-gr="Μαέστρος και Φωνητική Προετοιμασία" data-en="Conductor and Vocal Preparation">Μαέστρος και Φωνητική Προετοιμασία  </h3>
+          <p class="lang" data-gr="Μαέστρος και φωνητική προετοιμασία στην παράσταση The Copla Musical, Hispanic Breakdown, του Alejandro Postigo. RCSSD και Roundhouse, Λονδίνο" data-en="Conductor and Vocal Preparation for The Copla Musical, Hispanic Breakdown, by Alejandro Postigo. RCSSD and Roundhouse, London
+          ">Μαέστρος και Φωνητική Προετοιμασία στην παράσταση The Copla Musical, Hispanic Breakdown, του Alejandro Postigo<br>RCSSD και Roundhouse, Λονδίνο</p>
+          <p class="lang" data-gr="Σεπτέμβριος 2012 & Μάιος 2013" data-en="September 2012 & May 2013">Σεπτέμβριος 2012 & Μάιος 2013</p>
+                              <div style="text-align: center;">
+
+          <img src="./copla.jpeg" alt="Choir" style="width: 100px; height: 100px; object-fit: cover; border-radius: 0px; margin-top: 10px; box-shadow: 0 4px 10px rgba(0,0,0,0.2);"/></div></div>
+</div>
+      </div>
+    </div>
+
+    <!-- Right: Teaching -->
+    <div class="timeline-column">
+      <h3 class="lang" data-gr="Διδασκαλία" data-en="Teaching">Διδασκαλία</h3>
+      <div class="timeline">
+        
+<div class="container"><div class="content">
+          <h3 class="lang" data-gr="Καθηγήτρια μουσικής προσχολικής και πρωτοβάθμιας εκπαίδευσης, πιάνου" data-en="Music teacher for preschool and primary education, piano">Καθηγήτρια μουσικής προσχολικής και πρωτοβάθμιας εκπαίδευσης, πιάνου</h3>
+            <p class="lang" data-gr="Καθηγήτρια μουσικής προσχολικής και πρωτοβάθμιας εκπαίδευσης. Μοντεσσοριανή Σχολή Αθηνών Μαρία Γουδέλη" data-en="Music teacher for preschool and primary education. Maria Goudeli Montessori School of Athens">Καθηγήτρια μουσικής προσχολικής και πρωτοβάθμιας εκπαίδευσης<br>Μοντεσσοριανή Σχολή Αθηνών Μαρία Γουδέλη</p>
+            <p class="lang" data-gr="Καθηγήτρια πιάνου. Μοντεσσοριανή Σχολή Αθηνών Μαρία Γουδέλη / Ιδιωτική απασχόληση" data-en="Piano teacher. Montessori School of Athens Maria Goudeli / Private employment">Καθηγήτρια πιάνου<br>Μοντεσσοριανή Σχολή Αθηνών Μαρία Γουδέλη / Ιδιωτική απασχόληση</p>
+          
+          <p class="lang" data-gr="2014-σήμερα" data-en="2014-today">2014-σήμερα</p>
+        </div></div>
+
+        <div class="container"><div class="content">
+          <h3 class="lang" data-gr="Καθηγήτρια  φωνητικής" data-en="Vocal Teacher">Καθηγήτρια φωνητικής</h3>
+            <p class="lang" data-gr="Καθηγήτρια φωνητικής. Ιδιωτική απασχόληση, Αθήνα" data-en="Voice teacher. Private employment, Athens">Καθηγήτρια φωνητικής<br>Ιδιωτική απασχόληση, Αθήνα</p>
+          <p class="lang" data-gr="2014-σήμερα" data-en="2014-today">2014-σήμερα</p>
+        </div></div>
+
+        <div class="container"><div class="content">
+          <h3 class="lang" data-gr="Συν-εμψυχώτρια σειράς βιωματικών σεμιναρίων πολυφωνικού τραγουδιού" data-en="Co-facilitator of a series of experiential polyphonic singing seminars">Συν-εμψυχώτρια σειράς βιωματικών σεμιναρίων πολυφωνικού τραγουδιού</h3>
+          <p class="lang" data-gr="Συν-εμψυχώτρια σειράς βιωματικών σεμιναρίων πολυφωνικού τραγουδιού ως μέλος του φωνητικού συνόλου Πλειάδες. Ήπειρος, Κρήτη, Λέσβος, Αθήνα" data-en="Co-facilitator of a series of experiential polyphonic singing seminars as a member of the vocal ensemble Pleiades. Epirus, Crete, Lesvos, Athens">Συν-εμψυχώτρια σειράς βιωματικών σεμιναρίων πολυφωνικού τραγουδιού ως μέλος του φωνητικού συνόλου Πλειάδες<br>Ήπειρος, Κρήτη, Λέσβος, Αθήνα</p>
+          <p class="lang" data-gr="2021-σήμερα" data-en="2021-today">2021-σήμερα</p></div></div>
+        
+      </div>
+    </div>
+  </div>
+
+  <hr>
+  <footer>
+  <p>&copy; 2025 Vassula Delli<br>
+     Created by Chris Tzouvaras</p>
+</footer>
+
+   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="language.js"></script>
+  <script>
+    function toggleMenu() {
+      const navLinks = document.querySelector('.nav-links');
+      navLinks.classList.toggle('open');
+    }
+
+    // auto-close menu when clicking a link (mobile only)
+    document.querySelectorAll('.nav-links a').forEach(link => {
+      link.addEventListener('click', () => {
+        const navLinks = document.querySelector('.nav-links');
+        if (navLinks.classList.contains('open')) {
+          navLinks.classList.remove('open');
+        }
+      });
+    });
+  </script>
+</body>
+</html>

@@ -1,0 +1,476 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Performance Details</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css" rel="stylesheet">
+       <style>
+       
+        .content-container {
+            max-width: 800px;
+            margin: auto;
+            text-align: left;
+        }
+        /*gia na ftanei i eikona tou carusel to text*/
+.carousel-inner {
+  max-width: 800px;      /* adjust frame width */
+  margin: auto;
+  border: 8px solid #333; /* frame look */
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 6px 16px rgba(0,0,0,0.3); /* floating frame effect */
+}
+
+.carousel-img {
+  width: 100%;
+  height: 500px;        /* consistent height */
+  object-fit: cover;    /* keeps proportions but fills frame */
+}
+
+        footer {
+            text-align: center;
+        }
+
+        .carousel-control-prev, .carousel-control-next {
+            width: 10%;
+            top: 50%;
+            transform: translateY(-50%);
+            opacity: 0.8;
+        }
+
+        .carousel-control-prev-icon, .carousel-control-next-icon {
+            filter: invert(100%);
+        }
+
+        .carousel-control-prev:hover, .carousel-control-next:hover {
+            opacity: 1;
+        }
+
+        .btn-warning {
+            margin-top: 20px;
+        }
+
+    body {
+font-family: "Roboto", Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+  background-color: white;
+  color: black;
+}
+    nav {
+      padding: 10px 0;
+      position: fixed;
+      width: 100%;
+      top: 0;
+      left: 0;
+      background: white;
+      border-bottom: 1px solid #ddd;
+      z-index: 1000;
+    }
+
+    .navbar-container {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      width: 90%;
+      margin: auto;
+      padding: 0 10px;
+    }
+
+    .brand-info {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+    }
+
+    .name-button {
+      background: none;
+      border: none;
+      font-size: 20px;
+      font-weight: bold;
+      cursor: pointer;
+      color: black;
+    }
+
+    .name-button:hover {
+      color: black;
+    }
+
+    .hamburger {
+      display: none;
+      font-size: 26px;
+      background: none;
+      border: none;
+      cursor: pointer;
+    }
+
+    .nav-links {
+      list-style: none;
+      display: flex;
+      justify-content: center;
+      width: 100%;
+      gap: 15px;
+    }
+
+    .nav-links li a {
+      color: black;
+      text-decoration: none;
+      font-weight: bold;
+      font-size: 13.5px;
+      padding: 10px 15px;
+      border-radius: 5px;
+      transition: background-color 0.3s, color 0.3s;
+    }
+
+       .nav-links li a {
+  position: relative;
+}
+
+.nav-links li a::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 0%;
+  height: 2px;
+  background-color: black;
+  transition: width 0.3s ease;
+}
+
+.nav-links li a:hover::after {
+  width: 100%;
+}
+
+    .lang-toggle {
+      background: white;
+      color: black;
+      border: 1px solid black;
+      padding: 5px 10px;
+      font-size: 14px;
+      cursor: pointer;
+      border-radius: 5px;
+    }
+
+    .performances {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 20px;
+      padding: 20px;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    h2 {
+      text-align: center;
+      font-size: 24px;
+      margin: 40px 0 20px;
+    }
+
+    .performance-item {
+      background: none;
+      padding: 0;
+      text-align: left;
+      width: 250px;
+    }
+
+    .performance-item img {
+      width: 100%;
+      height: 250px;
+      object-fit: cover;
+      object-position: center;
+      border-radius: 0;
+    }
+
+    .performance-title {
+      font-size: 14px;
+      font-weight: bold;
+      margin-top: 10px;
+      color: black;
+      text-decoration: none;
+      display: inline-block;
+    }
+
+    .performance-role {
+      font-size: 13px;
+      color: gray;
+      margin-top: 5px;
+    }
+
+    footer {
+      text-align: center;
+      margin-top: 60px;
+      padding: 10px 0;
+      color: black;
+    }
+
+    .close-btn {
+      display: none;
+    }
+
+        /* Navbar responsiveness */
+.hamburger {
+  background: none;
+  border: none;
+  font-size: 24px;
+  cursor: pointer;
+  display: none;
+}
+
+.nav-links {
+  list-style-type: none;
+  display: flex;
+  gap: 15px;
+  margin: 0;
+  padding: 0;
+}
+
+.nav-links li a {
+  padding: 10px 15px;
+  font-weight: bold;
+  font-size: 13.5px;
+  text-decoration: none;
+  color: black;
+  transition: background-color 0.3s, color 0.3s;
+}
+
+.nav-links li a {
+  position: relative;
+}
+
+.nav-links li a::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 0%;
+  height: 2px;
+  background-color: black;
+  transition: width 0.3s ease;
+}
+
+.nav-links li a:hover::after {
+  width: 100%;
+}
+
+/* Mobile styles */
+  @media (max-width: 768px) {
+      .nav-links {
+        flex-direction: column;
+        background: white;
+        position: fixed;
+        top: 0;
+        right: -250px;
+        width: 200px;
+        height: 100%;
+        padding: 60px 20px;
+        box-shadow: -2px 0px 5px rgba(0, 0, 0, 0.1);
+        transition: right 0.3s ease;
+        z-index: 1500;
+      }
+
+      .nav-links.open {
+        right: 0;
+      }
+
+      .hamburger {
+        display: block;
+      }
+
+      .close-btn {
+        display: block;
+        text-align: right;
+        margin-bottom: 20px;
+      }
+
+      .close-btn a {
+        font-size: 26px;
+        text-decoration: none;
+        color: black;
+        padding: 10px;
+      }
+
+      .performance-item {
+        text-align: center;
+      }
+
+      .performance-title,
+      .performance-role {
+        text-align: center;
+      }
+}
+
+    </style>
+</head>
+<body>
+    
+        <!-- Navbar -->
+       <nav>
+  <div class="navbar-container">
+    <div class="brand-info">
+      <button class="name-button" onclick="window.location.href='index.html'" id="name-button" data-gr="ΒΑΣΟΥΛΑ ΔΕΛΛΗ" data-en="VASSULA DELLI">ΒΑΣΟΥΛΑ ΔΕΛΛΗ</button>
+    <!--<p id="title-text" data-gr="ΜΟΥΣΙΚΟΣ / PERFORMER / ΣΥΝΘΕΤΡΙΑ / ΠΑΙΔΑΓΩΓΟΣ" data-en="MUSICIAN / PERFORMER / COMPOSER / EDUCATOR">
+        ΜΟΥΣΙΚΟΣ / PERFORMER / ΣΥΝΘΕΤΡΙΑ / ΠΑΙΔΑΓΩΓΟΣ
+      </p>-->
+    </div>
+    <button class="hamburger" onclick="toggleMenu()">☰</button>
+    <ul class="nav-links">
+      <li class="close-btn"><a href="javascript:void(0)" onclick="toggleMenu()">✕</a></li>
+      <li><a href="bio.html" class="lang" data-gr="Βιογραφικό" data-en="Biography">Βιογραφικό</a></li>
+      <li><a href="performance.html" class="lang" data-gr="Παραστάσεις" data-en="Performances">Παραστάσεις</a></li>
+      <li><a href="maestro.html" class="lang" data-gr="Μουσική Προετοιμασία - Διδασκαλία" data-en="Music Preparation – Teaching">Μουσική Προετοιμασία - Διδασκαλία</a></li>
+      <li><a href="discography.html" class="lang" data-gr="Δισκογραφία" data-en="Discography">Δισκογραφία</a></li>
+      <li><a href="contact.html" class="lang" data-gr="Επικοινωνία" data-en="Contact">Επικοινωνία</a></li>
+    </ul>
+    <button class="lang-toggle" onclick="toggleLanguage()">EN</button>
+  </div>
+</nav>
+        
+  
+<br><br>
+
+<div class="container py-5">
+    <!-- Title -->
+    <div class="content-container">
+        <h2 class="lang" data-gr="ΤΟΠΙΚΟΙ ΤΡΟΠΙΚΟΙ" data-en="LOCAL TROPICS">ΤΟΠΙΚΟΙ ΤΡΟΠΙΚΟΙ</h2>
+    </div>
+    <br>
+
+    <!-- Carousel -->
+    <div id="performanceCarousel" class="carousel slide" data-bs-ride="carousel">
+    <div class="carousel-inner text-center">
+
+        <div class="carousel-item active">
+            <img src="./TT_4.jpg" class="d-block carousel-img" alt="Image 1">
+        </div>
+        <div class="carousel-item">
+            <img src="./TT_2.jpg" class="d-block carousel-img" alt="Image 2">
+        </div>
+        <div class="carousel-item">
+            <img src="./TT_3.jpg" class="d-block carousel-img" alt="Image 3">
+        </div>
+        <div class="carousel-item">
+            <img src="./topikoi.jpg" class="d-block carousel-img" alt="Image 4">
+        </div>
+
+    </div>
+    
+    <!-- Carousel Controls -->
+    <button class="carousel-control-prev" type="button" data-bs-target="#performanceCarousel" data-bs-slide="prev">
+        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+        <span class="visually-hidden">Previous</span>
+    </button>
+    <button class="carousel-control-next" type="button" data-bs-target="#performanceCarousel" data-bs-slide="next">
+        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+        <span class="visually-hidden">Next</span>
+    </button>
+</div>
+
+
+    <div class="content-container">
+            <p class="lang" style="font-size: 13px;" data-gr="Photo Credits: Eιρήνη Ανδρουλάκη" data-en="Photo Credits: Irene Androulakis">Photo Credits: Eιρήνη Ανδρουλάκη</p>
+        </div>
+    <br>
+
+    
+ 
+<!-- Text Description -->
+<div class="content-container">
+    <h2 class="lang" data-gr="ΤΟΠΙΚΟΙ ΤΡΟΠΙΚΟΙ ΤΟΥ ΜΑΡΙΟΥ ΧΑΤΖΗΠΡΟΚΟΠΙΟΥ" data-en="LOCAL TROPICS BY MARIOS HADJIPROKOPIOU">ΤΟΠΙΚΟΙ ΤΡΟΠΙΚΟΙ ΤΟΥ ΜΑΡΙΟΥ ΧΑΤΖΗΠΡΟΚΟΠΙΟΥ</h2>
+    <p class="lang" data-gr="Αθήνα, δεκαετία του 1920.
+    Ο Alexandro Jorge de Carvalho de Polites - “η μονάκριβη” τον φώναζαν πίσω από την πλάτη του- εκδιώκεται από την πατρική εστία και αποκληρώνεται από τον πατέρα του,
+    πατριάρχη της ελληνικής λαογραφίας Νικόλαο Γ. Πολίτη. Πριν φύγει, παίρνει μαζί του δυο πουγκιά χρυσές λίρες και έναν φάκελο με τις “Απόκρυφες Εκλογές από τα Τραγούδια του Ελληνικού Λαού” - μια ανθολογία πουστιάς και ολολυγμού που ο Ν.Γ. Πολίτης είχε ματαίως φροντίσει να κρύψει. Ο γιος έχει πια φτάσει στους Τροπικούς, όταν έρχεται το μήνυμα “ο πατέρας πεθαίνει, γύρνα πίσω”. Είναι Πάσχα όταν φτάνουν. Αυτός και η ενοχή του. Και ακουγονται ξανά εκείνα τα τραγούδια, που δεν είχαν φτάσει σε αυτί ανθρώπου γιατί έμειναν κλεισμένα σε ντουλάπες και σώματα που δεν υπάρχουν πια. Σημαίνει Ανάσταση ποτέ στις εκατόμβες των μπαούλων;
+    Το φωνητικό σύνολο Πλειάδες, αντλώντας από το πλούσιο υλικό του έργου Τοπικοί Τροπικοί του Μάριου Χατζηπροκοπίου, συνθέτει πρωτότυπη μουσική και παρουσιάζει μια παράσταση αφιερωμένη σε τραγούδια και ιστορίες που δεν ακούστηκαν ποτέ κι όμως ήταν πάντα εκεί. Μαζί τους επί σκηνής, ο ηθοποιός Βασίλης Τρυφουλτσάνης." data-en="Athens, 1920s.
+    Alexandro Jorge de Carvalho de Polites - “the one and only” they called him behind his back - is expelled from his father’s home and disinherited by his father,
+    patriarch of Greek folklore Nikolaos G. Polites. Before leaving, he takes with him two bags of gold pounds and an envelope with “Secret Selections from the Songs of the Greek People” - an anthology of filth and sobs that N.G. Polites had tried in vain to hide. The son has already reached the Tropics when the message comes “the father is dying, come back”. It is Easter when they arrive. He and his guilt. And those songs are heard again, which had not reached a human ear because they remained locked in closets and bodies that no longer exist. Does Resurrection ever mean in the hecatombs of the trunks?
+    The vocal ensemble Pleiades, drawing on the rich material of Marios Hadjiprokopios' work Local Tropics, composes original music and presents a performance dedicated to songs and stories that have never been heard and yet have always been there. With them on stage, the actor Vasilis Tryfoultsanis.
+    Send feedback
+    Side panels
+    History
+    Saved">
+        Αθήνα, δεκαετία του 1920.
+Ο Alexandro Jorge de Carvalho de Polites - “η μονάκριβη” τον φώναζαν πίσω από την πλάτη του- εκδιώκεται από την πατρική εστία και αποκληρώνεται από τον πατέρα του,
+πατριάρχη της ελληνικής λαογραφίας Νικόλαο Γ. Πολίτη. Πριν φύγει, παίρνει μαζί του δυο πουγκιά χρυσές λίρες και έναν φάκελο με τις “Απόκρυφες Εκλογές από τα Τραγούδια του Ελληνικού Λαού” - μια ανθολογία πουστιάς και ολολυγμού που ο Ν.Γ. Πολίτης είχε ματαίως φροντίσει να κρύψει. Ο γιος έχει πια φτάσει στους Τροπικούς, όταν έρχεται το μήνυμα “ο πατέρας πεθαίνει, γύρνα πίσω”. Είναι Πάσχα όταν φτάνουν. Αυτός και η ενοχή του. Και ακουγονται ξανά εκείνα τα τραγούδια, που δεν είχαν φτάσει σε αυτί ανθρώπου γιατί έμειναν κλεισμένα σε ντουλάπες και σώματα που δεν υπάρχουν πια. Σημαίνει Ανάσταση ποτέ στις εκατόμβες των μπαούλων;
+Το φωνητικό σύνολο Πλειάδες, αντλώντας από το πλούσιο υλικό του έργου Τοπικοί Τροπικοί του Μάριου Χατζηπροκοπίου, συνθέτει πρωτότυπη μουσική και παρουσιάζει μια παράσταση αφιερωμένη σε τραγούδια και ιστορίες που δεν ακούστηκαν ποτέ κι όμως ήταν πάντα εκεί. Μαζί τους επί σκηνής, ο ηθοποιός Βασίλης Τρυφουλτσάνης.
+    </p>
+    <hr>
+
+    <h2 class="lang" data-gr="ΠΟΥ & ΠΟΤΕ" data-en="WHERE & WHEN">ΠΟΥ & ΠΟΤΕ</h2>
+    <p class="lang" data-gr="15-18.11.2024 & 22-25.11.2024 H.ug art space, Αθήνα<br>
+        1-3.12.2023 & 8-10.12.2023 Baumstrasse, Αθήνα" data-en="15-18.11.2024 & 22-25.11.2024 H.ug art space, Athens<br>
+1-3.12.2023 & 8-10.12.2023 Baumstrasse, Athens">
+       15-18.11.2024 & 22-25.11.2024 H.ug art space, Αθήνα<br>
+       1-3.12.2023 & 8-10.12.2023 Baumstrasse, Αθήνα
+    </p>
+    <hr>
+
+<!-- Embedded Video -->
+<div class="content-container">
+    <div class="text-center">
+        <iframe 
+            title="youtube" 
+            src="https://www.youtube.com/embed/GwhGyjYs0aM" 
+            width="640" height="360" 
+            frameborder="0" 
+            allowfullscreen>
+        </iframe>
+    </div>
+</div>
+
+<hr>
+
+    <!-- Contributors -->
+    <h2 class="lang" data-gr="ΣΥΝΤΕΛΕΣΤΕΣ" data-en="CREDITS">ΣΥΝΤΕΛΕΣΤΕΣ</h2>
+
+<div>
+  <p class="lang" data-gr="<strong>Κείμενο:</strong> Μάριος Χατζηπροκοπίου" data-en="<strong>Text:</strong> Marios Chatziprokopiou">
+    <strong>Κείμενο:</strong> Μάριος Χατζηπροκοπίου
+  </p>
+  <p class="lang" data-gr="<strong>Μουσική:</strong> φωνητικό σύνολο Πλειάδες" data-en="<strong>Music:</strong> Pleiades vocal ensemble">
+    <strong>Μουσική:</strong> φωνητικό σύνολο Πλειάδες
+  </p>
+  <p class="lang" data-gr="<strong>Σκηνοθεσία-Δραματουργία:</strong> Κορίνα Βασιλειάδου" data-en="<strong>Direction & Dramaturgy:</strong> Korina Vasileiadou">
+    <strong>Σκηνοθεσία-Δραματουργία:</strong> Κορίνα Βασιλειάδου
+  </p>
+  <p class="lang" data-gr="<strong>Κίνηση:</strong> Ίρις Νικολάου" data-en="<strong>Movement:</strong> Iris Nikolaou">
+    <strong>Κίνηση:</strong> Ίρις Νικολάου
+  </p>
+  <p class="lang" data-gr="<strong>Κοστούμια:</strong> Λίλη Ζωγραφάκη και Άννα Σοφία Τάμπλερ" data-en="<strong>Costumes:</strong> Lili Zografaki & Anna Sofia Tambler">
+    <strong>Κοστούμια:</strong> Λίλη Ζωγραφάκη και Άννα Σοφία Τάμπλερ
+  </p>
+  <p class="lang" data-gr="<strong>Φωτισμοί:</strong> Ελένη Χούμου" data-en="<strong>Lighting:</strong> Eleni Choumou">
+    <strong>Φωτισμοί:</strong> Ελένη Χούμου
+  </p>
+  <p class="lang" data-gr="<strong>Επί σκηνής:</strong> Το φωνητικό σύνολο Πλειάδες : Αλίκη Ατσαλάκη - φωνή, Βασούλα Δελλή - φωνή, ακορντεόν, Ειρήνη Κυριακού - φωνή, τσέλο, Ναταλία Λαμπαδάκη - φωνή και ο Βασίλης Τρυφουλτσάνης" data-en="<strong>On stage:</strong> The Pleiades vocal ensemble: Aliki Atsalaki – voice, Vassoula Delli – voice, accordion, Irini Kyriakou – voice, cello, Natalia Lampadaki – voice, and Vasilis Tryfoultsanis">
+    <strong>Επί σκηνής:</strong> Το φωνητικό σύνολο Πλειάδες : Αλίκη Ατσαλάκη - φωνή, Βασούλα Δελλή - φωνή, ακορντεόν, Ειρήνη Κυριακού - φωνή, τσέλο, Ναταλία Λαμπαδάκη - φωνή και ο Βασίλης Τρυφουλτσάνης
+  </p>
+</div>
+
+</div>
+<!-- Footer -->
+ <hr>
+<footer>
+  <p>&copy; 2025 Vassula Delli<br>
+     Created by Chris Tzouvaras</p>
+</footer>
+ <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="language.js"></script>
+  <script>
+    function toggleMenu() {
+      const navLinks = document.querySelector('.nav-links');
+      navLinks.classList.toggle('open');
+    }
+
+    // auto-close menu when clicking a link (mobile only)
+    document.querySelectorAll('.nav-links a').forEach(link => {
+      link.addEventListener('click', () => {
+        const navLinks = document.querySelector('.nav-links');
+        if (navLinks.classList.contains('open')) {
+          navLinks.classList.remove('open');
+        }
+      });
+    });
+  </script>
+</body>
+</html>

@@ -1,0 +1,445 @@
+<!DOCTYPE html>
+<html lang="el">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title class="lang" data-gr="Δισκογραφία" data-en="Discography">Δισκογραφία</title>
+<style>
+ body {
+  font-family: "Roboto", Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+  background-color: white;
+  color: black;
+}
+
+/* === UPDATED NAVIGATION === */
+nav {
+  padding: 10px 0;
+  position: fixed;
+  width: 100%;
+  top: 0;
+  left: 0;
+  background: white;
+  border-bottom: 1px solid #ddd;
+  z-index: 1000;
+}
+
+.navbar-container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 90%;
+  margin: auto;
+  padding: 0 10px;
+}
+
+.brand-info {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+.name-button {
+  background: none;
+  border: none;
+  font-size: 20px;
+  font-weight: bold;
+  cursor: pointer;
+  color: black;
+}
+
+.name-button:hover {
+  color: black;
+}
+
+.hamburger {
+  display: none;
+  font-size: 26px;
+  background: none;
+  border: none;
+  cursor: pointer;
+}
+
+.nav-links {
+  list-style: none;
+  display: flex;
+  justify-content: center;
+  width: 100%;
+  gap: 15px;
+}
+
+.nav-links li a {
+  color: black;
+  text-decoration: none;
+  font-weight: bold;
+  font-size: 13.5px;
+  padding: 10px 15px;
+  border-radius: 5px;
+  transition: background-color 0.3s, color 0.3s;
+}
+
+   .nav-links li a {
+  position: relative;
+}
+
+.nav-links li a::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 0%;
+  height: 2px;
+  background-color: black;
+  transition: width 0.3s ease;
+}
+
+.nav-links li a:hover::after {
+  width: 100%;
+}
+
+.lang-toggle {
+  background: white;
+  color: black;
+  border: 1px solid black;
+  padding: 5px 10px;
+  font-size: 14px;
+  cursor: pointer;
+  border-radius: 5px;
+}
+
+/* HEADER & HEADINGS */
+header {
+  padding: 60px 20px 20px 20px;
+  text-align: center;
+  color: black;
+}
+
+h2 {
+  text-align: center;
+  margin-top: 80px;
+}
+
+h3 {
+  text-align: center;
+  margin-top: 80px;
+}
+
+/* TIMELINE */
+.timeline {
+  position: relative;
+  max-width: 1000px;
+  margin: auto;
+  padding: 40px 0;
+}
+
+.timeline::after {
+  content: '';
+  position: absolute;
+  width: 6px;
+  background-color: #bbb;
+  top: 0;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+.container {
+  padding: 10px 20px;
+  position: relative;
+  width: 50%;
+  box-sizing: border-box;
+}
+
+.left {
+  left: 0;
+}
+
+.right {
+  left: 50%;
+}
+
+.container::after {
+  content: '';
+  position: absolute;
+  width: 25px;
+  height: 25px;
+  background-color: white;
+  border: 4px solid black;
+  top: 15px;
+  border-radius: 50%;
+  z-index: 1;
+}
+
+.left::after {
+  left: 100%;
+  transform: translateX(-50%);
+}
+
+.right::after {
+  left: -12.5px;
+}
+
+.content {
+  padding: 20px;
+  background-color: white;
+  position: relative;
+  border-radius: 6px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+  min-height: 300px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 10px;
+}
+
+.content img {
+  width: 140px;
+  height: 140px;
+  object-fit: cover;
+  border-radius: 0px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+  margin-top: 10px;
+}
+
+.content iframe {
+  width: 100%;
+  height: 300px;
+  border: none;
+  border-radius: 10px;
+}
+
+/* FOOTER */
+footer {
+  background: none;
+  color: black;
+  padding: 10px 0;
+  text-align: center;
+  margin-top: 50px;
+}
+
+   .close-btn {
+  display: none;
+}
+
+/* RESPONSIVE NAV + TIMELINE */
+@media (max-width: 768px) {
+  .hamburger {
+    display: block;
+  }
+
+  .nav-links {
+    flex-direction: column;
+    background: white;
+    position: fixed;
+    top: 0;
+    right: -250px;
+    width: 200px;
+    height: 100%;
+    padding: 60px 20px;
+    box-shadow: -2px 0px 5px rgba(0, 0, 0, 0.1);
+    transition: right 0.3s ease;
+    z-index: 1500;
+    display: flex;
+  }
+
+  .nav-links.open {
+    right: 0;
+  }
+
+  .close-btn {
+    display: block;
+    text-align: right;
+    margin-bottom: 20px;
+  }
+
+  .close-btn button {
+    font-size: 18px;
+    background: none;
+    border: none;
+    cursor: pointer;
+    color: black;
+  }
+
+  .container {
+    width: 100%;
+    padding-left: 70px;
+    padding-right: 25px;
+  }
+
+  .container::after {
+    left: 10px;
+    top: 5px;
+  }
+
+  .right {
+    left: 0%;
+  }
+
+  .right::after {
+    left: 60px;
+  }
+
+  .content {
+    align-items: center;
+    text-align: center;
+  }
+
+  .content img {
+    margin: 10px auto 0;
+  }
+
+  .timeline::after {
+    left: 30px;
+  }
+}
+
+</style>
+</head>
+<body>
+  <!-- Navbar -->
+ <nav>
+  <div class="navbar-container">
+    <div class="brand-info">
+      <button class="name-button" onclick="window.location.href='index.html'" id="name-button" data-gr="ΒΑΣΟΥΛΑ ΔΕΛΛΗ" data-en="VASSULA DELLI">ΒΑΣΟΥΛΑ ΔΕΛΛΗ</button>
+       <!--<p id="title-text" data-gr="ΜΟΥΣΙΚΟΣ / PERFORMER / ΣΥΝΘΕΤΡΙΑ / ΠΑΙΔΑΓΩΓΟΣ" data-en="MUSICIAN / PERFORMER / COMPOSER / EDUCATOR">
+        ΜΟΥΣΙΚΟΣ / PERFORMER / ΣΥΝΘΕΤΡΙΑ / ΠΑΙΔΑΓΩΓΟΣ
+      </p>-->
+    </div>
+    <button class="hamburger" onclick="toggleMenu()">☰</button>
+    <ul class="nav-links">
+         <li class="close-btn"><a href="javascript:void(0)" onclick="toggleMenu()">✕</a></li>
+      <li><a href="bio.html" class="lang" data-gr="Βιογραφικό" data-en="Biography">Βιογραφικό</a></li>
+      <li><a href="performance.html" class="lang" data-gr="Παραστάσεις" data-en="Performances">Παραστάσεις</a></li>
+      <li><a href="maestro.html" class="lang" data-gr="Μουσική Προετοιμασία - Διδασκαλία" data-en="Music Preparation – Teaching">Μουσική Προετοιμασία - Διδασκαλία</a></li>
+      <li><a href="discography.html" class="lang" data-gr="Δισκογραφία" data-en="Discography">Δισκογραφία</a></li>
+      <li><a href="contact.html" class="lang" data-gr="Επικοινωνία" data-en="Contact">Επικοινωνία</a></li>
+    </ul>
+    <button class="lang-toggle" onclick="toggleLanguage()">EN</button>
+  </div>
+</nav>
+
+  <br>
+  <br>
+  <br>
+
+  <h2 class="lang" data-gr="Δισκογραφία" data-en="Discography">Δισκογραφία</h2>
+
+  <div class="timeline">
+
+    <div class="container left">
+      <div class="content">
+        
+       
+        <h3 class="lang" data-gr="Παιδικά τραγούδια του σχολείου μας I & II. " data-en="Children's songs from our school I & II. ">Παιδικά τραγούδια του σχολείου μας I & II. </h3>
+        <p class="lang" data-gr="Δύο άλμπουμς με την παιδική χορωδία της Μοντεσσοριανής Σχολής Αθηνών Μ. Γουδέλη." data-en="Two albums with the Children’s Choir of the Montessori School of Athens “Maria Goudeli”.">Δύο άλμπουμς με την παιδική χορωδία της Μοντεσσοριανής Σχολής Αθηνών Μ. Γουδέλη.</p>
+        <p> 2018 & 2024</p>
+        <div style="display: flex; gap: 15px; justify-content: center; flex-wrap: wrap; margin-top: 10px;">
+  <img src="./paidiki xorodia cd.jpeg" alt="paidiki 1" style="width: 100px; height: 100px; object-fit: cover; box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);">
+  <img src="./cd tragoudia sxoleiou mas.png" alt="paidiki 2" style="width: 100px; height: 100px; object-fit: cover; box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);">
+</div>
+      </div>
+    </div>
+
+    <div class="container right">
+      <div class="content">
+        
+  
+        <h3 class="lang" data-gr="Πολυφωνικές Διαδρομές, Πλειάδες. " data-en="Polyphonic Journeys, Pleiades. ">Πολυφωνικές Διαδρομές, Πλειάδες.</h3>
+        <p class="lang" data-gr="Πολυφωνικά τραγούδια από Ελλάδα και εξωτερικό" data-en="Polyphonic songs from Greece and abroad">Πολυφωνικά τραγούδια από Ελλάδα και εξωτερικό</p>
+        <p> 2021</p>
+       <div style="display: flex; gap: 15px; justify-content: center; flex-wrap: wrap; margin-top: 10px;">
+        <img src="./ΕΞΩΦΥΛΛΟ.jpg" alt="Πολυφωνικές Διαδρομές Πλειάδες" style="width: 100px; height: 100px; object-fit: cover; box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);">
+       </div>
+        
+      </div>
+    </div>
+
+    <div class="container left">
+      <div class="content">
+        
+        <h3 class="lang" data-gr="Τέσσερα ερωτικά τραγούδια του Αλέξανδρου Καψοκαβαδή" data-en="Four Love Songs by Alexandros Kapsokavadis">Τέσσερα ερωτικά τραγούδια του Αλέξανδρου Καψοκαβαδή</h3>
+        <p>2020</p>
+          <iframe 
+  width="400" 
+  height="225" 
+  src="https://www.youtube.com/embed/O3ModnGPiis" 
+  title="YouTube video player" 
+  frameborder="0" 
+  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+  allowfullscreen 
+  style="margin-top: 20px; border-radius: 0px; box-shadow: 0 4px 10px rgba(0,0,0,0.2);">
+</iframe>
+        
+      </div>
+    </div>
+
+    <div class="container right">
+      <div class="content">
+       
+        <h3 class="lang" data-gr="Γυναίκες της Πέτρας – Encardia + Πλειάδες. " data-en="Women of Stone – Encardia + Pleiades. ">Γυναίκες της Πέτρας – Encardia + Πλειάδες.</h3>
+        <p class="lang" data-gr="Διπλό CD + DVD" data-en="Double CD + DVD">Διπλό CD + DVD</p>
+        <p>2015</p>
+        <div style="display: flex; gap: 15px; justify-content: center; flex-wrap: wrap; margin-top: 10px;">
+           <img src="./cd gynaikes petras.jpeg" alt="Γυναίκες της Πέτρας" style="width: 100px; height: 100px; object-fit: cover; box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);">
+        </div>
+       
+      </div>
+    </div>
+
+    <div class="container left">
+      <div class="content">
+        
+        <h3 class="lang" data-gr="Περιπλανώμενες Πλειάδες, Πλειάδες. " data-en="Wandering Pleiades, Pleiades. ">Περιπλανώμενες Πλειάδες, Πλειάδες.</h3>
+        <p class="lang" data-en="Polyphonic Epirotic songs" data-gr="Πολυφωνικά ηπειρώτικα τραγούδια">Πολυφωνικά ηπειρώτικα τραγούδια</p>
+        <p>2012</p>
+         <div style="display: flex; gap: 15px; justify-content: center; flex-wrap: wrap; margin-top: 10px;">
+          <img src="./periplanomenes peiades.jpg" alt="Περιπλανώμενες Πλειάδες" style="width: 100px; height: 100px; object-fit: cover; box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);">
+         </div>
+        
+      </div>
+    </div>
+
+    <div class="container right">
+      <div class="content">
+        
+        <h3 class="lang" data-gr="AEALO, Rotting Christ. " data-en="AEALO, Rotting Christ. ">AEALO, Rotting Christ.</h3>
+        <p class="lang" data-gr="Φωνητικά (Φωνητικό Σύνολο Πλειάδες)" data-en="Vocals (Pleades Vocal Ensemble)">Φωνητικά (Φωνητικό Σύνολο Πλειάδες)</p>
+        <p>2010</p>
+       <div style="display: flex; gap: 15px; justify-content: center; flex-wrap: wrap; margin-top: 10px;">
+        <img src="./cd aealo.jpeg" alt="AEALO Rotting Christ" style="width: 100px; height: 100px; object-fit: cover; box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);">
+       </div>
+        
+      </div>
+    </div>
+
+  </div>
+
+  <hr>
+<footer>
+  <p>&copy; 2025 Vassula Delli<br>
+     Created by Chris Tzouvaras</p>
+</footer>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="language.js"></script>
+  <script>
+    function toggleMenu() {
+      const navLinks = document.querySelector('.nav-links');
+      navLinks.classList.toggle('open');
+    }
+
+    // auto-close menu when clicking a link (mobile only)
+    document.querySelectorAll('.nav-links a').forEach(link => {
+      link.addEventListener('click', () => {
+        const navLinks = document.querySelector('.nav-links');
+        if (navLinks.classList.contains('open')) {
+          navLinks.classList.remove('open');
+        }
+      });
+    });
+  </script>
+
+
+</body>
+</html>

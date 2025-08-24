@@ -1,0 +1,496 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Performance Details</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css" rel="stylesheet">
+     <style>
+       
+        .content-container {
+            max-width: 800px;
+            margin: auto;
+            text-align: left;
+        }
+        /*gia na ftanei i eikona tou carusel to text*/
+.carousel-inner {
+  max-width: 800px;      /* adjust frame width */
+  margin: auto;
+  border: 8px solid #333; /* frame look */
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 6px 16px rgba(0,0,0,0.3); /* floating frame effect */
+}
+
+.carousel-img {
+  width: 100%;
+  height: 500px;        /* consistent height */
+  object-fit: cover;    /* keeps proportions but fills frame */
+}
+
+        footer {
+            text-align: center;
+        }
+
+        .carousel-control-prev, .carousel-control-next {
+            width: 10%;
+            top: 50%;
+            transform: translateY(-50%);
+            opacity: 0.8;
+        }
+
+        .carousel-control-prev-icon, .carousel-control-next-icon {
+            filter: invert(100%);
+        }
+
+        .carousel-control-prev:hover, .carousel-control-next:hover {
+            opacity: 1;
+        }
+
+        .btn-warning {
+            margin-top: 20px;
+        }
+
+     body {
+  font-family: "Roboto", Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+  background-color: white;
+  color: black;
+}
+
+    nav {
+      padding: 10px 0;
+      position: fixed;
+      width: 100%;
+      top: 0;
+      left: 0;
+      background: white;
+      border-bottom: 1px solid #ddd;
+      z-index: 1000;
+    }
+
+    .navbar-container {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      width: 90%;
+      margin: auto;
+      padding: 0 10px;
+    }
+
+    .brand-info {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+    }
+
+    .name-button {
+      background: none;
+      border: none;
+      font-size: 20px;
+      font-weight: bold;
+      cursor: pointer;
+      color: black;
+    }
+
+    .name-button:hover {
+      color: black;
+    }
+
+    .hamburger {
+      display: none;
+      font-size: 26px;
+      background: none;
+      border: none;
+      cursor: pointer;
+    }
+
+    .nav-links {
+      list-style: none;
+      display: flex;
+      justify-content: center;
+      width: 100%;
+      gap: 15px;
+    }
+
+    .nav-links li a {
+      color: black;
+      text-decoration: none;
+      font-weight: bold;
+      font-size: 13.5px;
+      padding: 10px 15px;
+      border-radius: 5px;
+      transition: background-color 0.3s, color 0.3s;
+    }
+
+       .nav-links li a {
+  position: relative;
+}
+
+.nav-links li a::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 0%;
+  height: 2px;
+  background-color: black;
+  transition: width 0.3s ease;
+}
+
+.nav-links li a:hover::after {
+  width: 100%;
+}
+
+    .lang-toggle {
+      background: white;
+      color: black;
+      border: 1px solid black;
+      padding: 5px 10px;
+      font-size: 14px;
+      cursor: pointer;
+      border-radius: 5px;
+    }
+
+    .performances {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 20px;
+      padding: 20px;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    h2 {
+      text-align: center;
+      font-size: 24px;
+      margin: 40px 0 20px;
+    }
+
+    .performance-item {
+      background: none;
+      padding: 0;
+      text-align: left;
+      width: 250px;
+    }
+
+    .performance-item img {
+      width: 100%;
+      height: 250px;
+      object-fit: cover;
+      object-position: center;
+      border-radius: 0;
+    }
+
+    .performance-title {
+      font-size: 14px;
+      font-weight: bold;
+      margin-top: 10px;
+      color: black;
+      text-decoration: none;
+      display: inline-block;
+    }
+
+    .performance-role {
+      font-size: 13px;
+      color: gray;
+      margin-top: 5px;
+    }
+
+    footer {
+      text-align: center;
+      margin-top: 60px;
+      padding: 10px 0;
+      color: black;
+    }
+
+    .close-btn {
+      display: none;
+    }
+
+        /* Navbar responsiveness */
+.hamburger {
+  background: none;
+  border: none;
+  font-size: 24px;
+  cursor: pointer;
+  display: none;
+}
+
+.nav-links {
+  list-style-type: none;
+  display: flex;
+  gap: 15px;
+  margin: 0;
+  padding: 0;
+}
+
+.nav-links li a {
+  padding: 10px 15px;
+  font-weight: bold;
+  font-size: 13.5px;
+  text-decoration: none;
+  color: black;
+  transition: background-color 0.3s, color 0.3s;
+}
+
+.nav-links li a {
+  position: relative;
+}
+
+.nav-links li a::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 0%;
+  height: 2px;
+  background-color: black;
+  transition: width 0.3s ease;
+}
+
+.nav-links li a:hover::after {
+  width: 100%;
+}
+
+/* Mobile styles */
+  @media (max-width: 768px) {
+      .nav-links {
+        flex-direction: column;
+        background: white;
+        position: fixed;
+        top: 0;
+        right: -250px;
+        width: 200px;
+        height: 100%;
+        padding: 60px 20px;
+        box-shadow: -2px 0px 5px rgba(0, 0, 0, 0.1);
+        transition: right 0.3s ease;
+        z-index: 1500;
+      }
+
+      .nav-links.open {
+        right: 0;
+      }
+
+      .hamburger {
+        display: block;
+      }
+
+      .close-btn {
+        display: block;
+        text-align: right;
+        margin-bottom: 20px;
+      }
+
+      .close-btn a {
+        font-size: 26px;
+        text-decoration: none;
+        color: black;
+        padding: 10px;
+      }
+
+      .performance-item {
+        text-align: center;
+      }
+
+      .performance-title,
+      .performance-role {
+        text-align: center;
+      }
+}
+
+    </style>
+</head>
+<body>
+    
+        <!-- Navbar -->
+       <nav>
+  <div class="navbar-container">
+    <div class="brand-info">
+      <button class="name-button" onclick="window.location.href='index.html'" id="name-button" data-gr="ΒΑΣΟΥΛΑ ΔΕΛΛΗ" data-en="VASSULA DELLI">ΒΑΣΟΥΛΑ ΔΕΛΛΗ</button>
+       <!--<p id="title-text" data-gr="ΜΟΥΣΙΚΟΣ / PERFORMER / ΣΥΝΘΕΤΡΙΑ / ΠΑΙΔΑΓΩΓΟΣ" data-en="MUSICIAN / PERFORMER / COMPOSER / EDUCATOR">
+        ΜΟΥΣΙΚΟΣ / PERFORMER / ΣΥΝΘΕΤΡΙΑ / ΠΑΙΔΑΓΩΓΟΣ
+      </p>-->
+    </div>
+    <button class="hamburger" onclick="toggleMenu()">☰</button>
+    <ul class="nav-links">
+      <li class="close-btn"><a href="javascript:void(0)" onclick="toggleMenu()">✕</a></li>
+      <li><a href="bio.html" class="lang" data-gr="Βιογραφικό" data-en="Biography">Βιογραφικό</a></li>
+      <li><a href="performance.html" class="lang" data-gr="Παραστάσεις" data-en="Performances">Παραστάσεις</a></li>
+      <li><a href="maestro.html" class="lang" data-gr="Μουσική Προετοιμασία - Διδασκαλία" data-en="Music Preparation – Teaching">Μουσική Προετοιμασία - Διδασκαλία</a></li>
+      <li><a href="discography.html" class="lang" data-gr="Δισκογραφία" data-en="Discography">Δισκογραφία</a></li>
+      <li><a href="contact.html" class="lang" data-gr="Επικοινωνία" data-en="Contact">Επικοινωνία</a></li>
+    </ul>
+    <button class="lang-toggle" onclick="toggleLanguage()">EN</button>
+  </div>
+</nav>
+
+<br>
+<br>
+<div class="container py-5">
+    <!-- Title -->
+    <div class="content-container">
+        <h2 class="lang" data-gr="ΚΗΠΟΣ ΔΕΔΟΜΕΝΩΝ" data-en="DATA GARDEN">ΚΗΠΟΣ ΔΕΔΟΜΕΝΩΝ</h2>
+    </div>
+    <br>
+
+    <!-- Carousel -->
+  <!-- Carousel -->
+<div id="performanceCarouselDG" class="carousel slide" data-bs-ride="carousel">
+  <div class="carousel-inner text-center">
+    <div class="carousel-item active">
+      <img src="./dg1.jpg" class="d-block carousel-img" alt="Image 1">
+    </div>
+    <div class="carousel-item">
+      <img src="./dg3.jpg" class="d-block carousel-img" alt="Image 2">
+    </div>
+  </div>
+
+  <!-- Carousel Controls -->
+  <button class="carousel-control-prev" type="button" data-bs-target="#performanceCarouselDG" data-bs-slide="prev">
+    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+    <span class="visually-hidden">Previous</span>
+  </button>
+  <button class="carousel-control-next" type="button" data-bs-target="#performanceCarouselDG" data-bs-slide="next">
+    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+    <span class="visually-hidden">Next</span>
+  </button>
+</div>
+
+    <!-- Photo Credits -->
+    <div class="content-container">
+        <p class="lang" style="font-size: 13px;"  data-gr="Photo Credits: Άλεξ Δημητριάδης" data-en="Photo Credits: Alex Dimitriadis">Photo Credits: Άλεξ Δημητριάδης</p>
+    </div>
+    <br>
+    <br>
+
+
+  
+    
+<br>
+<!-- Text Description -->
+<div class="content-container">
+    <h2 class="lang" data-gr="ΚΗΠΟΣ ΔΕΔΟΜΕΝΩΝ" data-en="DATA GARDEN">ΚΗΠΟΣ ΔΕΔΟΜΕΝΩΝ</h2>
+    <p class="lang" data-gr="Μπορεί να σκεφτεί κανείς ένα μέλλον συνδεσιμότητας πέρα από την επιτήρηση και με περιορισμένες τις επιπτώσεις των τεχνολογικών υποδομών στο φυσικό περιβάλλον; Είναι δυνατό να αποκατασταθούν οι δεσμοί ανθρώπινων και μη ανθρώπινων κόσμων στον πλανήτη; Μπορούν τα φυτά, ως οργανισμοί στους οποίους βασίζεται η ίδια η ζωή, να συνεισφέρουν στη δημιουργία και στον ενστερνισμό νέων πρακτικών για τη διαμεσολαβημένη από την τεχνολογία καθημερινότητα;
+
+    Η νέα πολυμεσική εγκατάσταση της Κυριακής Γονή, με τίτλο «Κήπος Δεδομένων», διερευνά τα ερωτήματα αυτά μέσα από την αφήγηση μιας μυθοπλασίας που περιέχει πραγματικά στοιχεία. Αφετηρία του έργου αποτελούν πρόσφατες επιστημονικές έρευνες αναφορικά με τη δυνατότητα αποθήκευσης δεδομένων στο DNA ζωντανών οργανισμών, καθώς και οι προκλήσεις και τα ηθικά ζητήματα που συγχρόνως τίθενται. Η εικαστικός καλεί το κοινό να φανταστεί ένα δίκτυο φυτών στον βράχο της Ακρόπολης, μέσα στο οποίο διακινείται και αποθηκεύεται ψηφιακή πληροφορία. Το δίκτυο προστατεύεται από μια κοινότητα χρηστών που διατηρούν έτσι την αυτοδιάθεση των δεδομένων τους. Καθώς ο χώρος αποθήκευσης περνά από το «νέφος» (cloud) στη γη και ο έλεγχος από τις εταιρείες στους χρήστες, ο κύκλος ζωής των δεδομένων ακολουθεί τον αντίστοιχο του φυτού και δημιουργείται μια σχέση αλληλεξάρτησης και φροντίδας. Σε έναν ιδιόμορφο κήπο, οι χρήστες γίνονται κηπουροί των φυτών και τα φυτά, με τη σειρά τους, κηπουροί της αποθηκευμένης πληροφορίας.
+    
+    Η ιστορία ξεδιπλώνεται μέσα από σχέδια, εκτυπώσεις, βίντεο, ηχητικά κομμάτια και συνεντεύξεις με επιστήμονες από τα αντίστοιχα πεδία και φανερώνει τις συνδέσεις ψηφιακής μνήμης και κλιματικής κρίσης, διερευνώντας πιθανές διεξόδους και στρατηγικές αντίστασης. Ο «Κήπος Δεδομένων» υπενθυμίζει την άρρηκτη και θεμελιώδη σχέση μεταξύ πολιτισμού και φύσης, ενώ αφήνει το κοινό να αναλογιστεί τα όρια της ανθρώπινης παρέμβασης και δράσης στο περιβάλλον." data-en="
+Can we envision a future of connectivity beyond surveillance and with limited environmental impact from technological infrastructures? Is it possible to restore the bonds between human and non-human worlds on the planet?
+Can plants, as organisms on which life itself depends, contribute to creating and embracing new practices for a technology-mediated everyday life?
+
+The new multimedia installation by Kyriaki Goni, titled Data Garden, explores these questions through a fictional narrative grounded in real facts. The starting point of the work is recent scientific research on the possibility of storing data in the DNA of living organisms, alongside the challenges and ethical questions that arise.
+
+The artist invites the audience to imagine a network of plants on the rock of the Acropolis, through which digital information flows and is stored. This network is protected by a community of users who thus maintain control over their data sovereignty.
+
+As the storage space shifts from the “cloud” to the earth, and control moves from companies to users, the life cycle of data follows that of the plant, creating a relationship of interdependence and care. In this peculiar garden, users become gardeners of the plants, and the plants, in turn, gardeners of the stored information.
+
+The story unfolds through drawings, prints, videos, sound pieces, and interviews with scientists from relevant fields, revealing the connections between digital memory and the climate crisis, while exploring possible solutions and strategies of resistance.
+
+Data Garden reminds us of the inseparable and fundamental relationship between culture and nature, inviting the audience to reflect on the limits of human intervention and action in the environment.">
+        Μπορεί να σκεφτεί κανείς ένα μέλλον συνδεσιμότητας πέρα από την επιτήρηση και με περιορισμένες τις επιπτώσεις των τεχνολογικών υποδομών στο φυσικό περιβάλλον; Είναι δυνατό να αποκατασταθούν οι δεσμοί ανθρώπινων και μη ανθρώπινων κόσμων στον πλανήτη; Μπορούν τα φυτά, ως οργανισμοί στους οποίους βασίζεται η ίδια η ζωή, να συνεισφέρουν στη δημιουργία και στον ενστερνισμό νέων πρακτικών για τη διαμεσολαβημένη από την τεχνολογία καθημερινότητα;
+
+Η νέα πολυμεσική εγκατάσταση της Κυριακής Γονή, με τίτλο «Κήπος Δεδομένων», διερευνά τα ερωτήματα αυτά μέσα από την αφήγηση μιας μυθοπλασίας που περιέχει πραγματικά στοιχεία. Αφετηρία του έργου αποτελούν πρόσφατες επιστημονικές έρευνες αναφορικά με τη δυνατότητα αποθήκευσης δεδομένων στο DNA ζωντανών οργανισμών, καθώς και οι προκλήσεις και τα ηθικά ζητήματα που συγχρόνως τίθενται. Η εικαστικός καλεί το κοινό να φανταστεί ένα δίκτυο φυτών στον βράχο της Ακρόπολης, μέσα στο οποίο διακινείται και αποθηκεύεται ψηφιακή πληροφορία. Το δίκτυο προστατεύεται από μια κοινότητα χρηστών που διατηρούν έτσι την αυτοδιάθεση των δεδομένων τους. Καθώς ο χώρος αποθήκευσης περνά από το «νέφος» (cloud) στη γη και ο έλεγχος από τις εταιρείες στους χρήστες, ο κύκλος ζωής των δεδομένων ακολουθεί τον αντίστοιχο του φυτού και δημιουργείται μια σχέση αλληλεξάρτησης και φροντίδας. Σε έναν ιδιόμορφο κήπο, οι χρήστες γίνονται κηπουροί των φυτών και τα φυτά, με τη σειρά τους, κηπουροί της αποθηκευμένης πληροφορίας.
+
+Η ιστορία ξεδιπλώνεται μέσα από σχέδια, εκτυπώσεις, βίντεο, ηχητικά κομμάτια και συνεντεύξεις με επιστήμονες από τα αντίστοιχα πεδία και φανερώνει τις συνδέσεις ψηφιακής μνήμης και κλιματικής κρίσης, διερευνώντας πιθανές διεξόδους και στρατηγικές αντίστασης. Ο «Κήπος Δεδομένων» υπενθυμίζει την άρρηκτη και θεμελιώδη σχέση μεταξύ πολιτισμού και φύσης, ενώ αφήνει το κοινό να αναλογιστεί τα όρια της ανθρώπινης παρέμβασης και δράσης στο περιβάλλον.
+    </p>
+    <hr>
+
+    <h2 class="lang" data-gr="ΠΟΥ & ΠΟΤΕ" data-en="WHERE & WHEN">ΠΟΥ & ΠΟΤΕ</h2>
+    <p class="lang" data-gr="9-27.9.2020 Στέγη Γραμμάτων και Τεχνών, Αθήνα" data-en="9-27.9.2020 Onassis Cultural Centre, Athens">9-27.9.2020 Στέγη Γραμμάτων και Τεχνών, Αθήνα</p>
+    <hr>
+
+  <!-- Embedded Video -->
+  <div class="content-container">
+    <div class="text-center">
+        <iframe 
+            title="youtube" 
+            src="https://www.youtube.com/embed/d8HyH_G-gfM" 
+            width="640" height="360" 
+            frameborder="0" 
+            allowfullscreen>
+        </iframe>
+    </div>
+</div>
+
+<br>
+<hr>
+    <!-- Contributors -->
+    
+    <h2 class="lang" data-gr="ΣΥΝΤΕΛΕΣΤΕΣ" data-en="CREDITS">ΣΥΝΤΕΛΕΣΤΕΣ</h2>
+
+<div>
+  <p class="lang" data-gr="<strong>Σύλληψη, Σχεδιασμός και Εκτέλεση:</strong> Κυριακή Γόνη" data-en="<strong>Concept, Design & Execution:</strong> Kyriaki Goni">
+    <strong>Σύλληψη, Σχεδιασμός και Εκτέλεση:</strong> Κυριακή Γόνη
+  </p>
+  <p class="lang" data-gr="<strong>Κάμερα:</strong> Άλεξ Δημητριάδης" data-en="<strong>Camera:</strong> Alex Dimitriadis">
+    <strong>Κάμερα:</strong> Άλεξ Δημητριάδης
+  </p>
+  <p class="lang" data-gr="<strong>Ηχογράφηση Φωνής:</strong> Νίκος Κωνσταντίνου" data-en="<strong>Voice Recording:</strong> Nikos Konstantinou">
+    <strong>Ηχογράφηση Φωνής:</strong> Νίκος Κωνσταντίνου
+  </p>
+  <p class="lang" data-gr="<strong>Εισαγωγικό Κείμενο:</strong> Δάφνη Δραγωνά" data-en="<strong>Introductory Text:</strong> Daphne Dragona">
+    <strong>Εισαγωγικό Κείμενο:</strong> Δάφνη Δραγωνά
+  </p>
+  <p class="lang" data-gr="<strong>AR Προγραμματισμός:</strong> Γιώργος Καίρης" data-en="<strong>AR Programming:</strong> Giorgos Kairis">
+    <strong>AR Προγραμματισμός:</strong> Γιώργος Καίρης
+  </p>
+  <p class="lang" data-gr="<strong>Εκτέλεση τρισδιάστατου μοντέλου:</strong> Αντώνης Καλαγκάτσης" data-en="<strong>3D Model Execution:</strong> Antonis Kalagkatsis">
+    <strong>Εκτέλεση τρισδιάστατου μοντέλου:</strong> Αντώνης Καλαγκάτσης
+  </p>
+  <p class="lang" data-gr="<strong>Μουσική:</strong> Βασούλα Δελλή & Ρούλα Τσέρνου" data-en="<strong>Music:</strong> Vassoula Delli & Roula Tsernou">
+    <strong>Μουσική:</strong> Βασούλα Δελλή & Ρούλα Τσέρνου
+  </p>
+  <p class="lang" data-gr="<strong>Μουσική Εκτέλεση:</strong> Φωνητικό Σύνολο ''Πλειάδες''" data-en="<strong>Music Performance:</strong> Pleiades Vocal Ensemble">
+    <strong>Μουσική Εκτέλεση:</strong> Φωνητικό Σύνολο ''Πλειάδες''
+  </p>
+  <p class="lang" data-gr="<strong>Ηχογράφηση & Πολυκάναλη Ηχητική εγκατάσταση:</strong> Άρης Ντεληθέος" data-en="<strong>Sound Recording & Multichannel Sound Installation:</strong> Aris Delitheos">
+    <strong>Ηχογράφηση & Πολυκάναλη Ηχητική εγκατάσταση:</strong> Άρης Ντεληθέος
+  </p>
+  <p class="lang" data-gr="<strong>Μετάφραση Κειμένων & Υποτιτλισμός:</strong> Yourtranslator" data-en="<strong>Text Translation & Subtitling:</strong> Yourtranslator">
+    <strong>Μετάφραση Κειμένων & Υποτιτλισμός:</strong> Yourtranslator
+  </p>
+  <p class="lang" data-gr="<strong>Στούντιο Ηχογράφησης:</strong> Tone Studio Athens" data-en="<strong>Recording Studio:</strong> Tone Studio Athens">
+    <strong>Στούντιο Ηχογράφησης:</strong> Tone Studio Athens
+  </p>
+  <p class="lang" data-gr="<strong>Οργάνωση Παραγωγής:</strong> Ιωάννα Μαργαρίτη" data-en="<strong>Production Coordination:</strong> Ioanna Margariti">
+    <strong>Οργάνωση Παραγωγής:</strong> Ιωάννα Μαργαρίτη
+  </p>
+  <p class="lang" data-gr="<strong>Εκτέλεση Παραγωγής:</strong> Ειρηλένα Τσάμη" data-en="<strong>Production Execution:</strong> Eirielena Tsami">
+    <strong>Εκτέλεση Παραγωγής:</strong> Ειρηλένα Τσάμη
+  </p>
+  <p class="lang" data-gr="<strong>Ανάθεση & Παραγωγή:</strong> Στέγη του Ιδρύματος Ωνάση" data-en="<strong>Commission & Production:</strong> Onassis Stegi">
+    <strong>Ανάθεση & Παραγωγή:</strong> Στέγη του Ιδρύματος Ωνάση
+  </p>
+</div>
+
+</div>
+<!-- Footer -->
+ <hr>
+<footer>
+  <p>&copy; 2025 Vassula Delli<br>
+     Created by Chris Tzouvaras</p>
+</footer>
+ <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="language.js"></script>
+  <script>
+    function toggleMenu() {
+      const navLinks = document.querySelector('.nav-links');
+      navLinks.classList.toggle('open');
+    }
+
+    // auto-close menu when clicking a link (mobile only)
+    document.querySelectorAll('.nav-links a').forEach(link => {
+      link.addEventListener('click', () => {
+        const navLinks = document.querySelector('.nav-links');
+        if (navLinks.classList.contains('open')) {
+          navLinks.classList.remove('open');
+        }
+      });
+    });
+  </script>
+</body>
+</html>

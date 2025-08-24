@@ -1,0 +1,535 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Performance Details</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css" rel="stylesheet">
+     <style>
+       
+        .content-container {
+            max-width: 800px;
+            margin: auto;
+            text-align: left;
+        }
+        /*gia na ftanei i eikona tou carusel to text*/
+.carousel-inner {
+  max-width: 800px;   /* adjust width of the "frame" */
+  margin: auto;       /* center carousel */
+  border: 8px solid #333; /* frame look */
+  border-radius: 12px;
+  overflow: hidden;   /* crop images outside the frame */
+}
+
+.carousel-img {
+  width: 100%;
+  height: 500px;       /* same height for all slides */
+  object-fit: cover;   /* makes images fill frame nicely */
+}
+
+
+        footer {
+            text-align: center;
+        }
+
+        .carousel-control-prev, .carousel-control-next {
+            width: 10%;
+            top: 50%;
+            transform: translateY(-50%);
+            opacity: 0.8;
+        }
+
+        .carousel-control-prev-icon, .carousel-control-next-icon {
+            filter: invert(100%);
+        }
+
+        .carousel-control-prev:hover, .carousel-control-next:hover {
+            opacity: 1;
+        }
+
+        .btn-warning {
+            margin-top: 20px;
+        }
+
+  body {
+font-family: "Roboto", Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+  background-color: white;
+  color: black;
+}
+
+    nav {
+      padding: 10px 0;
+      position: fixed;
+      width: 100%;
+      top: 0;
+      left: 0;
+      background: white;
+      border-bottom: 1px solid #ddd;
+      z-index: 1000;
+    }
+
+    .navbar-container {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      width: 90%;
+      margin: auto;
+      padding: 0 10px;
+    }
+
+    .brand-info {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+    }
+
+    .name-button {
+      background: none;
+      border: none;
+      font-size: 20px;
+      font-weight: bold;
+      cursor: pointer;
+      color: black;
+    }
+
+    .name-button:hover {
+      color: black;
+    }
+
+    .hamburger {
+      display: none;
+      font-size: 26px;
+      background: none;
+      border: none;
+      cursor: pointer;
+    }
+
+    .nav-links {
+      list-style: none;
+      display: flex;
+      justify-content: center;
+      width: 100%;
+      gap: 15px;
+    }
+
+    .nav-links li a {
+      color: black;
+      text-decoration: none;
+      font-weight: bold;
+      font-size: 13.5px;
+      padding: 10px 15px;
+      border-radius: 5px;
+      transition: background-color 0.3s, color 0.3s;
+    }
+
+       .nav-links li a {
+  position: relative;
+}
+
+.nav-links li a::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 0%;
+  height: 2px;
+  background-color: black;
+  transition: width 0.3s ease;
+}
+
+.nav-links li a:hover::after {
+  width: 100%;
+}
+
+    .lang-toggle {
+      background: white;
+      color: black;
+      border: 1px solid black;
+      padding: 5px 10px;
+      font-size: 14px;
+      cursor: pointer;
+      border-radius: 5px;
+    }
+
+    .performances {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 20px;
+      padding: 20px;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    h2 {
+      text-align: center;
+      font-size: 24px;
+      margin: 40px 0 20px;
+    }
+
+    .performance-item {
+      background: none;
+      padding: 0;
+      text-align: left;
+      width: 250px;
+    }
+
+    .performance-item img {
+      width: 100%;
+      height: 250px;
+      object-fit: cover;
+      object-position: center;
+      border-radius: 0;
+    }
+
+    .performance-title {
+      font-size: 14px;
+      font-weight: bold;
+      margin-top: 10px;
+      color: black;
+      text-decoration: none;
+      display: inline-block;
+    }
+
+    .performance-role {
+      font-size: 13px;
+      color: gray;
+      margin-top: 5px;
+    }
+
+    footer {
+      text-align: center;
+      margin-top: 60px;
+      padding: 10px 0;
+      color: black;
+    }
+
+    .close-btn {
+      display: none;
+    }
+
+        /* Navbar responsiveness */
+.hamburger {
+  background: none;
+  border: none;
+  font-size: 24px;
+  cursor: pointer;
+  display: none;
+}
+
+.nav-links {
+  list-style-type: none;
+  display: flex;
+  gap: 15px;
+  margin: 0;
+  padding: 0;
+}
+
+.nav-links li a {
+  padding: 10px 15px;
+  font-weight: bold;
+  font-size: 13.5px;
+  text-decoration: none;
+  color: black;
+  transition: background-color 0.3s, color 0.3s;
+}
+
+.nav-links li a {
+  position: relative;
+}
+
+.nav-links li a::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 0%;
+  height: 2px;
+  background-color: black;
+  transition: width 0.3s ease;
+}
+
+.nav-links li a:hover::after {
+  width: 100%;
+}
+
+/* Mobile styles */
+  @media (max-width: 768px) {
+      .nav-links {
+        flex-direction: column;
+        background: white;
+        position: fixed;
+        top: 0;
+        right: -250px;
+        width: 200px;
+        height: 100%;
+        padding: 60px 20px;
+        box-shadow: -2px 0px 5px rgba(0, 0, 0, 0.1);
+        transition: right 0.3s ease;
+        z-index: 1500;
+      }
+
+      .nav-links.open {
+        right: 0;
+      }
+
+      .hamburger {
+        display: block;
+      }
+
+      .close-btn {
+        display: block;
+        text-align: right;
+        margin-bottom: 20px;
+      }
+
+      .close-btn a {
+        font-size: 26px;
+        text-decoration: none;
+        color: black;
+        padding: 10px;
+      }
+
+      .performance-item {
+        text-align: center;
+      }
+
+      .performance-title,
+      .performance-role {
+        text-align: center;
+      }
+}
+
+    </style>
+</head>
+<body>
+    
+        <!-- Navbar -->
+       <nav>
+  <div class="navbar-container">
+    <div class="brand-info">
+      <button class="name-button" onclick="window.location.href='index.html'" id="name-button" data-gr="ΒΑΣΟΥΛΑ ΔΕΛΛΗ" data-en="VASSULA DELLI">ΒΑΣΟΥΛΑ ΔΕΛΛΗ</button>
+       <!--<p id="title-text" data-gr="ΜΟΥΣΙΚΟΣ / PERFORMER / ΣΥΝΘΕΤΡΙΑ / ΠΑΙΔΑΓΩΓΟΣ" data-en="MUSICIAN / PERFORMER / COMPOSER / EDUCATOR">
+        ΜΟΥΣΙΚΟΣ / PERFORMER / ΣΥΝΘΕΤΡΙΑ / ΠΑΙΔΑΓΩΓΟΣ
+      </p>-->
+    </div>
+    <button class="hamburger" onclick="toggleMenu()">☰</button>
+    <ul class="nav-links">
+      <li class="close-btn"><a href="javascript:void(0)" onclick="toggleMenu()">✕</a></li>
+      <li><a href="bio.html" class="lang" data-gr="Βιογραφικό" data-en="Biography">Βιογραφικό</a></li>
+      <li><a href="performance.html" class="lang" data-gr="Παραστάσεις" data-en="Performances">Παραστάσεις</a></li>
+      <li><a href="maestro.html" class="lang" data-gr="Μουσική Προετοιμασία - Διδασκαλία" data-en="Music Preparation – Teaching">Μουσική Προετοιμασία - Διδασκαλία</a></li>
+      <li><a href="discography.html" class="lang" data-gr="Δισκογραφία" data-en="Discography">Δισκογραφία</a></li>
+      <li><a href="contact.html" class="lang" data-gr="Επικοινωνία" data-en="Contact">Επικοινωνία</a></li>
+    </ul>
+    <button class="lang-toggle" onclick="toggleLanguage()">EN</button>
+  </div>
+</nav>
+
+<br>
+<br>
+<div class="container py-5">
+    <!-- Title -->
+    <div class="content-container">
+        <h2 class="lang" data-gr="ΣΩΜΑΤΑ ΚΑΙ ΑΦΗΓΗΜΑΤΑ" data-en="BODIES AND STORIES">ΣΩΜΑΤΑ ΚΑΙ ΑΦΗΓΗΜΑΤΑ</h2>
+    </div>
+    <br>
+
+    <!-- Carousel -->
+    <div id="performanceCarousel" class="carousel slide" data-bs-ride="carousel">
+        <div class="carousel-inner text-center">
+
+            <div class="carousel-item active">
+                <img src="./sa1.jpg" class="d-block carousel-img" alt="Image 1">
+            </div>
+            <div class="carousel-item">
+                <img src="./sa2.jpg" class="d-block carousel-img" alt="Image 2">
+            </div>
+            <div class="carousel-item">
+                <img src="./sa3.jpg" class="d-block carousel-img" alt="Image 3">
+            </div>
+            <div class="carousel-item">
+                <img src="./sa4.jpg" class="d-block carousel-img" alt="Image 4">
+            </div>
+            <div class="carousel-item">
+                <img src="./sa5.jpg" class="d-block carousel-img" alt="Image 5">
+            </div>
+            <div class="carousel-item">
+                <img src="./sa6.jpg" class="d-block carousel-img" alt="Image 6">
+            </div>
+            <div class="carousel-item">
+                <img src="./sa7.jpg" class="d-block carousel-img" alt="Image 7">
+            </div>
+
+        </div>
+        
+        <!-- Carousel Controls -->
+        <button class="carousel-control-prev" type="button" data-bs-target="#performanceCarousel" data-bs-slide="prev">
+            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Previous</span>
+        </button>
+        <button class="carousel-control-next" type="button" data-bs-target="#performanceCarousel" data-bs-slide="next">
+            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Next</span>
+        </button>
+    </div>
+</div>
+
+
+    <!-- Photo Credits 
+    <div class="content-container">
+        <p class="lang" style="font-size: 13px;"  data-gr="Photo Credits: Άλεξ Δημητριάδης" data-en="Photo Credits: Alex Dimitriadis">Photo Credits: Άλεξ Δημητριάδης</p>
+    </div>
+    <br>
+    <br>
+-->
+
+  
+    
+<br>
+<!-- Text Description -->
+<div class="content-container">
+    <h2 class="lang" data-gr="ΣΩΜΑΤΑ ΚΑΙ ΑΦΗΓΗΜΑΤΑ" data-en="BODIES AND STORIES">ΣΩΜΑΤΑ ΚΑΙ ΑΦΗΓΗΜΑΤΑ</h2>
+    <h2 class="lang" data-gr="ΜΟΥΣΙΚΗ ΧΩΡΙΣ ΟΡΓΑΝΑ" data-en="MUSIC WITHOUT INSTRUMENTS">ΜΟΥΣΙΚΗ ΧΩΡΙΣ ΟΡΓΑΝΑ</h2>
+    <p class="lang" data-gr="Η πρωτοποριακή ομάδα Bodyterranean του Simone Mongelli, συμπράττει με τον σπουδαίο τραγουδοποιό
+Γιάννη Χαρούλη σε μια μουσικοκινητική δράση, που φέρνει και πάλι στο επίκεντρο το πιο αρχέγονο μουσικό
+όργανο: το ίδιο το ανθρώπινο σώμα. Δύο παραστάσεις ειδικά φτιαγμένες για τον εμβληματικό χώρο του
+Επταπυργίου.
+Η παράσταση θολώνει τα όρια μεταξύ μουσικής, τραγουδιού, χορού και θεάτρου, μιλάει την πανανθρώπινη
+γλώσσα του ρυθμού του σώματος, εκφράζεται μέσω της φωνής και της κίνησης.
+Σώματα και φωνές αφηγούνται ιστορίες για τον έρωτα, την ξενιτιά, τη μητρότητα, τη διαφορετικότητα, τις
+χαρές και τις λύπες, συναισθήματα και καταστάσεις της ζωής που μπροστά τους οι άνθρωποι και οι λαοί είναι
+όλοι ίδιοι.
+Η παράδοση δίνει το έναυσμα για να ξεδιπλωθούν μυστικά συναισθήματα και αποτελεί αφετηρία για τη
+συλλογική επιβεβαίωση ή την προσωπική αμφισβήτηση κοινωνικών αξιών. Μακεδονίτικοι σκοποί, που
+μοιάζουν να προέρχονται απευθείας από την αρχαιότητα, μπερδεύονται με χορούς της Αφρικής και ξορκίζουν
+τους αρχέγονους φόβους. Ένα Θρακιώτικο τραγούδι δίνει δύναμη στην γυναίκα να διεκδικήσει το διαχρονικό
+δικαίωμα στον αυτοπροσδιορισμό και την χειραφέτηση, ο καημός του ανεκπλήρωτου έρωτα ή του θανάτου
+γίνεται χορός και σκηνική μυσταγωγία. Ο σύγχρονος καλλιτέχνης εκφράζεται με τα λόγια του ξενιτεμένου
+λαϊκού ποιητή της Κρήτης ή των ελληνόφωνων χωριών της Νοτίου Ιταλίας, τα ρεμπέτικα τραγούδια των
+Μικρασιατών συνθετών γίνονται δράση και κίνηση.
+Τα τραγούδια της παράστασης, γυμνά και άοπλα, στην πιο ουσιώδη μορφή τους, μαρτυρούν ιστορίες που
+εξαλείφουν τις διαφορές και φωνάζουν για ισότητα και ειρήνη.
+Όλα μαζί, στήνουν ένα τελετουργικό σκηνικό και εκφράζονται στο τώρα, με τον πιο αρχαίο και ταυτόχρονα
+τον πιο σύγχρονο τρόπο: ΜΟΝΟ ΜΕ ΤΟ ΣΩΜΑ!" 
+data-en="
+Simone Mongelli's pioneering group Bodyterranean collaborates with the great songwriter Yiannis Charoulis in a musical-kinetic action that once again brings to the forefront the most primal musical instrument: the human body itself. Two performances specially created for the emblematic space of Heptapyrgio. The performance blurs the boundaries between music, song, dance and theater, speaks the universal language of body rhythm, expresses itself through voice and movement. Bodies and voices tell stories about love, foreignness, motherhood, diversity, joys and sorrows, emotions and situations of life in front of which people and peoples are all the same. Tradition gives rise to the unfolding of secret emotions and constitutes a starting point for the collective affirmation or personal questioning of social values. Macedonian goals, which seem to come directly from antiquity, are confused with African dances and exorcise primordial fears. A Thracian song gives strength to a woman to claim the timeless right to self-determination and emancipation, the sorrow of unrequited love or death becomes dance and stage mysticism. The modern artist expresses himself with the words of the exiled folk poet of Crete or the Greek-speaking villages of Southern Italy, the rebetiko songs of Asia Minor composers become action and movement. The songs of the performance, naked and unarmed, in their most essential form, testify to stories that
+eliminate differences and cry out for equality and peace.
+All together, they set a ritual scene and express themselves in the now, in the most ancient and at the same time
+the most modern way: ONLY WITH THE BODY!">
+        Η πρωτοποριακή ομάδα Bodyterranean του Simone Mongelli, συμπράττει με τον σπουδαίο τραγουδοποιό
+Γιάννη Χαρούλη σε μια μουσικοκινητική δράση, που φέρνει και πάλι στο επίκεντρο το πιο αρχέγονο μουσικό
+όργανο: το ίδιο το ανθρώπινο σώμα. Δύο παραστάσεις ειδικά φτιαγμένες για τον εμβληματικό χώρο του
+Επταπυργίου.
+Η παράσταση θολώνει τα όρια μεταξύ μουσικής, τραγουδιού, χορού και θεάτρου, μιλάει την πανανθρώπινη
+γλώσσα του ρυθμού του σώματος, εκφράζεται μέσω της φωνής και της κίνησης.
+Σώματα και φωνές αφηγούνται ιστορίες για τον έρωτα, την ξενιτιά, τη μητρότητα, τη διαφορετικότητα, τις
+χαρές και τις λύπες, συναισθήματα και καταστάσεις της ζωής που μπροστά τους οι άνθρωποι και οι λαοί είναι
+όλοι ίδιοι.
+Η παράδοση δίνει το έναυσμα για να ξεδιπλωθούν μυστικά συναισθήματα και αποτελεί αφετηρία για τη
+συλλογική επιβεβαίωση ή την προσωπική αμφισβήτηση κοινωνικών αξιών. Μακεδονίτικοι σκοποί, που
+μοιάζουν να προέρχονται απευθείας από την αρχαιότητα, μπερδεύονται με χορούς της Αφρικής και ξορκίζουν
+τους αρχέγονους φόβους. Ένα Θρακιώτικο τραγούδι δίνει δύναμη στην γυναίκα να διεκδικήσει το διαχρονικό
+δικαίωμα στον αυτοπροσδιορισμό και την χειραφέτηση, ο καημός του ανεκπλήρωτου έρωτα ή του θανάτου
+γίνεται χορός και σκηνική μυσταγωγία. Ο σύγχρονος καλλιτέχνης εκφράζεται με τα λόγια του ξενιτεμένου
+λαϊκού ποιητή της Κρήτης ή των ελληνόφωνων χωριών της Νοτίου Ιταλίας, τα ρεμπέτικα τραγούδια των
+Μικρασιατών συνθετών γίνονται δράση και κίνηση.
+Τα τραγούδια της παράστασης, γυμνά και άοπλα, στην πιο ουσιώδη μορφή τους, μαρτυρούν ιστορίες που
+εξαλείφουν τις διαφορές και φωνάζουν για ισότητα και ειρήνη.
+Όλα μαζί, στήνουν ένα τελετουργικό σκηνικό και εκφράζονται στο τώρα, με τον πιο αρχαίο και ταυτόχρονα
+τον πιο σύγχρονο τρόπο: ΜΟΝΟ ΜΕ ΤΟ ΣΩΜΑ!
+    </p>
+    <hr>
+
+    <h2 class="lang" data-gr="ΠΟΥ & ΠΟΤΕ" data-en="WHERE & WHEN">ΠΟΥ & ΠΟΤΕ</h2>
+    <p class="lang" data-gr="25-26.7.2025 Επταπύργιο Θεσσαλονίκης" data-en="25-26.7.2025 Eptapyrgio, Thessaloniki">25-26.7.2025 Επταπύργιο Θεσσαλονίκης</p>
+    <hr>
+
+   
+ <a href="https://www.facebook.com/reel/2124649718009596" target="_blank">
+  Watch on Facebook
+</a>
+
+<br>
+<hr>
+    <!-- Contributors -->
+    
+    <h2 class="lang" data-gr="ΣΥΝΤΕΛΕΣΤΕΣ" data-en="CREDITS">ΣΥΝΤΕΛΕΣΤΕΣ</h2>
+
+<div>
+  <p class="lang" data-gr="<strong>Σύλληψη - Σκηνοθεσία – Ενορχηστρώσεις – Κινησιολογία - Body percussion - Φωνητικά:</strong> Simone
+Mongelli" data-en="<strong>Conception - Direction - Orchestrations - Kinesiology - Body percussion - Vocals:</strong> Simone
+Mongelli">
+    <strong>Σύλληψη - Σκηνοθεσία – Ενορχηστρώσεις – Κινησιολογία - Body percussion - Φωνητικά:</strong> Simone
+Mongelli
+  </p>
+  <p class="lang" data-gr="<strong>Τραγούδι - Performing:</strong> Γιάννης Χαρούλης" data-en="<strong>Song - Performing:</strong> Yannis Charoulis">
+    <strong>Τραγούδι - Performing:</strong>Γιάννης Χαρούλης
+  </p>
+  <p class="lang" data-gr="<strong>Body percussion – Φωνητικά – Χορός - Σύμβουλος χορογραφιών:</strong> Σίσσυ Πιντέλα" data-en="<strong>Body percussion – Vocals – Dance - Choreography consultant:</strong>Sissy Pindela ">
+    <strong>Body percussion – Φωνητικά – Χορός - Σύμβουλος χορογραφιών:</strong> Σίσσυ Πιντέλα
+  </p>
+  <p class="lang" data-gr="<strong>Body percussion - Φωνητικά:</strong> Φώτης Φωτόπουλος" data-en="<strong>Body percussion - Vocals:</strong> Fotis Fotopoulos">
+    <strong>Body percussion - Φωνητικά:</strong> Φώτης Φωτόπουλος
+  </p>
+  <p class="lang" data-gr="<strong>Τραγούδι - Body percussion - Φωνητικά:</strong> Σπυριδούλα Μπάκα" data-en="<strong>Song - Body percussion - Vocals:</strong> Spyridoula Baka">
+    <strong>Βοηθός μουσικής διεύθυνσης:</strong>Σπυριδούλα Μπάκα
+  </p>
+  <p class="lang" data-gr="<strong>Body percussion – Τραγούδι - Φωνητικά:</strong> Δανάη Στεργίου" data-en="<strong>Body percussion – Song - Vocals:</strong> Danae Stergiou">
+    <strong>Body percussion – Τραγούδι - Φωνητικά: </strong> Δανάη Στεργίου
+  </p>
+  <p class="lang" data-gr="<strong>Body percussion - Φωνητικά:</strong> Ζωή Κουσάνα" data-en="<strong>Body percussion - Vocals:</strong> Zoe Kusana">
+    <strong>Body percussion - Φωνητικά:</strong>  Ζωή Κουσάνα
+  </p>
+   <p class="lang" data-gr="<strong>Body percussion - Φωνητικά:</strong> Δανάη Πολίτη" data-en="<strong>Body percussion - Vocals:</strong> Danae Politi">
+    <strong>Body percussion - Φωνητικά:</strong>  Δανάη Πολίτη
+  </p>
+  <p class="lang" data-gr="<strong>Vocal trainer:</strong> Βασούλα Δελλή" data-en="<strong>Vocal trainer:</strong>Vassula Delli">
+    <strong>Vocal trainer:</strong> Βασούλα Δελλή
+  </p>
+  <p class="lang" data-gr="<strong>Ήχος:</strong> Παναγιώτης Ριζόπουλος" data-en="<strong>Sound:</strong> Panagiotis Rizopoulos">
+    <strong>Ήχος:</strong> Παναγιώτης Ριζόπουλος
+  </p>
+  <p class="lang" data-gr="<strong>Σχεδιασμός φωτισμού:</strong> Αλέξανδρος Λυκουρας" data-en="<strong>Lighting design:</strong> Alexander Lykouras">
+    <strong>Σχεδιασμός φωτισμού:</strong> Αλέξανδρος Λυκουρας
+  </p>
+  <p class="lang" data-gr="<strong>Βοηθός σκηνοθέτη:</strong> Στέφανος Ζυμβραγουδάκης " data-en="<strong>Assistant director:</strong> Stefanos Zimbragoudakis">
+    <strong>Βοηθός σκηνοθέτη:</strong> Στέφανος Ζυμβραγουδάκης
+  </p>
+  <p class="lang" data-gr="<strong>Κοστούμια:</strong> Ασημίνα Λιαρμακοπούλου" data-en="<strong>Costumes:</strong>Asimina Liarmakopoulou">
+    <strong>Κοστούμια:</strong> Ασημίνα Λιαρμακοπούλου
+  </p>
+ <p class="lang" data-gr="<strong>Παραγωγή:</strong> Φεστιβάλ Επταπυργίου 2025 - Κέντρου Πολιτισμού Περιφέρειας Κεντρικής Μακεδονίας" data-en="<strong>Production:</strong>Eptapyrgio Festival 2025 - Cultural Center of the Region of Central Macedonia">
+    <strong>Παραγωγή:</strong> Φεστιβάλ Επταπυργίου 2025 - Κέντρου Πολιτισμού Περιφέρειας Κεντρικής Μακεδονίας
+  </p>
+</div>
+
+</div>
+<!-- Footer -->
+ <hr>
+<footer>
+  <p>&copy; 2025 Vassula Delli<br>
+     Created by Chris Tzouvaras</p>
+</footer>
+ <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="language.js"></script>
+  <script>
+    function toggleMenu() {
+      const navLinks = document.querySelector('.nav-links');
+      navLinks.classList.toggle('open');
+    }
+
+    // auto-close menu when clicking a link (mobile only)
+    document.querySelectorAll('.nav-links a').forEach(link => {
+      link.addEventListener('click', () => {
+        const navLinks = document.querySelector('.nav-links');
+        if (navLinks.classList.contains('open')) {
+          navLinks.classList.remove('open');
+        }
+      });
+    });
+  </script>
+</body>
+</html>

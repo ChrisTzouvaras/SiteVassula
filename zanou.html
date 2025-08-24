@@ -1,0 +1,413 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Performance Details</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css" rel="stylesheet"/>
+  <style>
+       
+        .content-container {
+            max-width: 800px;
+            margin: auto;
+            text-align: left;
+        }
+        /*gia na ftanei i eikona tou carusel to text*/
+.carousel-img {
+  max-height: 500px;     /* fixed height like other carousels */
+  width: auto;
+  object-fit: contain;    /* keeps aspect ratio without stretching */
+  display: block;
+  margin: 0 auto;         /* centers horizontally */
+}
+
+
+        footer {
+            text-align: center;
+        }
+
+        .carousel-control-prev, .carousel-control-next {
+            width: 10%;
+            top: 50%;
+            transform: translateY(-50%);
+            opacity: 0.8;
+        }
+
+        .carousel-control-prev-icon, .carousel-control-next-icon {
+            filter: invert(100%);
+        }
+
+        .carousel-control-prev:hover, .carousel-control-next:hover {
+            opacity: 1;
+        }
+
+        .btn-warning {
+            margin-top: 20px;
+        }
+
+     body {
+  font-family: "Roboto", Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+  background-color: white;
+  color: black;
+}
+
+    nav {
+      padding: 10px 0;
+      position: fixed;
+      width: 100%;
+      top: 0;
+      left: 0;
+      background: white;
+      border-bottom: 1px solid #ddd;
+      z-index: 1000;
+    }
+
+    .navbar-container {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      width: 90%;
+      margin: auto;
+      padding: 0 10px;
+    }
+
+    .brand-info {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+    }
+
+    .name-button {
+      background: none;
+      border: none;
+      font-size: 20px;
+      font-weight: bold;
+      cursor: pointer;
+      color: black;
+    }
+
+    .name-button:hover {
+      color: black;
+    }
+
+    .hamburger {
+      display: none;
+      font-size: 26px;
+      background: none;
+      border: none;
+      cursor: pointer;
+    }
+
+    .nav-links {
+      list-style: none;
+      display: flex;
+      justify-content: center;
+      width: 100%;
+      gap: 15px;
+    }
+
+    .nav-links li a {
+      color: black;
+      text-decoration: none;
+      font-weight: bold;
+      font-size: 13.5px;
+      padding: 10px 15px;
+      border-radius: 5px;
+      transition: background-color 0.3s, color 0.3s;
+    }
+
+       .nav-links li a {
+  position: relative;
+}
+
+.nav-links li a::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 0%;
+  height: 2px;
+  background-color: black;
+  transition: width 0.3s ease;
+}
+
+.nav-links li a:hover::after {
+  width: 100%;
+}
+
+    .lang-toggle {
+      background: white;
+      color: black;
+      border: 1px solid black;
+      padding: 5px 10px;
+      font-size: 14px;
+      cursor: pointer;
+      border-radius: 5px;
+    }
+
+    .performances {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 20px;
+      padding: 20px;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    h2 {
+      text-align: center;
+      font-size: 24px;
+      margin: 40px 0 20px;
+    }
+
+    .performance-item {
+      background: none;
+      padding: 0;
+      text-align: left;
+      width: 250px;
+    }
+
+    .performance-item img {
+      width: 100%;
+      height: 250px;
+      object-fit: cover;
+      object-position: center;
+      border-radius: 0;
+    }
+
+    .performance-title {
+      font-size: 14px;
+      font-weight: bold;
+      margin-top: 10px;
+      color: black;
+      text-decoration: none;
+      display: inline-block;
+    }
+
+    .performance-role {
+      font-size: 13px;
+      color: gray;
+      margin-top: 5px;
+    }
+
+    footer {
+      text-align: center;
+      margin-top: 60px;
+      padding: 10px 0;
+      color: black;
+    }
+
+    .close-btn {
+      display: none;
+    }
+
+        /* Navbar responsiveness */
+.hamburger {
+  background: none;
+  border: none;
+  font-size: 24px;
+  cursor: pointer;
+  display: none;
+}
+
+.nav-links {
+  list-style-type: none;
+  display: flex;
+  gap: 15px;
+  margin: 0;
+  padding: 0;
+}
+
+.nav-links li a {
+  padding: 10px 15px;
+  font-weight: bold;
+  font-size: 13.5px;
+  text-decoration: none;
+  color: black;
+  transition: background-color 0.3s, color 0.3s;
+}
+
+.nav-links li a {
+  position: relative;
+}
+
+.nav-links li a::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 0%;
+  height: 2px;
+  background-color: black;
+  transition: width 0.3s ease;
+}
+
+.nav-links li a:hover::after {
+  width: 100%;
+}
+
+/* Mobile styles */
+  @media (max-width: 768px) {
+      .nav-links {
+        flex-direction: column;
+        background: white;
+        position: fixed;
+        top: 0;
+        right: -250px;
+        width: 200px;
+        height: 100%;
+        padding: 60px 20px;
+        box-shadow: -2px 0px 5px rgba(0, 0, 0, 0.1);
+        transition: right 0.3s ease;
+        z-index: 1500;
+      }
+
+      .nav-links.open {
+        right: 0;
+      }
+
+      .hamburger {
+        display: block;
+      }
+
+      .close-btn {
+        display: block;
+        text-align: right;
+        margin-bottom: 20px;
+      }
+
+      .close-btn a {
+        font-size: 26px;
+        text-decoration: none;
+        color: black;
+        padding: 10px;
+      }
+
+      .performance-item {
+        text-align: center;
+      }
+
+      .performance-title,
+      .performance-role {
+        text-align: center;
+      }
+}
+
+    </style>
+</head>
+<body>
+    
+        <!-- Navbar -->
+       <nav>
+  <div class="navbar-container">
+    <div class="brand-info">
+      <button class="name-button" onclick="window.location.href='index.html'" id="name-button" data-gr="ΒΑΣΟΥΛΑ ΔΕΛΛΗ" data-en="VASSULA DELLI">ΒΑΣΟΥΛΑ ΔΕΛΛΗ</button>
+      <!--<p id="title-text" data-gr="ΜΟΥΣΙΚΟΣ / PERFORMER / ΣΥΝΘΕΤΡΙΑ / ΠΑΙΔΑΓΩΓΟΣ" data-en="MUSICIAN / PERFORMER / COMPOSER / EDUCATOR">
+        ΜΟΥΣΙΚΟΣ / PERFORMER / ΣΥΝΘΕΤΡΙΑ / ΠΑΙΔΑΓΩΓΟΣ
+      </p>-->
+    </div>
+    <button class="hamburger" onclick="toggleMenu()">☰</button>
+    <ul class="nav-links">
+      <li class="close-btn"><a href="javascript:void(0)" onclick="toggleMenu()">✕</a></li>
+      <li><a href="bio.html" class="lang" data-gr="Βιογραφικό" data-en="Biography">Βιογραφικό</a></li>
+      <li><a href="performance.html" class="lang" data-gr="Παραστάσεις" data-en="Performances">Παραστάσεις</a></li>
+      <li><a href="maestro.html" class="lang" data-gr="Μουσική Προετοιμασία - Διδασκαλία" data-en="Music Preparation – Teaching">Μουσική Προετοιμασία - Διδασκαλία</a></li>
+      <li><a href="discography.html" class="lang" data-gr="Δισκογραφία" data-en="Discography">Δισκογραφία</a></li>
+      <li><a href="contact.html" class="lang" data-gr="Επικοινωνία" data-en="Contact">Επικοινωνία</a></li>
+    </ul>
+    <button class="lang-toggle" onclick="toggleLanguage()">EN</button>
+  </div>
+</nav>
+  <!-- Page Content -->
+  <div class="container py-5">
+    <div class="content-container">
+      <h2 class="lang" data-gr="ΖΑΝΟΥ" data-en="ZANOU">ΖΑΝΟΥ</h2>
+    </div>
+    <br>
+
+<!-- Carousel -->
+<div id="performanceCarouselZanou" class="carousel slide" data-bs-ride="carousel">
+  <div class="carousel-inner text-center">
+    <div class="carousel-item active">
+      <img src="./ζανου.jpg" class="d-block carousel-img" alt="Zanou Performance">
+    </div>
+  </div>
+
+  <!-- Carousel Controls -->
+  <button class="carousel-control-prev" type="button" data-bs-target="#performanceCarouselZanou" data-bs-slide="prev">
+    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+    <span class="visually-hidden">Previous</span>
+  </button>
+  <button class="carousel-control-next" type="button" data-bs-target="#performanceCarouselZanou" data-bs-slide="next">
+    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+    <span class="visually-hidden">Next</span>
+  </button>
+</div>
+  <!-- Text Description -->
+  <div class="content-container">
+    <h2 class="lang" data-gr="ΖΑΝΟΥ" data-en="ZANOU">ΖΑΝΟΥ</h2>
+    <p class="lang" data-gr="Η Ζανού είναι μια γυναίκα, διψασμένη για δόξα, χρήματα και αποδοχή. Μέσα από ένα μουσικό ταξίδι σε διάφορες εποχές και είδη μας αφηγείται την ιστορία της. Υπογράφοντας το πολυπόθητο συμβόλαιο με μια σπουδαία δισκογραφική εταιρεία, ξεκινά η εκπαίδευσή της και η καριέρα της. Καταφέρνει να φτάσει στην κορυφή κάνοντας αρκετές θυσίες, αλλά η κατηφόρα είναι μπροστά της. Το περιβάλλον της είναι πολύ απαιτητικό, δεν έχει καμία ελευθερία κινήσεων και ερωτεύεται πάντα τους λάθους άντρες. Έτσι δεν αργεί να πέσει στο ποτό και σιγά σιγά να καταστραφεί.." data-en="Zanou is a woman craving fame, money, and acceptance. Through a musical journey across eras and genres, she narrates her story. Upon signing the long-coveted contract with a major record label, her training and career then begin. She manages to reach the top but not without sacrifices, yet the downfall lies ahead. Her environment is demanding, leaving her with no freedom of movement, and she consistently falls in love with the wrong men. Before long, she turns to alcohol, and gradually, her world unravels…
+">
+      Η Ζανού είναι μια γυναίκα, διψασμένη για δόξα, χρήματα και αποδοχή. Μέσα από ένα μουσικό ταξίδι σε διάφορες εποχές και είδη μας αφηγείται την ιστορία της. Υπογράφοντας το πολυπόθητο συμβόλαιο με μια σπουδαία δισκογραφική εταιρεία, ξεκινά η εκπαίδευσή της και η καριέρα της. Καταφέρνει να φτάσει στην κορυφή κάνοντας αρκετές θυσίες, αλλά η κατηφόρα είναι μπροστά της. Το περιβάλλον της είναι πολύ απαιτητικό, δεν έχει καμία ελευθερία κινήσεων και ερωτεύεται πάντα τους λάθους άντρες. Έτσι δεν αργεί να πέσει στο ποτό και σιγά σιγά να καταστραφεί..
+    </p>
+    <hr>
+    <h2 class="lang" data-gr="ΠΟΥ & ΠΟΤΕ" data-en="WHERE & WHEN">ΠΟΥ & ΠΟΤΕ</h2>
+    <p class="lang" data-gr="6.5.2022 & 13.5.2022 Πολυχώρος Διέλευσις, Αθήνα" data-en="6.5.2022 & 13.5.2022 Dielefsis Multi-purpose Hall, Athens">6.5.2022 & 13.5.2022 Πολυχώρος Διέλευσις, Αθήνα</p>
+    <hr>
+    <h2 class="lang" data-gr="ΣΥΝΤΕΛΕΣΤΕΣ" data-en="CREDITS">ΣΥΝΤΕΛΕΣΤΕΣ</h2>
+    
+<div>
+  <p class="lang" data-gr="<strong>Σκηνοθεσία:</strong> Ειρήνη Κυριακού" data-en="<strong>Direction:</strong> Irini Kyriakou">
+    <strong>Σκηνοθεσία:</strong> Ειρήνη Κυριακού
+  </p>
+  <p class="lang" data-gr="<strong>Ιδέα Σύλληψης:</strong> Βασούλα Δελλή" data-en="<strong>Concept:</strong> Vassoula Delli">
+    <strong>Ιδέα Σύλληψης:</strong> Βασούλα Δελλή
+  </p>
+  <p class="lang" data-gr="<strong>Ενδυματολόγοι:</strong> Σοφία Τάμπλερ & Λίλη Ζωγραφάκη" data-en="<strong>Costume Design:</strong> Sofia Tambler & Lili Zografaki">
+    <strong>Ενδυματολόγοι:</strong> Σοφία Τάμπλερ & Λίλη Ζωγραφάκη
+  </p>
+  <p class="lang" data-gr="<strong>Φωτισμοί:</strong> Κορίνα Βασιλειάδου" data-en="<strong>Lighting:</strong> Korina Vasileiadou">
+    <strong>Φωτισμοί:</strong> Κορίνα Βασιλειάδου
+  </p>
+  <p class="lang" data-gr="<strong>Σχεδιασμός αφίσας:</strong> Ευτυχία Τσουκαλά" data-en="<strong>Poster Design:</strong> Eftychia Tsoukala">
+    <strong>Σχεδιασμός αφίσας:</strong> Ευτυχία Τσουκαλά
+  </p>
+  <p class="lang" data-gr="<strong>Φωνή:</strong> Βασούλα Δελλή" data-en="<strong>Vocals:</strong> Vassoula Delli">
+    <strong>Φωνή:</strong> Βασούλα Δελλή
+  </p>
+  <p class="lang" data-gr="<strong>Πιάνο:</strong> Σπύρος Σουλαδάκης" data-en="<strong>Piano:</strong> Spyros Souladakis">
+    <strong>Πιάνο:</strong> Σπύρος Σουλαδάκης
+  </p>
+</div>
+
+  </div>
+
+  <hr>
+  <footer>
+  <p>&copy; 2025 Vassula Delli<br>
+     Created by Chris Tzouvaras</p>
+</footer>
+
+   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="language.js"></script>
+  <script>
+    function toggleMenu() {
+      const navLinks = document.querySelector('.nav-links');
+      navLinks.classList.toggle('open');
+    }
+
+    // auto-close menu when clicking a link (mobile only)
+    document.querySelectorAll('.nav-links a').forEach(link => {
+      link.addEventListener('click', () => {
+        const navLinks = document.querySelector('.nav-links');
+        if (navLinks.classList.contains('open')) {
+          navLinks.classList.remove('open');
+        }
+      });
+    });
+  </script>
+</body>
+</html>

@@ -1,0 +1,390 @@
+<!DOCTYPE html>
+<html lang="el">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title class="lang" data-gr="Βιογραφικό" data-en="Biography(Bio)">Βιογραφικό</title>
+  <style>
+   body {
+  font-family: "Roboto", Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+  background-color: white;
+  color: black;
+}
+    nav {
+      padding: 10px 0;
+      position: fixed;
+      width: 100%;
+      top: 0;
+      left: 0;
+      background: white;
+      border-bottom: 1px solid #ddd;
+      z-index: 1000;
+    }
+
+    .navbar-container {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      width: 90%;
+      margin: auto;
+      padding: 0 10px;
+    }
+
+    .brand-info {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+    }
+
+    .name-button {
+      background: none;
+      border: none;
+      font-size: 20px;
+      font-weight: bold;
+      cursor: pointer;
+      color: black;
+    }
+
+    .name-button:hover {
+      color: black;
+    }
+
+    .hamburger {
+      display: none;
+      font-size: 26px;
+      background: none;
+      border: none;
+      cursor: pointer;
+    }
+
+   .nav-links {
+  list-style: none;
+  display: flex;
+  justify-content: center; /* centers nav items */
+  width: 100%;
+  gap: 15px;
+}
+
+    .nav-links li a {
+      color: black;
+      text-decoration: none;
+      font-weight: bold;
+      font-size: 13.5px;
+      padding: 10px 15px;
+      border-radius: 5px;
+      transition: background-color 0.3s, color 0.3s;
+    }
+
+      .nav-links li a {
+  position: relative;
+}
+
+.nav-links li a::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 0%;
+  height: 2px;
+  background-color: black;
+  transition: width 0.3s ease;
+}
+
+.nav-links li a:hover::after {
+  width: 100%;
+}
+
+    .lang-toggle {
+      background: white;
+      color: black;
+      border: 1px solid black;
+      padding: 5px 10px;
+      font-size: 14px;
+      cursor: pointer;
+      border-radius: 5px;
+    }
+
+    .bio-container {
+      max-width: 900px;
+      margin: auto;
+      padding: 100px 20px 50px 20px;
+      text-align: left;
+    }
+
+    .bio-section {
+      display: flex;
+      align-items: flex-start;
+      gap: 20px;
+      margin-bottom: 30px;
+    }
+
+    .profile-image {
+      width: 150px;
+      height: 150px;
+      object-fit: cover;
+    }
+
+    .bio-text {
+      max-width: 600px;
+      font-size: 15px;
+      line-height: 1.6;
+    }
+
+    .section-title {
+      font-weight: bold;
+      font-size: 18px;
+      margin-top: 50px;
+      margin-left: 20px;
+    }
+
+    footer {
+      text-align: center;
+      margin-top: 60px;
+      padding: 10px 0;
+      color: black;
+    }
+
+    .close-btn {
+      display: none;
+    }
+
+    @media (max-width: 768px) {
+      .nav-links {
+        flex-direction: column;
+        background: white;
+        position: fixed;
+        top: 0;
+        right: -250px;
+        width: 200px;
+        height: 100%;
+        padding: 60px 20px;
+        box-shadow: -2px 0px 5px rgba(0, 0, 0, 0.1);
+        transition: right 0.3s ease;
+        z-index: 1500;
+      }
+
+      .nav-links.open {
+        right: 0;
+      }
+
+      .hamburger {
+        display: block;
+      }
+
+      .close-btn {
+        display: block;
+        text-align: right;
+        margin-bottom: 20px;
+      }
+
+      .close-btn a {
+        font-size: 26px;
+        text-decoration: none;
+        color: black;
+        padding: 10px;
+      }
+
+      .bio-section {
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+      }
+
+      .bio-text {
+        text-align: justify;
+
+      }
+
+      .section-title {
+        margin-left: 20px;
+      }
+
+      strong {
+  font-weight: bold;
+}
+    }
+  </style>
+</head>
+<body>
+
+<nav>
+  <div class="navbar-container">
+    <div class="brand-info">
+      <button class="name-button" onclick="window.location.href='index.html'" id="name-button" data-gr="ΒΑΣΟΥΛΑ ΔΕΛΛΗ" data-en="VASSULA DELLI">ΒΑΣΟΥΛΑ ΔΕΛΛΗ</button>
+    <!--<p id="title-text" data-gr="ΜΟΥΣΙΚΟΣ / PERFORMER / ΣΥΝΘΕΤΡΙΑ / ΠΑΙΔΑΓΩΓΟΣ" data-en="MUSICIAN / PERFORMER / COMPOSER / EDUCATOR">
+        ΜΟΥΣΙΚΟΣ / PERFORMER / ΣΥΝΘΕΤΡΙΑ / ΠΑΙΔΑΓΩΓΟΣ
+      </p>-->
+    </div>
+    <button class="hamburger" onclick="toggleMenu()">☰</button>
+    <ul class="nav-links">
+      <li class="close-btn"><a href="javascript:void(0)" onclick="toggleMenu()">✕</a></li>
+      <li><a href="bio.html" class="lang" data-gr="Βιογραφικό" data-en="Biography">Βιογραφικό</a></li>
+      <li><a href="performance.html" class="lang" data-gr="Παραστάσεις" data-en="Performances">Παραστάσεις</a></li>
+      <li><a href="maestro.html" class="lang" data-gr="Μουσική Προετοιμασία - Διδασκαλία" data-en="Music Preparation – Teaching">Μουσική Προετοιμασία - Διδασκαλία</a></li>
+      <li><a href="discography.html" class="lang" data-gr="Δισκογραφία" data-en="Discography">Δισκογραφία</a></li>
+      <li><a href="contact.html" class="lang" data-gr="Επικοινωνία" data-en="Contact">Επικοινωνία</a></li>
+    </ul>
+    <button class="lang-toggle" onclick="toggleLanguage()">EN</button>
+  </div>
+</nav>
+
+<br>
+<br>
+<br>
+
+<br>
+<br>
+<br>
+<div style="padding-left: 83px; text-align: left;">
+    <p class="title-text lang" 
+data-gr="<strong>Bασούλα Δελλή</strong>" 
+data-en="<strong>Vassula Delli</strong>">
+<strong>Bασούλα Δελλή</strong>
+</p>
+    <hr style="margin-left: 0;">
+  </div>
+
+<!-- Bio Content -->
+<div class="bio-container">
+    <div class="bio-section">
+        <img src="./IMG_8871.JPG" class="profile-image" alt="Vassula Delli">
+        <p class="bio-text lang" data-gr="Η Βασούλα Δελλή είναι μουσικός, performer, συνθέτρια και παιδαγωγός. 
+        Το έργο της εστιάζει στη δυναμική της φωνής και αναδεικνύει τις εκφραστικές της δυνατότητες ξεπερνώντας τα παραδοσιακά σύνορα των μουσικών ειδών. 
+        Είναι απόφοιτος του Τμήματος Μουσικών Σπουδών του ΑΠΘ και του Royal Central School of Speech and Drama στο Λονδίνο (MA in Music Theatre). 
+        Έχει σπουδάσει κλασικό τραγούδι και όπερα στο Κρατικό Ωδείο Θεσσαλονίκης, πιάνο και ανώτερα θεωρητικά.
+" data-en="Vassula Delli is a musician, performer, composer, and educator.
+
+Her work focuses on the dynamic nature of the voice, showcasing its expressive potential while transcending the traditional boundaries of musical genres.
+
+She is a graduate of the Department of Music Studies at Aristotle University of Thessaloniki and holds an MA in Music Theatre from the Royal Central School of Speech and Drama in London.
+She has studied classical singing and opera at the State Conservatory of Thessaloniki, as well as piano and advanced music theory.">
+Η <strong>Βασούλα Δελλή</strong>  είναι μουσικός, performer, συνθέτρια και παιδαγωγός. 
+Το έργο της εστιάζει στη δυναμική της φωνής και αναδεικνύει τις εκφραστικές της δυνατότητες ξεπερνώντας τα παραδοσιακά σύνορα των μουσικών ειδών. 
+Είναι απόφοιτος του Τμήματος Μουσικών Σπουδών του ΑΠΘ και του Royal Central School of Speech and Drama στο Λονδίνο (MA in Music Theatre). 
+Έχει σπουδάσει κλασικό τραγούδι και όπερα στο Κρατικό Ωδείο Θεσσαλονίκης, πιάνο και ανώτερα θεωρητικά.
+        </p>
+    </div>
+
+
+    <div class="bio-section">
+        <img src="./IMG_8876bw.jpg" class="profile-image" alt="Vassula Delli">
+        <p class="bio-text lang" data-gr="Ως μουσικός και performer έχει συνεργαστεί με ένα ευρύ φάσμα καλλιτεχνών και μουσικών συνόλων, 
+        συνδυάζοντας τη λυρικότητα της κλασικής μουσικής και της όπερας, την ενέργεια και την εκφραστικότητα του μουσικού θεάτρου,
+        την αυθεντικότητα της παραδοσιακής μουσικής και τη ρυθμική ακρίβεια της ηλεκτρονικής. 
+        Έχει πραγματοποιήσει σειρά συναυλιών και παραστάσεων σε Ελλάδα και εξωτερικό (Εθνική Λυρική Σκηνή, Royal Albert Music Hall, Roundhouse venue, Subset Festival, 
+        Στέγη Ιδρύματος Ωνάση, Μέγαρο Μουσικής Θεσσαλονίκης, Μέγαρο Μουσικής Αθηνών, Nostos Festival).Είναι ιδρυτικό και ενεργό μέλος του γυναικείου φωνητικού συνόλου Πλειάδες. Ως συνθέτρια, έχει γράψει μουσική για θέατρο, χορό και εικαστικές πολυμεσικές εγκαταστάσεις.
+        Η Βασούλα έχει σχεδιάσει και συντονίσει εργαστήρια φωνητικής, πολυφωνικού και χορωδιακού τραγουδιού. 
+        Από το 2014 εργάζεται ως μουσικός και καθηγήτρια πιάνου στη Μοντεσσοριανή Σχολή Αθηνών Μαρία Γουδέλη.
+" data-en="As a musician and performer, she has collaborated with a wide range of artists and musical ensembles, blending the lyricism of classical music and opera with the vitality and expressiveness of musical theatre, the authenticity of traditional music, and the rhythmic precision of electronic music.
+
+She has performed extensively in Greece and abroad, at venues such as the Greek National Opera, Royal Albert Hall, Roundhouse, Subset Festival, Onassis Stegi, Thessaloniki Concert Hall, Athens Concert Hall, and Nostos Festival.
+
+She is a founding and active member of the female vocal ensemble Pleiades.
+As a composer, she has written music for theatre, dance, and multimedia visual installations.
+
+She has designed and led workshops in vocal technique, polyphonic singing, and choral performance.
+Since 2014, she has been working as a musician and piano teacher at the Montessoriani School of Athens M. Goudeli S.A.">
+Ως μουσικός και performer έχει συνεργαστεί με ένα ευρύ φάσμα καλλιτεχνών και μουσικών συνόλων, 
+συνδυάζοντας τη λυρικότητα της κλασικής μουσικής και της όπερας, την ενέργεια και την εκφραστικότητα του μουσικού θεάτρου,
+την αυθεντικότητα της παραδοσιακής μουσικής και τη ρυθμική ακρίβεια της ηλεκτρονικής. 
+Έχει πραγματοποιήσει σειρά συναυλιών και παραστάσεων σε Ελλάδα και εξωτερικό (Εθνική Λυρική Σκηνή, Royal Albert Music Hall, Roundhouse venue, Subset Festival, 
+Στέγη Ιδρύματος Ωνάση, Μέγαρο Μουσικής Θεσσαλονίκης, Μέγαρο Μουσικής Αθηνών, Nostos Festival).Είναι ιδρυτικό και ενεργό μέλος του γυναικείου φωνητικού συνόλου Πλειάδες. Ως συνθέτρια, έχει γράψει μουσική για θέατρο, χορό και εικαστικές πολυμεσικές εγκαταστάσεις.
+Η Βασούλα έχει σχεδιάσει και συντονίσει εργαστήρια φωνητικής, πολυφωνικού και χορωδιακού τραγουδιού. 
+Από το 2014 εργάζεται ως μουσικός και καθηγήτρια πιάνου στη Μοντεσσοριανή Σχολή Αθηνών Μαρία Γουδέλη.
+        </p>
+    </div>
+</div>
+
+<div style="padding-left: 83px; text-align: left;">
+    <p class="title-text lang" 
+data-gr="<strong>Φωνητικό Σύνολο Πλειάδες</strong>" 
+data-en="<strong>Pleiades Vocal Group</strong>">
+<strong>Φωνητικό Σύνολο Πλειάδες</strong>
+</p>
+    <hr style="margin-left: 0;">
+  </div>
+
+<div class="bio-container">
+    <div class="bio-section">
+        <img src="./pleiades.jpg" class="profile-image" alt="Pleiades">
+        <p class="bio-text lang" data-gr="Το γυναικείο φωνητικό σύνολο “Πλειάδες” δημιουργήθηκε τον Μάιο του 2006 στη
+        Θεσσαλονίκη. Με αφετηρία τη μελέτη και την ερμηνεία της ελληνόφωνης
+        πολυφωνίας της Ηπείρου, οι Πλειάδες επεκτείνουν τις φωνητικές τους αναζητήσεις σε
+        μουσικές από διάφορες χώρες του κ ό σμου, εμπλουτίζοντας, έτσι, το ρεπερτόριό τους
+        με πολυφωνικά τραγούδια είτε αυθεντικά είτε επεξεργασμένα α π ό τις ίδιες.
+        Πειραματίζονται και συνεργάζονται με σύγχρονους καλλιτέχνες (Νίκος Κυπουργός,
+        Δημήτρης Σωτηρίου, Ιωάννα Μανωλεδάκη, VIC, Rotting Christ, Αλέξανδρος Τσολάκης,
+        Κυριακή Γονή, Νίκος Ξυδάκης, Kat Valastur κ.α*.), διερευνώντας τη δημιουργική
+        σ ύ ζευξη της προφορικής πολυφωνικής φωνητικής παράδοσης με νεωτερικούς
+        τρόπους μουσικής έκφρασης. Έχουν πραγματοποιήσει σειρά συναυλιών και
+        παραστάσεων σε Ελ λάδα και εξωτερικό. Το 2023 και 2024 πραγματοποίησαν την
+        μουσικοθεατρική παράσταση “Τοπικοί Τροπικοί” του Μ ά ριου Χατζηπροκοπίου, σε
+        σκηνοθεσία Κορίνας Βασιλειάδου, με δικές τους μουσικές συνθέσεις.
+        Το 2013 κυκλοφόρησαν το π ρ ώ το τους ά λμπουμ “Περιπλανώμενες Πλειάδες”
+        με πολυφωνικά ηπειρώτικα. Ακολούθησε η κυκλοφορία ενός διπλού CD με συνοδεία
+        DVD απότην παράσταση “Γυναίκες της Πέτρας” στο Μέγαρο Μουσικής Αθηνών σε
+        συνεργασία με τους encardia (2015). Το 2020 κυκλοφόρησε το τελευταίο τους
+        ά λμπουμ “Πολυφωνικές Διαδρομές” με πολυφωνικά τραγούδια κ υρ ίως α π ό
+        χ ώ ρες της Μεσογείου.
+" data-en="The female vocal group Pleiades was founded in May 2006 in Thessaloniki.
+Having the study and interpretation of Greek-language polyphony from the Epirus region as a starting point, Pleiades have expanded their vocal explorations to include music from various traditions around the world, enriching their repertoire with polyphonic songs, both authentic and creatively reworked by the ensemble/group.
+
+They experiment and collaborate with contemporary artists (Nikos Kypourgos, Dimitris Sotiriou, Ioanna Manoledaki, VIC, Rotting Christ, Alexandros Tsolakis, Kyriaki Goni, Nikos Xydakis, Kat Valastur, among others), seeking to creatively fuse the oral tradition of polyphonic singing with modern forms of musical expression.
+
+They have performed extensively in Greece and internationally/abroad.
+In 2023 and 2024, they presented the music-theatre performance Tropical Locals by Marios Chatziprokopiou, directed by Korina Vasileiadou, featuring their own original compositions.
+
+In 2013, they released their debut album “Wandering Pleiades” with polyphonic songs from Epirus. This was followed in 2015 by a double CD and DVD recording of the performance “Women of the Stone” at the Athens Concert Hall, in collaboration with Encardia.
+
+In 2020, they released their latest album, Polyphonic Journeys, featuring polyphonic songs primarily from Mediterranean countries.">
+Το γυναικείο φωνητικό σύνολο <strong>“Πλειάδες”</strong> δημιουργήθηκε τον Μάιο του 2006 στη
+Θεσσαλονίκη. Με αφετηρία τη μελέτη και την ερμηνεία της ελληνόφωνης
+πολυφωνίας της Ηπείρου, οι Πλειάδες επεκτείνουν τις φωνητικές τους αναζητήσεις σε
+μουσικές από διάφορες χώρες του κόσμου, εμπλουτίζοντας, έτσι, το ρεπερτόριό τους
+με πολυφωνικά τραγούδια είτε αυθεντικά είτε επεξεργασμένα από τις ίδιες.
+Πειραματίζονται και συνεργάζονται με σύγχρονους καλλιτέχνες (Νίκος Κυπουργός,
+Δημήτρης Σωτηρίου, Ιωάννα Μανωλεδάκη, VIC, Rotting Christ, Αλέξανδρος Τσολάκης,
+Κυριακή Γονή, Νίκος Ξυδάκης, Kat Valastur κ.α*.), διερευνώντας τη δημιουργική
+σύζευξη της προφορικής πολυφωνικής φωνητικής παράδοσης με νεωτερικούς
+τρόπους μουσικής έκφρασης. Έχουν πραγματοποιήσει σειρά συναυλιών και
+παραστάσεων σε Ελλάδα και εξωτερικό. Το 2023 και 2024 πραγματοποίησαν την
+μουσικοθεατρική παράσταση “Τοπικοί Τροπικοί” του Μάριου Χατζηπροκοπίου, σε
+σκηνοθεσία Κορίνας Βασιλειάδου, με δικές τους μουσικές συνθέσεις.
+Το 2013 κυκλοφόρησαν το πρώτο τους άλμπουμ “Περιπλανώμενες Πλειάδες”
+με πολυφωνικά ηπειρώτικα. Ακολούθησε η κυκλοφορία ενός διπλού CD με συνοδεία
+DVD απότην παράσταση “Γυναίκες της Πέτρας” στο Μέγαρο Μουσικής Αθηνών σε
+συνεργασία με τους encardia (2015). Το 2020 κυκλοφόρησε το τελευταίο τους
+άλμπουμ “Πολυφωνικές Διαδρομές” με πολυφωνικά τραγούδια κυρίως από
+χώρες της Μεσογείου.
+        </p>
+    </div>
+    <hr>      
+
+<footer>
+  <p>&copy; 2025 Vassula Delli<br>
+     Created by Chris Tzouvaras</p>
+</footer>
+
+   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="language.js"></script>
+  <script>
+    function toggleMenu() {
+      const navLinks = document.querySelector('.nav-links');
+      navLinks.classList.toggle('open');
+    }
+
+    // auto-close menu when clicking a link (mobile only)
+    document.querySelectorAll('.nav-links a').forEach(link => {
+      link.addEventListener('click', () => {
+        const navLinks = document.querySelector('.nav-links');
+        if (navLinks.classList.contains('open')) {
+          navLinks.classList.remove('open');
+        }
+      });
+    });
+  </script>
+
+</body>
+</html>

@@ -1,0 +1,450 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Performance Details</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+       
+        .content-container {
+            max-width: 800px;
+            margin: auto;
+            text-align: left;
+        }
+        /*gia na ftanei i eikona tou carusel to text*/
+.carousel-inner {
+  max-width: 800px;      /* adjust frame width */
+  margin: auto;
+  border: 8px solid #333; /* frame look */
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 6px 16px rgba(0,0,0,0.3); /* floating frame effect */
+}
+
+.carousel-img {
+  width: 100%;
+  height: 500px;        /* consistent height */
+  object-fit: cover;    /* keeps proportions but fills frame */
+}
+
+
+        footer {
+            text-align: center;
+        }
+
+        .carousel-control-prev, .carousel-control-next {
+            width: 10%;
+            top: 50%;
+            transform: translateY(-50%);
+            opacity: 0.8;
+        }
+
+        .carousel-control-prev-icon, .carousel-control-next-icon {
+            filter: invert(100%);
+        }
+
+        .carousel-control-prev:hover, .carousel-control-next:hover {
+            opacity: 1;
+        }
+
+        .btn-warning {
+            margin-top: 20px;
+        }
+
+   body {
+  font-family: "Roboto", Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+  background-color: white;
+  color: black;
+}
+
+    nav {
+      padding: 10px 0;
+      position: fixed;
+      width: 100%;
+      top: 0;
+      left: 0;
+      background: white;
+      border-bottom: 1px solid #ddd;
+      z-index: 1000;
+    }
+
+    .navbar-container {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      width: 90%;
+      margin: auto;
+      padding: 0 10px;
+    }
+
+    .brand-info {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+    }
+
+    .name-button {
+      background: none;
+      border: none;
+      font-size: 20px;
+      font-weight: bold;
+      cursor: pointer;
+      color: black;
+    }
+
+    .name-button:hover {
+      color: black;
+    }
+
+    .hamburger {
+      display: none;
+      font-size: 26px;
+      background: none;
+      border: none;
+      cursor: pointer;
+    }
+
+    .nav-links {
+      list-style: none;
+      display: flex;
+      justify-content: center;
+      width: 100%;
+      gap: 15px;
+    }
+
+    .nav-links li a {
+      color: black;
+      text-decoration: none;
+      font-weight: bold;
+      font-size: 13.5px;
+      padding: 10px 15px;
+      border-radius: 5px;
+      transition: background-color 0.3s, color 0.3s;
+    }
+
+       .nav-links li a {
+  position: relative;
+}
+
+.nav-links li a::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 0%;
+  height: 2px;
+  background-color: black;
+  transition: width 0.3s ease;
+}
+
+.nav-links li a:hover::after {
+  width: 100%;
+}
+
+    .lang-toggle {
+      background: white;
+      color: black;
+      border: 1px solid black;
+      padding: 5px 10px;
+      font-size: 14px;
+      cursor: pointer;
+      border-radius: 5px;
+    }
+
+    .performances {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 20px;
+      padding: 20px;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    h2 {
+      text-align: center;
+      font-size: 24px;
+      margin: 40px 0 20px;
+    }
+
+    .performance-item {
+      background: none;
+      padding: 0;
+      text-align: left;
+      width: 250px;
+    }
+
+    .performance-item img {
+      width: 100%;
+      height: 250px;
+      object-fit: cover;
+      object-position: center;
+      border-radius: 0;
+    }
+
+    .performance-title {
+      font-size: 14px;
+      font-weight: bold;
+      margin-top: 10px;
+      color: black;
+      text-decoration: none;
+      display: inline-block;
+    }
+
+    .performance-role {
+      font-size: 13px;
+      color: gray;
+      margin-top: 5px;
+    }
+
+    footer {
+      text-align: center;
+      margin-top: 60px;
+      padding: 10px 0;
+      color: black;
+    }
+
+    .close-btn {
+      display: none;
+    }
+
+        /* Navbar responsiveness */
+.hamburger {
+  background: none;
+  border: none;
+  font-size: 24px;
+  cursor: pointer;
+  display: none;
+}
+
+.nav-links {
+  list-style-type: none;
+  display: flex;
+  gap: 15px;
+  margin: 0;
+  padding: 0;
+}
+
+.nav-links li a {
+  padding: 10px 15px;
+  font-weight: bold;
+  font-size: 13.5px;
+  text-decoration: none;
+  color: black;
+  transition: background-color 0.3s, color 0.3s;
+}
+
+.nav-links li a {
+  position: relative;
+}
+
+.nav-links li a::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 0%;
+  height: 2px;
+  background-color: black;
+  transition: width 0.3s ease;
+}
+
+.nav-links li a:hover::after {
+  width: 100%;
+}
+
+/* Mobile styles */
+  @media (max-width: 768px) {
+      .nav-links {
+        flex-direction: column;
+        background: white;
+        position: fixed;
+        top: 0;
+        right: -250px;
+        width: 200px;
+        height: 100%;
+        padding: 60px 20px;
+        box-shadow: -2px 0px 5px rgba(0, 0, 0, 0.1);
+        transition: right 0.3s ease;
+        z-index: 1500;
+      }
+
+      .nav-links.open {
+        right: 0;
+      }
+
+      .hamburger {
+        display: block;
+      }
+
+      .close-btn {
+        display: block;
+        text-align: right;
+        margin-bottom: 20px;
+      }
+
+      .close-btn a {
+        font-size: 26px;
+        text-decoration: none;
+        color: black;
+        padding: 10px;
+      }
+
+      .performance-item {
+        text-align: center;
+      }
+
+      .performance-title,
+      .performance-role {
+        text-align: center;
+      }
+}
+
+    </style>
+</head>
+<body>
+    
+        <!-- Navbar -->
+       <nav>
+  <div class="navbar-container">
+    <div class="brand-info">
+      <button class="name-button" onclick="window.location.href='index.html'" id="name-button" data-gr="ΒΑΣΟΥΛΑ ΔΕΛΛΗ" data-en="VASSULA DELLI">ΒΑΣΟΥΛΑ ΔΕΛΛΗ</button>
+       <!--<p id="title-text" data-gr="ΜΟΥΣΙΚΟΣ / PERFORMER / ΣΥΝΘΕΤΡΙΑ / ΠΑΙΔΑΓΩΓΟΣ" data-en="MUSICIAN / PERFORMER / COMPOSER / EDUCATOR">
+        ΜΟΥΣΙΚΟΣ / PERFORMER / ΣΥΝΘΕΤΡΙΑ / ΠΑΙΔΑΓΩΓΟΣ
+      </p>-->
+    </div>
+    <button class="hamburger" onclick="toggleMenu()">☰</button>
+    <ul class="nav-links">
+      <li class="close-btn"><a href="javascript:void(0)" onclick="toggleMenu()">✕</a></li>
+      <li><a href="bio.html" class="lang" data-gr="Βιογραφικό" data-en="Biography">Βιογραφικό</a></li>
+      <li><a href="performance.html" class="lang" data-gr="Παραστάσεις" data-en="Performances">Παραστάσεις</a></li>
+      <li><a href="maestro.html" class="lang" data-gr="Μουσική Προετοιμασία - Διδασκαλία" data-en="Music Preparation – Teaching">Μουσική Προετοιμασία - Διδασκαλία</a></li>
+      <li><a href="discography.html" class="lang" data-gr="Δισκογραφία" data-en="Discography">Δισκογραφία</a></li>
+      <li><a href="contact.html" class="lang" data-gr="Επικοινωνία" data-en="Contact">Επικοινωνία</a></li>
+    </ul>
+    <button class="lang-toggle" onclick="toggleLanguage()">EN</button>
+  </div>
+</nav>
+        
+        <div class="container py-5" style="margin-top: 100px;">
+    <!-- Title -->
+    <div class="content-container">
+        <h2 class="lang" data-gr="Η ΟΒΑΛ ΚΥΡΙΑ" data-en="THE OVAL LADY">Η ΟΒΑΛ ΚΥΡΙΑ</h2>
+    </div>
+    <br>
+
+    <!-- Carousel -->
+    <div id="performanceCarousel" class="carousel slide" data-bs-ride="carousel">
+        <div class="carousel-inner text-center">
+
+            <div class="carousel-item active">
+                <img src="./οβαλ2.jpg" class="d-block carousel-img" alt="Image 1">
+            </div>
+            <div class="carousel-item">
+                <img src="./οβαλ3.jpg" class="d-block carousel-img" alt="Image 2">
+            </div>
+            <div class="carousel-item">
+                <img src="./οβαλ4.jpg" class="d-block carousel-img" alt="Image 3">
+            </div>
+            <div class="carousel-item">
+                <img src="./οβαλ5.jpg" class="d-block carousel-img" alt="Image 4">
+            </div>
+            <div class="carousel-item">
+                <img src="./Screenshot (12).png" class="d-block carousel-img" alt="Image 5">
+            </div>
+
+        </div>
+        
+        <!-- Carousel Controls -->
+        <button class="carousel-control-prev" type="button" data-bs-target="#performanceCarousel" data-bs-slide="prev">
+            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Previous</span>
+        </button>
+        <button class="carousel-control-next" type="button" data-bs-target="#performanceCarousel" data-bs-slide="next">
+            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Next</span>
+        </button>
+    </div>
+</div>
+
+            <!-- Photo Credits -->
+            <div class="content-container ">
+                <p class="lang" style="font-size: 13px;" data-gr="Photo Credits: Μυρτώ Σταματοπούλου" data-en="Photo Credits: Myrto Stamatopoulou">Photo Credits: Μυρτώ Σταματοπούλου</p>
+            </div>
+        </div>
+        
+        <!-- Text Description -->
+        <div class="content-container">
+            <h2 class="lang" data-gr="Η ΟΒΑΛ ΚΥΡΙΑ ΤΗΣ ΛΕΟΝΟΡΑ ΚΑΡΡΙΝΓΚΤΟΝ" data-en="THE OVAL LADY BY LEONORA CARRINGTON">Η ΟΒΑΛ ΚΥΡΙΑ ΤΗΣ ΛΕΟΝΟΡΑ ΚΑΡΡΙΝΓΚΤΟΝ</h2>
+            <p class="lang" data-gr="Μια ειδικά σχεδιασμένη περιπατητική παράσταση βασισμένη στο διήγημα Η Οβάλ Κυρία της σημαντικής σουρεαλίστριας ζωγράφου και πεζογράφου Leonora Carrington.
+                Το έργο αυτό που αφορά αφενός την ιστορία μιας έφηβης κοπέλας που επιθυμεί να είναι άλογο και αφετέρου την καταστολή της
+                επιθυμίας αυτής από τον πατέρα της, συνδέεται άμεσα με τον τρίτο θεματικό άξονα της έκθεσης Εξέγερση και Διέγερση. Συνομιλεί επίσης με τις έμφυλες διαστάσεις του αγώνα για κοινωνική χειραφέτηση μέσα από τη διαμαρτυρία και την αντίσταση." data-en="A specially designed promenade performance based on The Oval Lady, a short story by the renowned surrealist painter and writer Leonora Carrington.
+
+This work tells the story of a teenage girl who longs to become a horse and of the repression of that desire by her father.
+It resonates closely with the third thematic axis of the exhibition: Uprising and Arousal.
+It also engages with the gendered dimensions of the struggle for social emancipation through protest and resistance.
+.">
+                Μια ειδικά σχεδιασμένη περιπατητική παράσταση βασισμένη στο διήγημα Η Οβάλ Κυρία της σημαντικής σουρεαλίστριας ζωγράφου και πεζογράφου Leonora Carrington.<br>
+                Το έργο αυτό που αφορά αφενός την ιστορία μιας έφηβης κοπέλας που επιθυμεί να είναι άλογο και αφετέρου την καταστολή της<br>
+                επιθυμίας αυτής από τον πατέρα της, <br>συνδέεται άμεσα με τον τρίτο θεματικό άξονα της έκθεσης Εξέγερση και Διέγερση. Συνομιλεί επίσης με τις έμφυλες διαστάσεις του αγώνα για <br>κοινωνική χειραφέτηση μέσα από τη διαμαρτυρία και την αντίσταση.
+            </p>
+            <hr>
+        
+            <h2 class="lang" data-gr="ΠΟΥ & ΠΟΤΕ" data-en="WHERE & WHEN">ΠΟΥ & ΠΟΤΕ</h2>
+            <p class="lang" data-gr="Εθνική Πινακοθήκη Μουσείο Αλέξανδρου Σούτσου 31.1.2025-2.2.2025, Αθήνα" data-en="
+            National Gallery-Alexandros Soutsos Museum 31.1.2025-2.2.2025, Athens">Εθνική Πινακοθήκη-Μουσείο Αλέξανδρου Σούτσου 31.1.2025-2.2.2025, Αθήνα</p>
+            <br>
+            <hr>
+            <!-- Contributors -->
+        <h2 class="lang" data-gr="ΣΥΝΤΕΛΕΣΤΕΣ" data-en="CREDITS">ΣΥΝΤΕΛΕΣΤΕΣ</h2>
+        
+        <div>
+          <p class="lang" data-gr="<strong>Κείμενο:</strong> Leonora Carrington" data-en="<strong>Original text:</strong> Leonora Carrington"><strong>Κείμενο:</strong> Leonora Carrington</p>
+          <p class="lang" data-gr="<strong>Μετάφραση:</strong> Γιάννης Βαρβέρης" data-en="<strong>Translation:</strong> Yannis Varveris"><strong>Μετάφραση:</strong> Γιάννης Βαρβέρης</p>
+          <p class="lang" data-gr="<strong>Σύλληψη – Διασκευή – Σκηνοθεσία:</strong> Παυλίνα Μάρβιν" data-en="<strong>Conception – Adaptation – Direction:</strong> Paulina Marvin"><strong>Σύλληψη – Διασκευή – Σκηνοθεσία:</strong> Παυλίνα Μάρβιν</p>
+          <p class="lang" data-gr="<strong>Παίζουν:</strong> Μαριάννα Δεβετζή, Ολυμπία Μπουλογεώργου" data-en="<strong>Performers:</strong> Marianna Devetzhi, Olympia Boulogeorgou"><strong>Παίζουν:</strong> Μαριάννα Δεβετζή, Ολυμπία Μπουλογεώργου</p>
+          <p class="lang" data-gr="<strong>Τραγούδι – Μουσικοί επί σκηνής:</strong> Στέλλα Γκρήγκοβιτς, Βασούλα Δελλή, Ειρήνη Κυριακού, Ιουλία Ρούτζιου | ΠΛΕΙΑΔΕΣ/Pleiades vocal group" data-en="<strong>Singers – On-stage musicians:</strong> Stella Grigovic, Vassoula Delli, Irini Kyriakou, Ioulia Routziou | ΠΛΕΙΑΔΕΣ/Pleiades vocal group"><strong>Τραγούδι – Μουσικοί επί σκηνής:</strong> Στέλλα Γκρήγκοβιτς, Βασούλα Δελλή, Ειρήνη Κυριακού, Ιουλία Ρούτζιου | ΠΛΕΙΑΔΕΣ/Pleiades vocal group</p>
+          <p class="lang" data-gr="<strong>Σκηνογραφία – Ενδυματολογία:</strong> Χριστίνα Σωτηροπούλου" data-en="<strong>Set & Costume Design:</strong> Christina Sotiropoulou"><strong>Σκηνογραφία – Ενδυματολογία:</strong> Χριστίνα Σωτηροπούλου</p>
+          <p class="lang" data-gr="<strong>Σχεδιασμός και δημιουργία σκηνικών αντικειμένων:</strong> Ασημίνα Λιαρμακοπούλου" data-en="<strong>Props Design & Creation:</strong> Asimina Liarmakopoulou"><strong>Σχεδιασμός και δημιουργία σκηνικών αντικειμένων:</strong> Ασημίνα Λιαρμακοπούλου</p>
+          <p class="lang" data-gr="<strong>Σχεδιασμός φωτισμών – φωτισμοί:</strong> Τάσος Παλαιορούτας" data-en="<strong>Lighting Design:</strong> Tasos Paleoroutas"><strong>Σχεδιασμός φωτισμών – φωτισμοί:</strong> Τάσος Παλαιορούτας</p>
+          <p class="lang" data-gr="<strong>Σύμβουλος δραματουργίας:</strong> Μαριάννα Σωτηροπούλου" data-en="<strong>Dramaturgical Consultant:</strong> Marianna Sotiropoulou"><strong>Σύμβουλος δραματουργίας:</strong> Μαριάννα Σωτηροπούλου</p>
+          <p class="lang" data-gr="<strong>Επιμέλεια κίνησης:</strong> Σταύρος Κώττας" data-en="<strong>Movement Direction:</strong> Stavros Kottas"><strong>Επιμέλεια κίνησης:</strong> Σταύρος Κώττας</p>
+          <p class="lang" data-gr="<strong>Βοηθός σκηνοθέτιδας:</strong> Νάντη Χατζηγεωργίου" data-en="<strong>Assistant director:</strong> Nandi Hatzigeorgiou"><strong>Βοηθός σκηνοθέτιδας:</strong> Νάντη Χατζηγεωργίου</p>
+          <p class="lang" data-gr="<strong>Ψιμυθίωση:</strong> Ήρα Μαγαλιού" data-en="<strong>Makeup:</strong> Ira Magaliou"><strong>Makeup:</strong> Ήρα Μαγαλιού</p>
+          <p class="lang" data-gr="<strong>Φωτογραφίες:</strong> Μυρτώ Σταματοπούλου, διδάσκουσα Φωτογραφίας, και φοιτητές/τριες του Τμήματος Φωτογραφίας & Οπτικοακουστικών Τεχνών Πανεπιστημίου Δυτικής Αττικής" data-en="<strong>Photography:</strong> Myrto Stamatopoulou, lecturer in Photography, and students of the Department of Photography & Audiovisual Arts, University of West Attica"><strong>Φωτογραφίες:</strong> Μυρτώ Σταματοπούλου, διδάσκουσα Φωτογραφίας, και φοιτητές/τριες του Τμήματος Φωτογραφίας & Οπτικοακουστικών Τεχνών Πανεπιστημίου Δυτικής Αττικής</p>
+          <p class="lang" data-gr="<strong>Αφίσα – Γραφιστικά:</strong> Αναστασία Δαφερέρα" data-en="<strong>Poster – Graphic design:</strong> Anastasia Daferera"><strong>Αφίσα – Γραφιστικά:</strong> Αναστασία Δαφερέρα</p>
+          <p class="lang" data-gr="<strong>Παραγωγή:</strong> Εθνική Πινακοθήκη – Μουσείο Αλέξανδρου Σούτσου" data-en="<strong>Produced by:</strong> National Gallery – Alexandros Soutsos Museum"><strong>Παραγωγή:</strong> Εθνική Πινακοθήκη – Μουσείο Αλέξανδρου Σούτσου</p>
+          <p class="lang" data-gr="<strong>Εκτέλεση Παραγωγής:</strong> MENTA ART PRODUCTIONS" data-en="<strong>Production Management:</strong> MENTA ART PRODUCTIONS"><strong>Εκτέλεση Παραγωγής:</strong> MENTA ART PRODUCTIONS</p>
+          <p class="lang" data-gr="<strong>Διεύθυνση Παραγωγής:</strong> Μαρία Ιωάννου" data-en="<strong>Production Director:</strong> Maria Ioannou"><strong>Διεύθυνση Παραγωγής:</strong> Μαρία Ιωάννου</p>
+        </div>
+        
+        <!-- Footer -->
+         <hr>
+       <footer>
+  <p>&copy; 2025 Vassula Delli<br>
+     Created by Chris Tzouvaras</p>
+</footer>
+            
+ <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="language.js"></script>
+  <script>
+    function toggleMenu() {
+      const navLinks = document.querySelector('.nav-links');
+      navLinks.classList.toggle('open');
+    }
+
+    // auto-close menu when clicking a link (mobile only)
+    document.querySelectorAll('.nav-links a').forEach(link => {
+      link.addEventListener('click', () => {
+        const navLinks = document.querySelector('.nav-links');
+        if (navLinks.classList.contains('open')) {
+          navLinks.classList.remove('open');
+        }
+      });
+    });
+  </script>
+</body>
+</html>

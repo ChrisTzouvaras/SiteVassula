@@ -1,0 +1,485 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Performance Details</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css" rel="stylesheet"/>
+<style>
+       
+        .content-container {
+            max-width: 800px;
+            margin: auto;
+            text-align: left;
+        }
+        /*gia na ftanei i eikona tou carusel to text*/
+.carousel-inner {
+  max-width: 800px;      /* adjust frame width */
+  margin: auto;
+  border: 8px solid #333; /* frame look */
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 6px 16px rgba(0,0,0,0.3); /* floating frame effect */
+}
+
+.carousel-img {
+  width: 100%;
+  height: 500px;        /* consistent height */
+  object-fit: cover;    /* keeps proportions but fills frame */
+}
+        footer {
+            text-align: center;
+        }
+
+        .carousel-control-prev, .carousel-control-next {
+            width: 10%;
+            top: 50%;
+            transform: translateY(-50%);
+            opacity: 0.8;
+        }
+
+        .carousel-control-prev-icon, .carousel-control-next-icon {
+            filter: invert(100%);
+        }
+
+        .carousel-control-prev:hover, .carousel-control-next:hover {
+            opacity: 1;
+        }
+
+        .btn-warning {
+            margin-top: 20px;
+        }
+
+      body {
+  font-family: "Roboto", Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+  background-color: white;
+  color: black;
+}
+
+    nav {
+      padding: 10px 0;
+      position: fixed;
+      width: 100%;
+      top: 0;
+      left: 0;
+      background: white;
+      border-bottom: 1px solid #ddd;
+      z-index: 1000;
+    }
+
+    .navbar-container {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      width: 90%;
+      margin: auto;
+      padding: 0 10px;
+    }
+
+    .brand-info {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+    }
+
+    .name-button {
+      background: none;
+      border: none;
+      font-size: 20px;
+      font-weight: bold;
+      cursor: pointer;
+      color: black;
+    }
+
+    .name-button:hover {
+      color: black;
+    }
+
+    .hamburger {
+      display: none;
+      font-size: 26px;
+      background: none;
+      border: none;
+      cursor: pointer;
+    }
+
+    .nav-links {
+      list-style: none;
+      display: flex;
+      justify-content: center;
+      width: 100%;
+      gap: 15px;
+    }
+
+    .nav-links li a {
+      color: black;
+      text-decoration: none;
+      font-weight: bold;
+      font-size: 13.5px;
+      padding: 10px 15px;
+      border-radius: 5px;
+      transition: background-color 0.3s, color 0.3s;
+    }
+
+       .nav-links li a {
+  position: relative;
+}
+
+.nav-links li a::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 0%;
+  height: 2px;
+  background-color: black;
+  transition: width 0.3s ease;
+}
+
+.nav-links li a:hover::after {
+  width: 100%;
+}
+
+    .lang-toggle {
+      background: white;
+      color: black;
+      border: 1px solid black;
+      padding: 5px 10px;
+      font-size: 14px;
+      cursor: pointer;
+      border-radius: 5px;
+    }
+
+    .performances {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 20px;
+      padding: 20px;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    h2 {
+      text-align: center;
+      font-size: 24px;
+      margin: 40px 0 20px;
+    }
+
+    .performance-item {
+      background: none;
+      padding: 0;
+      text-align: left;
+      width: 250px;
+    }
+
+    .performance-item img {
+      width: 100%;
+      height: 250px;
+      object-fit: cover;
+      object-position: center;
+      border-radius: 0;
+    }
+
+    .performance-title {
+      font-size: 14px;
+      font-weight: bold;
+      margin-top: 10px;
+      color: black;
+      text-decoration: none;
+      display: inline-block;
+    }
+
+    .performance-role {
+      font-size: 13px;
+      color: gray;
+      margin-top: 5px;
+    }
+
+    footer {
+      text-align: center;
+      margin-top: 60px;
+      padding: 10px 0;
+      color: black;
+    }
+
+    .close-btn {
+      display: none;
+    }
+
+        /* Navbar responsiveness */
+.hamburger {
+  background: none;
+  border: none;
+  font-size: 24px;
+  cursor: pointer;
+  display: none;
+}
+
+.nav-links {
+  list-style-type: none;
+  display: flex;
+  gap: 15px;
+  margin: 0;
+  padding: 0;
+}
+
+.nav-links li a {
+  padding: 10px 15px;
+  font-weight: bold;
+  font-size: 13.5px;
+  text-decoration: none;
+  color: black;
+  transition: background-color 0.3s, color 0.3s;
+}
+
+.nav-links li a {
+  position: relative;
+}
+
+.nav-links li a::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 0%;
+  height: 2px;
+  background-color: black;
+  transition: width 0.3s ease;
+}
+
+.nav-links li a:hover::after {
+  width: 100%;
+}
+
+/* Mobile styles */
+  @media (max-width: 768px) {
+      .nav-links {
+        flex-direction: column;
+        background: white;
+        position: fixed;
+        top: 0;
+        right: -250px;
+        width: 200px;
+        height: 100%;
+        padding: 60px 20px;
+        box-shadow: -2px 0px 5px rgba(0, 0, 0, 0.1);
+        transition: right 0.3s ease;
+        z-index: 1500;
+      }
+
+      .nav-links.open {
+        right: 0;
+      }
+
+      .hamburger {
+        display: block;
+      }
+
+      .close-btn {
+        display: block;
+        text-align: right;
+        margin-bottom: 20px;
+      }
+
+      .close-btn a {
+        font-size: 26px;
+        text-decoration: none;
+        color: black;
+        padding: 10px;
+      }
+
+      .performance-item {
+        text-align: center;
+      }
+
+      .performance-title,
+      .performance-role {
+        text-align: center;
+      }
+}
+
+    </style>
+</head>
+<body>
+    
+        <!-- Navbar -->
+       <nav>
+  <div class="navbar-container">
+    <div class="brand-info">
+      <button class="name-button" onclick="window.location.href='index.html'" id="name-button" data-gr="ΒΑΣΟΥΛΑ ΔΕΛΛΗ" data-en="VASSULA DELLI">ΒΑΣΟΥΛΑ ΔΕΛΛΗ</button>
+       <!--<p id="title-text" data-gr="ΜΟΥΣΙΚΟΣ / PERFORMER / ΣΥΝΘΕΤΡΙΑ / ΠΑΙΔΑΓΩΓΟΣ" data-en="MUSICIAN / PERFORMER / COMPOSER / EDUCATOR">
+        ΜΟΥΣΙΚΟΣ / PERFORMER / ΣΥΝΘΕΤΡΙΑ / ΠΑΙΔΑΓΩΓΟΣ
+      </p>-->
+    </div>
+    <button class="hamburger" onclick="toggleMenu()">☰</button>
+    <ul class="nav-links">
+      <li class="close-btn"><a href="javascript:void(0)" onclick="toggleMenu()">✕</a></li>
+      <li><a href="bio.html" class="lang" data-gr="Βιογραφικό" data-en="Biography">Βιογραφικό</a></li>
+      <li><a href="performance.html" class="lang" data-gr="Παραστάσεις" data-en="Performances">Παραστάσεις</a></li>
+      <li><a href="maestro.html" class="lang" data-gr="Μουσική Προετοιμασία - Διδασκαλία" data-en="Music Preparation – Teaching">Μουσική Προετοιμασία - Διδασκαλία</a></li>
+      <li><a href="discography.html" class="lang" data-gr="Δισκογραφία" data-en="Discography">Δισκογραφία</a></li>
+      <li><a href="contact.html" class="lang" data-gr="Επικοινωνία" data-en="Contact">Επικοινωνία</a></li>
+    </ul>
+    <button class="lang-toggle" onclick="toggleLanguage()">EN</button>
+  </div>
+</nav>
+  
+<br>
+<br>
+
+<div class="container py-5">
+    <!-- Title -->
+    <div class="content-container">
+        <h2>DIANA, EVEN</h2>
+    </div>
+    <br>
+
+    <!-- Carousel -->
+    <div id="performanceCarouselDiana" class="carousel slide" data-bs-ride="carousel">
+        <div class="carousel-inner text-center">
+
+            <div class="carousel-item active">
+                <img src="./dian1.jpg" class="d-block carousel-img" alt="Image 1">
+            </div>
+            <div class="carousel-item">
+                <img src="./dian2.jpg" class="d-block carousel-img" alt="Image 2">
+            </div>
+            <div class="carousel-item">
+                <img src="./dian3.jpg" class="d-block carousel-img" alt="Image 3">
+            </div>
+            <div class="carousel-item">
+                <img src="./dian4.jpg" class="d-block carousel-img" alt="Image 4">
+            </div>
+
+        </div>
+        
+        <!-- Carousel Controls -->
+        <button class="carousel-control-prev" type="button" data-bs-target="#performanceCarouselDiana" data-bs-slide="prev">
+            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Previous</span>
+        </button>
+        <button class="carousel-control-next" type="button" data-bs-target="#performanceCarouselDiana" data-bs-slide="next">
+            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Next</span>
+        </button>
+    </div>
+</div>
+
+<br>
+
+
+
+<!-- Text Description -->
+<div class="content-container">
+    <h2 class="lang" data-gr="DIANA, EVEN ΤΗΣ KAT VALASTUR" data-en="DIANA, EVEN BY KAT VALASTUR">DIANA, EVEN ΤΗΣ KAT VALASTUR</h2>
+    <p class="lang" data-gr="Ένα βέλος χτυπά ένα δέντρο σε ένα δάσος. Το χτύπημα θέτει το βέλος σε μια άπειρη δόνηση. Η δόνηση δημιουργεί κυματισμούς στο ακίνητο νερό και διαταράσσει την επιφάνειά του. Εκείνη τη στιγμή πέφτει νεκρή η Νταϊάνα, η θεά του κυνηγιού και προστάτιδα της χλωρίδας και της πανίδας. Αυτή η βίαιη ανακατεύθυνση του μύθου και της ιστορικής του πορείας δημιουργεί έναν νέο μυθικό χρόνο-χώρο. Η Νταϊάνα υπάρχει πλέον ταυτόχρονα ως κυνηγός και θήραμα, σκοτωμένη και αναγεννημένη. Στη νέα χορογραφία της Kat Válastur, οι τέσσερις χορεύτριες Xenia Koghilaki, Malika Lamwersiek, Ogbitse Omagbemi, Tamar Sonn και τέσσερις πολυφωνικές τραγουδίστριες από το ελληνικό γυναικείο φωνητικό συγκρότημα Pleiades ενσαρκώνουν αυτούς τους κύκλους δράσης φέρνουν το αρχαϊκό στο παρόν, σε μια σκηνή που δημιουργήθηκε από τον Leon Eixenber designer και τον lighteter. Το «Diana, Even» οδηγεί το γεγονός πέρα ​​από τη μυθική κατασκευή και προτείνει έτσι μια νέα ανάγνωση της Ιστορίας που ενσωματώνει τον μυθικό και ιστορικό χώρο στην πραγματικότητα της γυναικείας ζωής." data-en="An arrow strikes a tree in a forest. The impact sets the arrow into infinite vibration. This vibration creates ripples in still water, disturbing its surface. At that very moment, Diana, goddess of the hunt and protector of flora and fauna, drops dead.
+This violent redirection of myth and its historical trajectory births a new mythical space-time. Diana now exists simultaneously as hunter and prey, slain and reborn.
+In Kat Válastur’s new choreography, four dancers Xenia Koghilaki, Malika Lamwersiek, Ogbitse Omagbemi, and Tamar Sonn along with four polyphonic singers from the Greek female vocal ensemble Pleiades embody these cycles of action, bringing the archaic into the present.
+The stage, a creation of Leon Eixenber and the lighting team, becomes the ground for this transformation.
+Diana, Even propels the event beyond its mythic construct, offering a new reading of history that integrates mythic and historical space into the reality of womanhood.">
+        Ένα βέλος χτυπά ένα δέντρο σε ένα δάσος. Το χτύπημα θέτει το βέλος σε μια άπειρη δόνηση. Η δόνηση δημιουργεί κυματισμούς στο ακίνητο νερό και διαταράσσει την επιφάνειά του. Εκείνη τη στιγμή πέφτει νεκρή η Νταϊάνα, η θεά του κυνηγιού και προστάτιδα της χλωρίδας και της πανίδας. Αυτή η βίαιη ανακατεύθυνση του μύθου και της ιστορικής του πορείας δημιουργεί έναν νέο μυθικό χρόνο-χώρο. Η Νταϊάνα υπάρχει πλέον ταυτόχρονα ως κυνηγός και θήραμα, σκοτωμένη και αναγεννημένη. Στη νέα χορογραφία της Kat Válastur, οι τέσσερις χορεύτριες Xenia Koghilaki, Malika Lamwersiek, Ogbitse Omagbemi, Tamar Sonn και τέσσερις πολυφωνικές τραγουδίστριες από το ελληνικό γυναικείο φωνητικό συγκρότημα Pleiades ενσαρκώνουν αυτούς τους κύκλους δράσης φέρνουν το αρχαϊκό στο παρόν, σε μια σκηνή που δημιουργήθηκε από τον Leon Eixenber designer και τον lighteter. Το «Diana, Even» οδηγεί το γεγονός πέρα ​​από τη μυθική κατασκευή και προτείνει έτσι μια νέα ανάγνωση της Ιστορίας που ενσωματώνει τον μυθικό και ιστορικό χώρο στην πραγματικότητα της γυναικείας ζωής.
+    </p>
+    <hr>
+
+    <h2 class="lang" data-gr="ΠΟΥ & ΠΟΤΕ" data-en="WHERE & WHEN">ΠΟΥ & ΠΟΤΕ</h2>
+    <p class="lang" data-gr="7-10.1.2022 Hau Hebbel Am Ufer, Βερολίνο<br>
+        26.11.2022 Next Festival Schouwburg Kortrijk, Kortrijk<br>
+        7-8.10.2023 RomaEuropa Festival Theatre Argentina, Ρώμη" data-en="7-10.1.2022 Hau Hebbel Am Ufer, Berlin<br>
+        26.11.2022 Next Festival Schouwburg Kortrijk, Kortrijk<br>
+        7-8.10.2023 RomaEuropa Festival Theatre Argentina, Rome">7-10.1.2022 Hau Hebbel Am Ufer, Βερολίνο<br>
+        26.11.2022 Next Festival Schouwburg Kortrijk, Kortrijk<br>
+        7-8.10.2023 RomaEuropa Festival Theatre Argentina, Ρώμη
+    </p>
+    <hr>
+
+    <!-- Embedded Video -->
+<div class="content-container">
+      <div class="text-center">
+        <iframe 
+            title="youtube" 
+            src="https://www.youtube.com/embed/BvpE1wrKnWQ" 
+            width="640" height="360" 
+            frameborder="0" 
+            allowfullscreen>
+        </iframe>
+    </div>
+ </div>
+ <hr>
+
+    <!-- Contributors -->
+    <h2 class="lang" data-gr="ΣΥΝΤΕΛΕΣΤΕΣ" data-en="CREDITS">ΣΥΝΤΕΛΕΣΤΕΣ</h2>
+
+<div>
+  <p class="lang" data-gr="<strong>Χορογραφία:</strong> Kat Válastur" data-en="<strong>Choreography:</strong> Kat Válastur">
+    <strong>Χορογραφία:</strong> Kat Válastur
+  </p>
+  <p class="lang" data-gr="<strong>Ερμηνεία:</strong> Xenia Koghilaki, Malika Lamwersiek, Ogbitse Omagbemi, Tamar Sonn" data-en="<strong>Performance:</strong> Xenia Koghilaki, Malika Lamwersiek, Ogbitse Omagbemi, Tamar Sonn">
+    <strong>Ερμηνεία:</strong> Xenia Koghilaki, Malika Lamwersiek, Ogbitse Omagbemi, Tamar Sonn
+  </p>
+  <p class="lang" data-gr="<strong>Τραγουδιστές:</strong> Pleiades Vocal Group (Αλίκη Ατσαλάκη, Στέλλα Γκρίγκοβιτς, Βασούλα Δελλή, Ειρήνη Κυριακού)" data-en="<strong>Singers:</strong> Pleiades Vocal Group (Aliki Atsalaki, Stella Grigovic, Vassoula Delli, Irini Kyriakou)">
+    <strong>Τραγουδιστές:</strong> Pleiades Vocal Group (Αλίκη Ατσαλάκη, Στέλλα Γκρίγκοβιτς, Βασούλα Δελλή, Ειρήνη Κυριακού)
+  </p>
+  <p class="lang" data-gr="<strong>Σχεδιασμός φωτισμού:</strong> Eirini Leakou, Eirini Lebbergeret Υποστήριξη σχεδιασμού φωτισμών: Vito Walter" data-en="<strong>Lighting design:</strong> Eirini Leakou, Eirini Lebbergeret – Lighting design support: Vito Walter">
+    <strong>Σχεδιασμός φωτισμού:</strong> Eirini Leakou, Eirini Lebbergeret Υποστήριξη σχεδιασμού φωτισμών: Vito Walter
+  </p>
+  <p class="lang" data-gr="<strong>Βοηθός σκηνογραφίας:</strong> Cecilia Nercausseau Gibson" data-en="<strong>Assistant Scenographer:</strong> Cecilia Nercausseau Gibson">
+    <strong>Βοηθός σκηνογραφίας:</strong> Cecilia Nercausseau Gibson
+  </p>
+  <p class="lang" data-gr="<strong>Σχεδιασμός ήχου:</strong> Cesar B." data-en="<strong>Sound design:</strong> Cesar B.">
+    <strong>Σχεδιασμός ήχου:</strong> Cesar B.
+  </p>
+  <p class="lang" data-gr="<strong>Βοηθός σχεδίασης ήχου και ηχοληψίας:</strong> Βαγγέλης Τσάτσης" data-en="<strong>Sound Design Assistance & Engineering:</strong> Vangelis Tsatsis">
+    <strong>Βοηθός σχεδίασης ήχου και ηχοληψίας:</strong> Βαγγέλης Τσάτσης
+  </p>
+  <p class="lang" data-gr="<strong>Χορογραφική βοήθεια:</strong> Lena Klink" data-en="<strong>Choreographic assistance:</strong> Lena Klink">
+    <strong>Χορογραφική βοήθεια:</strong> Lena Klink
+  </p>
+  <p class="lang" data-gr="<strong>Κοστούμια:</strong> Marie Gerstenberger" data-en="<strong>Costumes:</strong> Marie Gerstenberger">
+    <strong>Κοστούμια:</strong> Marie Gerstenberger
+  </p>
+  <p class="lang" data-gr="<strong>Περιηγήσεις & Διανομή:</strong> Nicole Schuchardt" data-en="<strong>Touring & Distribution:</strong> Nicole Schuchardt">
+    <strong>Περιηγήσεις & Διανομή:</strong> Nicole Schuchardt
+  </p>
+  <p class="lang" data-gr="<strong>Παραγωγή:</strong> Kat Válastur" data-en="<strong>Production:</strong> Kat Válastur">
+    <strong>Παραγωγή:</strong> Kat Válastur
+  </p>
+  <p class="lang" data-gr="<strong>Συμπαραγωγή:</strong> HAU Hebbel am Ufer, NEXT Arts Festival (Kortrijk), Points communs / nouvelle scène nationale Cergy-Pontoise / Val d’Oise" data-en="<strong>Co-production:</strong> HAU Hebbel am Ufer, NEXT Arts Festival (Kortrijk), Points communs / nouvelle scène nationale Cergy-Pontoise / Val d’Oise">
+    <strong>Συμπαραγωγή:</strong> HAU Hebbel am Ufer, NEXT Arts Festival (Kortrijk), Points communs / nouvelle scène nationale Cergy-Pontoise / Val d’Oise
+  </p>
+  <p class="lang" data-gr="<strong>Χρηματοδότηση:</strong> Τμήμα Πολιτισμού και Ευρώπης της Γερουσίας του Βερολίνου, Hauptstadtkulturfonds" data-en="<strong>Funding:</strong> Department for Culture and Europe of the Berlin Senate, Hauptstadtkulturfonds">
+    <strong>Χρηματοδότηση:</strong> Τμήμα Πολιτισμού και Ευρώπης της Γερουσίας του Βερολίνου, Hauptstadtkulturfonds
+  </p>
+</div>
+
+</div>
+<!-- Footer -->
+ <hr>
+
+
+<footer>
+  <p>&copy; 2025 Vassula Delli<br>
+     Created by Chris Tzouvaras</p>
+</footer>
+ <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="language.js"></script>
+  <script>
+    function toggleMenu() {
+      const navLinks = document.querySelector('.nav-links');
+      navLinks.classList.toggle('open');
+    }
+
+    // auto-close menu when clicking a link (mobile only)
+    document.querySelectorAll('.nav-links a').forEach(link => {
+      link.addEventListener('click', () => {
+        const navLinks = document.querySelector('.nav-links');
+        if (navLinks.classList.contains('open')) {
+          navLinks.classList.remove('open');
+        }
+      });
+    });
+  </script>
+</body>
+</html>
